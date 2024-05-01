@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr5s3h604bb25"]
+
+[ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_tbdpo")
+
+[node name="Gui" type="CanvasLayer" parent="."]
+
+[node name="Hud" type="Control" parent="Gui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Words" type="Control" parent="Gui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputBox" type="Control" parent="Gui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="H" type="HBoxContainer" parent="Gui/InputBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="Gui/InputBox/H"]
+layout_mode = 2
+alignment = 1
+
+[node name="Input" type="LineEdit" parent="Gui/InputBox/H/V"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="text_changed" from="Gui/InputBox/H/V/Input" to="." method="_on_line_edit_text_changed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
