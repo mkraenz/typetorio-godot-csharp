@@ -7,7 +7,7 @@ public partial class main : Node
 	private int maxWords = 100;
 
 	private Control words;
-	private LineEdit lineEdit;
+	private InputPrompt prompt;
 
 	private Dictionary<string, Node> _current_words = new Dictionary<string, Node> { };
 	private int _points = 0;
@@ -15,8 +15,8 @@ public partial class main : Node
 	public override void _Ready()
 	{
 		words = GetNode<Control>("Gui/Words");
-		lineEdit = GetNode<LineEdit>("Gui/InputBox/H/V/Input");
-		lineEdit.GrabFocus();
+		prompt = GetNode<InputPrompt>("Gui/InputBox/H/V/InputPrompt");
+		prompt.GrabFocus();
 	}
 
 	private string _GetRandomWord()
@@ -71,12 +71,12 @@ public partial class main : Node
 				_current_words.Remove(str);
 				_points++;
 				GD.PrintT("Points", _points);
-				lineEdit.Clear();
+				prompt.Clear();
 			}
-			else
-			{
-				(label as Label).Text = str;
-			}
+		}
+		else
+		{
+			prompt.SetText(str);
 		}
 	}
 }

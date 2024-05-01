@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dr5s3h604bb25"]
+[gd_scene load_steps=3 format=3 uid="uid://dr5s3h604bb25"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
+[ext_resource type="Script" path="res://InputPrompt.cs" id="2_4y4oy"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tbdpo")
@@ -44,14 +45,22 @@ alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Input" type="LineEdit" parent="Gui/InputBox/H/V"]
+[node name="InputPrompt" type="LineEdit" parent="Gui/InputBox/H/V"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+placeholder_text = "TYPE THE WORDS"
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+script = ExtResource("2_4y4oy")
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="text_changed" from="Gui/InputBox/H/V/Input" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_changed" from="Gui/InputBox/H/V/InputPrompt" to="." method="_on_line_edit_text_changed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
