@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://scqbdnqfoisr"]
+
+[ext_resource type="Script" path="res://ui/score/MyScore.cs" id="1_2l8qj"]
+
+[node name="MyScore" type="MarginContainer"]
+script = ExtResource("1_2l8qj")
+Value = "0000012345"
+Label = "MyLabel"
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="H"]
+layout_mode = 2
+text = "MyLabel"
+
+[node name="Value" type="Label" parent="H"]
+layout_mode = 2
+text = "0000012345"

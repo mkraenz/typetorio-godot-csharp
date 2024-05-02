@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr5s3h604bb25"]
+[gd_scene load_steps=4 format=3 uid="uid://dr5s3h604bb25"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_4y4oy"]
+[ext_resource type="PackedScene" uid="uid://scqbdnqfoisr" path="res://ui/score/MyScore.tscn" id="2_qabu5"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tbdpo")
@@ -15,6 +16,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="H" type="HBoxContainer" parent="Gui/Hud"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MyScore" parent="Gui/Hud/H" instance=ExtResource("2_qabu5")]
+layout_mode = 2
+Value = "0000012363"
+Label = "Score"
+
+[node name="WordsCleared2" parent="Gui/Hud/H" instance=ExtResource("2_qabu5")]
+layout_mode = 2
+Value = "00001234"
+Label = "Words"
 
 [node name="Words" type="Control" parent="Gui"]
 layout_mode = 3

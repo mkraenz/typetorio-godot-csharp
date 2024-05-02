@@ -54,8 +54,10 @@ public partial class main : Node
 		int maxHeight = (int)ProjectSettings.GetSetting("display/window/size/viewport_height");
 		int marginBottom = 50;
 		int marginRight = 200;
-		float x = GD.RandRange(0, maxWidth - marginRight);
-		float y = GD.RandRange(0, maxHeight - marginBottom);
+		int marginTop = 50;
+		int marginLeft = 0;
+		float x = GD.RandRange(marginLeft, maxWidth - marginRight);
+		float y = GD.RandRange(marginTop, maxHeight - marginBottom);
 		return new Vector2(x, y);
 	}
 

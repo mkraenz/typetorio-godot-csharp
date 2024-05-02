@@ -25,6 +25,10 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="Typetorio"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
