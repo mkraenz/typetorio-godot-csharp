@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public partial class main : Node
 {
 	[Export]
-	private int maxWords = 100;
+	private int maxConcurrentWords = 100;
 
 	private Control words;
 	private InputPrompt prompt;
@@ -37,7 +37,7 @@ public partial class main : Node
 	private void _SpawnNewWord()
 	{
 
-		if (_current_words.Count > maxWords) return;
+		if (_current_words.Count > maxConcurrentWords) return;
 		string nextWord = _GetRandomWord();
 		var label = new Label()
 		{
