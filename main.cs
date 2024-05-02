@@ -8,14 +8,15 @@ public partial class main : Node
 
 	private Control words;
 	private InputPrompt prompt;
+	private Eventbus eventbus;
 
 	private Dictionary<string, Node> _current_words = new Dictionary<string, Node> { };
-	private int _points = 0;
 
 	public override void _Ready()
 	{
 		words = GetNode<Control>("Gui/Words");
 		prompt = GetNode<InputPrompt>("Gui/InputBox/H/V/InputPrompt");
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		prompt.GrabFocus();
 	}
 
@@ -71,9 +72,8 @@ public partial class main : Node
 			{
 				label.QueueFree();
 				_current_words.Remove(str);
-				_points++;
-				GD.PrintT("Points", _points);
 				prompt.Clear();
+				eventbus.EmitWordCleared(str);
 			}
 		}
 		else

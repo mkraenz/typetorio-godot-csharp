@@ -9,7 +9,7 @@ public partial class MyScore : MarginContainer
 
 	[ExportCategory("Scoring")]
 	[Export]
-	private string Value
+	public string Value
 	{
 		get { return _value; }
 		set
@@ -20,7 +20,7 @@ public partial class MyScore : MarginContainer
 	}
 
 	[Export]
-	private string Label
+	public string Label
 	{
 		get => _label;
 		set
@@ -37,7 +37,6 @@ public partial class MyScore : MarginContainer
 	{
 		label = GetNode<Label>("H/Label");
 		valueLabel = GetNode<Label>("H/Value");
-		GD.Print(_label, _value);
 		_UpdateAllLabels();
 
 	}
