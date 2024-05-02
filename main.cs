@@ -10,7 +10,7 @@ public partial class main : Node
 	private InputPrompt prompt;
 	private Eventbus eventbus;
 
-	private Dictionary<string, Node> _current_words = new Dictionary<string, Node> { };
+	private Dictionary<string, Word> _current_words = new Dictionary<string, Word> { };
 
 	public override void _Ready()
 	{
@@ -40,13 +40,14 @@ public partial class main : Node
 
 		if (_current_words.Count > maxConcurrentWords) return;
 		string nextWord = _GetRandomWord();
-		var label = new Label()
-		{
-			Text = nextWord,
-			Position = _GetRandomPosition(),
-		};
-		_current_words.Add(label.Text, label);
-		words.AddChild(label);
+		Material material = GD.Load<Material>("res://effects/dissolve.material");
+		var WordScene = GD.Load<PackedScene>("res://ui/word/Word.tscn");
+		var word = WordScene.Instantiate() as Word;
+		word.Text = nextWord;
+		word.Position = _GetRandomPosition();
+		word.Material = material.Duplicate() as Material;
+		_current_words.Add(word.Text, word);
+		words.AddChild(word);
 	}
 
 	private Vector2 _GetRandomPosition()
@@ -67,10 +68,10 @@ public partial class main : Node
 		string str = newText.ToUpper();
 		if (_current_words.ContainsKey(str))
 		{
-			Node label = _current_words.GetValueOrDefault(str);
-			if (IsInstanceValid(label))
+			Word word = _current_words.GetValueOrDefault(str);
+			if (IsInstanceValid(word))
 			{
-				label.QueueFree();
+				word.Die();
 				_current_words.Remove(str);
 				prompt.Clear();
 				eventbus.EmitWordCleared(str);
