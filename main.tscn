@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_4y4oy"]
-[ext_resource type="PackedScene" uid="uid://scqbdnqfoisr" path="res://ui/score/MyScore.tscn" id="2_qabu5"]
 [ext_resource type="PackedScene" uid="uid://bgxlgllrocj7r" path="res://ui/highscore/Highscore.tscn" id="2_wuajq"]
+[ext_resource type="PackedScene" uid="uid://c2280bmuwxh7k" path="res://ui/wordscleared/WordsCleared.tscn" id="3_hc6t4"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tbdpo")
@@ -27,10 +27,8 @@ grow_horizontal = 2
 [node name="Highscore" parent="Gui/Hud/H" instance=ExtResource("2_wuajq")]
 layout_mode = 2
 
-[node name="WordsCleared2" parent="Gui/Hud/H" instance=ExtResource("2_qabu5")]
+[node name="WordsCleared" parent="Gui/Hud/H" instance=ExtResource("3_hc6t4")]
 layout_mode = 2
-Value = "00001234"
-Label = "Words"
 
 [node name="Words" type="Control" parent="Gui"]
 layout_mode = 3
