@@ -40,12 +40,10 @@ public partial class main : Node
 
 		if (_current_words.Count > maxConcurrentWords) return;
 		string nextWord = _GetRandomWord();
-		Material material = GD.Load<Material>("res://effects/dissolve.material");
 		var WordScene = GD.Load<PackedScene>("res://ui/word/Word.tscn");
 		var word = WordScene.Instantiate() as Word;
 		word.Text = nextWord;
 		word.Position = _GetRandomPosition();
-		word.Material = material.Duplicate() as Material;
 		_current_words.Add(word.Text, word);
 		words.AddChild(word);
 	}
