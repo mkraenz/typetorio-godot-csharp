@@ -16,9 +16,9 @@ public partial class Highscore : MarginContainer
 		_UpdateLabel();
 	}
 
-	private void _OnWordCleared(string word)
+	private void _OnWordCleared(string word, float comboMultiplier)
 	{
-		_score++;
+		_score += (int)(5 * comboMultiplier);
 		_UpdateLabel();
 	}
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://pp1gb4i7rr0t"]
+
+[ext_resource type="Script" path="res://ui/combometer/ComboMeter.cs" id="1_5xh8l"]
+[ext_resource type="PackedScene" uid="uid://scqbdnqfoisr" path="res://ui/score/MyScore.tscn" id="2_2lr6p"]
+
+[node name="ComboMeter" type="MarginContainer"]
+script = ExtResource("1_5xh8l")
+
+[node name="MyScore" parent="." instance=ExtResource("2_2lr6p")]
+layout_mode = 2
+Value = "x3"
+Label = "Combo Multiplier"

@@ -6,17 +6,21 @@ public partial class main : Node
 	[Export]
 	private int maxConcurrentWords = 100;
 
+
 	private Control words;
 	private InputPrompt prompt;
 	private Eventbus eventbus;
+	private Timer comboTimer;
 
 	private Dictionary<string, Word> _current_words = new Dictionary<string, Word> { };
+	private float _comboMultiplier = 0;
 
 	public override void _Ready()
 	{
 		words = GetNode<Control>("Gui/Words");
 		prompt = GetNode<InputPrompt>("Gui/InputBox/H/V/InputPrompt");
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		comboTimer = GetNode<Timer>("ComboTimer");
 		prompt.GrabFocus();
 	}
 
@@ -69,15 +73,34 @@ public partial class main : Node
 			Word word = _current_words.GetValueOrDefault(str);
 			if (IsInstanceValid(word))
 			{
-				word.Die();
-				_current_words.Remove(str);
-				prompt.Clear();
-				eventbus.EmitWordCleared(str);
+				_CompleteWord(word, str);
 			}
 		}
 		else
 		{
 			prompt.SetText(str);
 		}
+	}
+
+	private void _CompleteWord(Word word, string str)
+	{
+		word.Die();
+		_current_words.Remove(str);
+		prompt.Clear();
+
+		_comboMultiplier += 1;
+		comboTimer.Start();
+		eventbus.emitComboChanged(_comboMultiplier);
+
+		// make sure to use the updated combo multiplier
+		eventbus.EmitWordCleared(str, _comboMultiplier);
+
+	}
+
+	public void _on_combo_timer_timeout()
+	{
+		// reset combo
+		_comboMultiplier = 0;
+		eventbus.emitComboChanged(_comboMultiplier);
 	}
 }

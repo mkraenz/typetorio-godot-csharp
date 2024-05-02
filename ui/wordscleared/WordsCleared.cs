@@ -16,7 +16,7 @@ public partial class WordsCleared : MarginContainer
 		_UpdateLabels();
 	}
 
-	private void _OnWordCleared(string word)
+	private void _OnWordCleared(string word, float comboMultiplier)
 	{
 		_count++;
 		_UpdateLabels();

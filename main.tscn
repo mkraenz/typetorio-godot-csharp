@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr5s3h604bb25"]
+[gd_scene load_steps=6 format=3 uid="uid://dr5s3h604bb25"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_4y4oy"]
 [ext_resource type="PackedScene" uid="uid://bgxlgllrocj7r" path="res://ui/highscore/Highscore.tscn" id="2_wuajq"]
 [ext_resource type="PackedScene" uid="uid://c2280bmuwxh7k" path="res://ui/wordscleared/WordsCleared.tscn" id="3_hc6t4"]
+[ext_resource type="PackedScene" uid="uid://pp1gb4i7rr0t" path="res://ui/combometer/ComboMeter.tscn" id="4_p04ak"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tbdpo")
@@ -28,6 +29,9 @@ grow_horizontal = 2
 layout_mode = 2
 
 [node name="WordsCleared" parent="Gui/Hud/H" instance=ExtResource("3_hc6t4")]
+layout_mode = 2
+
+[node name="ComboMeter" parent="Gui/Hud/H" instance=ExtResource("4_p04ak")]
 layout_mode = 2
 
 [node name="Words" type="Control" parent="Gui"]
@@ -76,5 +80,9 @@ script = ExtResource("2_4y4oy")
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="text_changed" from="Gui/InputBox/H/V/InputPrompt" to="." method="_on_line_edit_text_changed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
