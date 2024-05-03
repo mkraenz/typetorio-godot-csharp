@@ -50,7 +50,7 @@ public partial class main : Node
 		var word = WordScene.Instantiate() as Word;
 		word.Text = nextWord;
 		word.GlobalPosition = _GetRandomPosition();
-		word.PathRotationDegrees = 45;//GD.RandRange(0, 360);
+		word.PathRotationDegrees = GD.RandRange(0, 360);
 		_current_words.Add(word.Text, word);
 		words.AddChild(word); // force calling the ready function first
 	}

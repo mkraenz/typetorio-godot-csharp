@@ -20,8 +20,8 @@ public partial class Word : Control
 		path = GetNode<Path2D>("Path2D");
 
 		label.Text = Text;
-		// path.RotationDegrees = PathRotationDegrees;
-		// GD.PrintT(path.Rotation, path.RotationDegrees, path.GlobalRotation, path.GlobalRotationDegrees);
+		path.RotationDegrees = PathRotationDegrees;
+		label.RotationDegrees = -PathRotationDegrees; // cancels out path rotation so that the actual word is readable as "normal" (left-to-right)
 	}
 
 	public void Die()
