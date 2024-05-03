@@ -22,6 +22,8 @@ public partial class main : Node
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		comboTimer = GetNode<Timer>("ComboTimer");
 		prompt.GrabFocus();
+
+		_SpawnNewWord();
 	}
 
 	private string _GetRandomWord()
@@ -47,9 +49,10 @@ public partial class main : Node
 		var WordScene = GD.Load<PackedScene>("res://ui/word/Word.tscn");
 		var word = WordScene.Instantiate() as Word;
 		word.Text = nextWord;
-		word.Position = _GetRandomPosition();
+		word.GlobalPosition = _GetRandomPosition();
+		word.PathRotationDegrees = 45;//GD.RandRange(0, 360);
 		_current_words.Add(word.Text, word);
-		words.AddChild(word);
+		words.AddChild(word); // force calling the ready function first
 	}
 
 	private Vector2 _GetRandomPosition()

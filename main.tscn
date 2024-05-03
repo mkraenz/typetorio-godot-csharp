@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr5s3h604bb25"]
+[gd_scene load_steps=8 format=3 uid="uid://dr5s3h604bb25"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_4y4oy"]
 [ext_resource type="PackedScene" uid="uid://bgxlgllrocj7r" path="res://ui/highscore/Highscore.tscn" id="2_wuajq"]
 [ext_resource type="PackedScene" uid="uid://c2280bmuwxh7k" path="res://ui/wordscleared/WordsCleared.tscn" id="3_hc6t4"]
 [ext_resource type="PackedScene" uid="uid://pp1gb4i7rr0t" path="res://ui/combometer/ComboMeter.tscn" id="4_p04ak"]
+[ext_resource type="Shader" path="res://effects/dissolve.gdshader" id="6_yggv4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7egih"]
+resource_local_to_scene = true
+shader = ExtResource("6_yggv4")
+shader_parameter/sensitivity = 0.0
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tbdpo")
@@ -41,6 +47,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Word" parent="Gui/Words" instance_placeholder="res://ui/word/Word.tscn"]
+material = SubResource("ShaderMaterial_7egih")
+layout_mode = 0
+offset_left = 529.0
+offset_top = 183.0
+offset_right = 590.0
+offset_bottom = 206.0
 
 [node name="InputBox" type="Control" parent="Gui"]
 layout_mode = 3
