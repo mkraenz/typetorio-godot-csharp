@@ -57,14 +57,13 @@ public partial class main : Node
 
 	private Vector2 _GetRandomPosition()
 	{
-		int maxWidth = (int)ProjectSettings.GetSetting("display/window/size/viewport_width");
-		int maxHeight = (int)ProjectSettings.GetSetting("display/window/size/viewport_height");
+		var dimensions = GetViewport().GetVisibleRect().Size;
 		int marginBottom = 50;
 		int marginRight = 200;
 		int marginTop = 50;
 		int marginLeft = 0;
-		float x = GD.RandRange(marginLeft, maxWidth - marginRight);
-		float y = GD.RandRange(marginTop, maxHeight - marginBottom);
+		float x = GD.RandRange(marginLeft, (int)dimensions.X - marginRight);
+		float y = GD.RandRange(marginTop, (int)dimensions.Y - marginBottom);
 		return new Vector2(x, y);
 	}
 
