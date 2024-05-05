@@ -6,5 +6,8 @@ public partial class main : Node
 
 	public override void _Ready()
 	{
+		PackedScene World = GD.Load<PackedScene>("res:///world/World.tscn");
+		World world = World.Instantiate<World>();
+		AddChild(world);
 	}
 }
