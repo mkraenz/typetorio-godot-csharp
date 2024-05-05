@@ -3,28 +3,28 @@ using System;
 
 public partial class ComboMeter : MarginContainer
 {
-	private Eventbus eventbus;
-	private MyScore labels;
+	private Eventbus _eventbus;
+	private MyScore _labels;
 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		eventbus = GetNode<Eventbus>("/root/Eventbus");
-		labels = GetNode<MyScore>("MyScore");
+		_eventbus = GetNode<Eventbus>("/root/Eventbus");
+		_labels = GetNode<MyScore>("MyScore");
 
-		eventbus.ComboChanged += _OnComboChanged;
-		labels.Value = "x1";
+		_eventbus.ComboChanged += OnComboChanged;
+		_labels.Value = "x1";
 	}
 
-	private void _OnComboChanged(float multiplier)
+	private void OnComboChanged(float multiplier)
 	{
 		float displayedMultiplier = multiplier == 0 ? 1 : multiplier;
 		string val = ((int)displayedMultiplier).ToString();
-		labels.Value = $"x{val}";
-		labels.Color = MultiplierColor(displayedMultiplier);
-		labels.ValueFontSize = MultiplierFontSize(displayedMultiplier);
-		labels.RainbowEnabled = displayedMultiplier >= 50;
+		_labels.Value = $"x{val}";
+		_labels.Color = MultiplierColor(displayedMultiplier);
+		_labels.ValueFontSize = MultiplierFontSize(displayedMultiplier);
+		_labels.RainbowEnabled = displayedMultiplier >= 50;
 	}
 
 	int MultiplierFontSize(float displayedMultiplier) =>

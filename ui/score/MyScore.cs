@@ -18,7 +18,7 @@ public partial class MyScore : MarginContainer
 		set
 		{
 			_value = value;
-			_UpdateAllLabels();
+			UpdateAllLabels();
 		}
 	}
 
@@ -29,7 +29,7 @@ public partial class MyScore : MarginContainer
 		set
 		{
 			_labelText = value;
-			_UpdateAllLabels();
+			UpdateAllLabels();
 		}
 	}
 
@@ -40,7 +40,7 @@ public partial class MyScore : MarginContainer
 		set
 		{
 			_color = value;
-			_UpdateAllLabels();
+			UpdateAllLabels();
 		}
 	}
 
@@ -51,7 +51,7 @@ public partial class MyScore : MarginContainer
 		set
 		{
 			_valueFontSize = value;
-			_UpdateAllLabels();
+			UpdateAllLabels();
 		}
 	}
 
@@ -62,7 +62,7 @@ public partial class MyScore : MarginContainer
 		set
 		{
 			_rainbowEnabled = value;
-			_UpdateAllLabels();
+			UpdateAllLabels();
 		}
 	}
 
@@ -74,11 +74,11 @@ public partial class MyScore : MarginContainer
 		_label = GetNode<Label>("H/Label");
 		_valueLabel = GetNode<RichTextLabel>("H/Value");
 		ValueFontSize = GetThemeDefaultFontSize();
-		_UpdateAllLabels();
+		UpdateAllLabels();
 
 	}
 
-	private void _UpdateAllLabels()
+	private void UpdateAllLabels()
 	{
 		if (_valueLabel != null)
 		{

@@ -3,27 +3,27 @@ using System;
 
 public partial class WordsCleared : MarginContainer
 {
-	private Eventbus eventbus;
-	private MyScore labels;
+	private Eventbus _eventbus;
+	private MyScore _labels;
 	private int _count = 0;
 
 	public override void _Ready()
 	{
-		eventbus = GetNode<Eventbus>("/root/Eventbus");
-		labels = GetNode<MyScore>("MyScore");
+		_eventbus = GetNode<Eventbus>("/root/Eventbus");
+		_labels = GetNode<MyScore>("MyScore");
 
-		eventbus.WordCleared += _OnWordCleared;
-		_UpdateLabels();
+		_eventbus.WordCleared += OnWordCleared;
+		UpdateLabels();
 	}
 
-	private void _OnWordCleared(string word, float comboMultiplier)
+	private void OnWordCleared(string word, float comboMultiplier)
 	{
 		_count++;
-		_UpdateLabels();
+		UpdateLabels();
 	}
 
-	private void _UpdateLabels()
+	private void UpdateLabels()
 	{
-		labels.Value = _count.ToString("D10");
+		_labels.Value = _count.ToString("D10");
 	}
 }

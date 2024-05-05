@@ -16,7 +16,7 @@ public partial class Word : Control
 		set
 		{
 			_text = value;
-			_UpdateLabel();
+			UpdateLabel();
 		}
 	}
 
@@ -27,7 +27,7 @@ public partial class Word : Control
 		set
 		{
 			_rainbowEnabled = value;
-			_UpdateLabel();
+			UpdateLabel();
 		}
 	}
 
@@ -47,7 +47,7 @@ public partial class Word : Control
 		path.RotationDegrees = PathRotationDegrees;
 		label.RotationDegrees = -PathRotationDegrees; // cancels out path rotation so that the actual word is readable as "normal" (left-to-right)
 
-		_UpdateLabel();
+		UpdateLabel();
 	}
 
 	public void Die()
@@ -57,7 +57,7 @@ public partial class Word : Control
 		label.Material = GD.Load<Material>("res://effects/dissolve.material").Duplicate() as Material;
 	}
 
-	private void _UpdateLabel()
+	private void UpdateLabel()
 	{
 		int fontSize = GetThemeDefaultFontSize() * 2;
 		if (label != null)

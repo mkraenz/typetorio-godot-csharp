@@ -4,26 +4,26 @@ using System;
 public partial class Highscore : MarginContainer
 {
 	private int _score = 0;
-	private Eventbus eventbus;
-	private MyScore labels;
+	private Eventbus _eventbus;
+	private MyScore _labels;
 
 	public override void _Ready()
 	{
-		eventbus = GetNode<Eventbus>("/root/Eventbus");
-		labels = GetNode<MyScore>("MyScore");
+		_eventbus = GetNode<Eventbus>("/root/Eventbus");
+		_labels = GetNode<MyScore>("MyScore");
 
-		eventbus.WordCleared += _OnWordCleared;
-		_UpdateLabel();
+		_eventbus.WordCleared += OnWordCleared;
+		UpdateLabel();
 	}
 
-	private void _OnWordCleared(string word, float comboMultiplier)
+	private void OnWordCleared(string word, float comboMultiplier)
 	{
 		_score += (int)(5 * comboMultiplier);
-		_UpdateLabel();
+		UpdateLabel();
 	}
 
-	private void _UpdateLabel()
+	private void UpdateLabel()
 	{
-		labels.Value = _score.ToString("D10"); // 10 digits with leading zeros
+		_labels.Value = _score.ToString("D10"); // 10 digits with leading zeros
 	}
 }
