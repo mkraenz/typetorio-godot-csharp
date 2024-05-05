@@ -69,22 +69,16 @@ libraries = {
 }
 
 [node name="MoveInFigureEight" parent="." instance=ExtResource("2_rm05f")]
-
-[node name="RemoteTransform2D" parent="MoveInFigureEight/PathFollow2D" index="0"]
-remote_path = NodePath("../../../LabelWrapper")
+_movedObject = NodePath("../LabelWrapper")
 
 [node name="LabelWrapper" type="Node2D" parent="."]
 editor_description = "This node allows RemoteTransform2D to act on Label, because as a Control node the Label node does not have a transform for the RemoteTransform2D to act upon."
 
 [node name="Label" type="RichTextLabel" parent="LabelWrapper"]
 clip_contents = false
-offset_left = 19.9129
-offset_top = 39.4423
-offset_right = 80.9129
-offset_bottom = 62.4423
+offset_right = 61.0
+offset_bottom = 23.0
 bbcode_enabled = true
 text = "TWITCH"
 fit_content = true
 autowrap_mode = 0
-
-[editable path="MoveInFigureEight"]
