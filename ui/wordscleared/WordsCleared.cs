@@ -24,6 +24,6 @@ public partial class WordsCleared : MarginContainer
 
 	private void UpdateLabels()
 	{
-		_labels.Value = _count.ToString("D10");
+		_labels.Value = _count.ToString("D6");
 	}
 }

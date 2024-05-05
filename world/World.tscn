@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://effects/dissolve.gdshader" id="1_y3qur"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_epim6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jefq8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vchn5"]
 resource_local_to_scene = true
 shader = ExtResource("1_y3qur")
 shader_parameter/sensitivity = 0.0
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Word" parent="Words" instance_placeholder="res://ui/word/Word.tscn"]
-material = SubResource("ShaderMaterial_jefq8")
+material = SubResource("ShaderMaterial_vchn5")
 layout_mode = 0
 offset_left = 529.0
 offset_top = 183.0
@@ -66,7 +66,14 @@ script = ExtResource("2_epim6")
 autostart = true
 
 [node name="ComboTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
 
 [connection signal="text_changed" from="InputBox/H/V/InputPrompt" to="." method="_on_input_prompt_text_changed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

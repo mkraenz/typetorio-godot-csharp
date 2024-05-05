@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0l3kui4r7cw3"]
+
+[ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_fxal6"]
+[ext_resource type="Script" path="res://ui/gameover/GameOver.cs" id="1_lur73"]
+[ext_resource type="Script" path="res://ui/gameover/BackToMainMenuButton.cs" id="2_bjbxe"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lur73")
+
+[node name="Background" parent="." instance=ExtResource("1_fxal6")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="H"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="H/V"]
+layout_mode = 2
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Stats" type="GridContainer" parent="H/V"]
+layout_mode = 2
+columns = 2
+
+[node name="Points" type="Label" parent="H/V/Stats"]
+layout_mode = 2
+text = "Points
+"
+
+[node name="PointsValue" type="Label" parent="H/V/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "000000000"
+horizontal_alignment = 2
+
+[node name="Words" type="Label" parent="H/V/Stats"]
+layout_mode = 2
+text = "Words cleared"
+
+[node name="WordsValue" type="Label" parent="H/V/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "000000000"
+horizontal_alignment = 2
+
+[node name="Combo" type="Label" parent="H/V/Stats"]
+layout_mode = 2
+text = "Max combo"
+
+[node name="ComboValue" type="Label" parent="H/V/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "000000000"
+horizontal_alignment = 2
+
+[node name="V" type="VBoxContainer" parent="H/V"]
+layout_mode = 2
+
+[node name="Overall" type="Label" parent="H/V/V"]
+layout_mode = 2
+text = "A+++"
+horizontal_alignment = 1
+
+[node name="Overall2" type="Label" parent="H/V/V"]
+layout_mode = 2
+text = "Classy! You're a real pro!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="H/V"]
+layout_mode = 2
+text = "OK"
+script = ExtResource("2_bjbxe")
+
+[connection signal="pressed" from="H/V/Button" to="H/V/Button" method="_on_pressed"]

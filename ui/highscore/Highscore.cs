@@ -24,6 +24,6 @@ public partial class Highscore : MarginContainer
 
 	private void UpdateLabel()
 	{
-		_labels.Value = _score.ToString("D10"); // 10 digits with leading zeros
+		_labels.Value = _score.ToString("D6"); // 10 digits with leading zeros
 	}
 }

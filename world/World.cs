@@ -110,4 +110,17 @@ public partial class World : CanvasLayer
 		_comboMultiplier = 0;
 		_eventbus.EmitComboChanged(_comboMultiplier);
 	}
+
+	public void _on_game_timer_timeout()
+	{
+		EndGame();
+	}
+
+	private void EndGame()
+	{
+		var data = new GameEnded(0, 0, _comboMultiplier);
+		_eventbus.EmitGameEnded(data);
+
+		QueueFree();
+	}
 }
