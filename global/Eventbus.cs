@@ -9,6 +9,9 @@ public partial class Eventbus : Node
     [Signal]
     public delegate void ComboChangedEventHandler(float comboMultiplier);
 
+    [Signal]
+    public delegate void StartClassicGameClickedEventHandler();
+
     public void EmitWordCleared(string word, float comboMultiplier)
     {
         EmitSignal(SignalName.WordCleared, word, comboMultiplier);
@@ -17,5 +20,10 @@ public partial class Eventbus : Node
     public void EmitComboChanged(float comboMultiplier)
     {
         EmitSignal(SignalName.ComboChanged, comboMultiplier);
+    }
+
+    public void EmitStartClassicGameClicked()
+    {
+        EmitSignal(SignalName.StartClassicGameClicked);
     }
 }

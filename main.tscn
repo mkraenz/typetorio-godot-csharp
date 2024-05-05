@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr5s3h604bb25"]
+[gd_scene load_steps=6 format=3 uid="uid://dr5s3h604bb25"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
 [ext_resource type="PackedScene" uid="uid://bgxlgllrocj7r" path="res://ui/highscore/Highscore.tscn" id="2_wuajq"]
 [ext_resource type="PackedScene" uid="uid://c2280bmuwxh7k" path="res://ui/wordscleared/WordsCleared.tscn" id="3_hc6t4"]
 [ext_resource type="PackedScene" uid="uid://pp1gb4i7rr0t" path="res://ui/combometer/ComboMeter.tscn" id="4_p04ak"]
+[ext_resource type="PackedScene" uid="uid://b2mxm1i1b5qsc" path="res://ui/mainmenu/MainMenu.tscn" id="5_qw5lw"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tbdpo")
@@ -32,3 +33,5 @@ layout_mode = 2
 
 [node name="ComboMeter" parent="Gui/Hud/H" instance=ExtResource("4_p04ak")]
 layout_mode = 2
+
+[node name="MainMenu" parent="Gui" instance=ExtResource("5_qw5lw")]
