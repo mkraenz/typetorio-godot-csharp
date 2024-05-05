@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8r4ab0ekejgg"]
+
+[ext_resource type="Script" path="res://world/World.cs" id="1_65x1s"]
+[ext_resource type="Shader" path="res://effects/dissolve.gdshader" id="1_y3qur"]
+[ext_resource type="Script" path="res://InputPrompt.cs" id="2_epim6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_it4rp"]
+resource_local_to_scene = true
+shader = ExtResource("1_y3qur")
+shader_parameter/sensitivity = 0.0
+
+[node name="World" type="CanvasLayer"]
+script = ExtResource("1_65x1s")
+
+[node name="Words" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Word" parent="Words" instance_placeholder="res://ui/word/Word.tscn"]
+material = SubResource("ShaderMaterial_it4rp")
+layout_mode = 0
+offset_left = 529.0
+offset_top = 183.0
+offset_right = 590.0
+offset_bottom = 206.0
+
+[node name="InputBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="H" type="HBoxContainer" parent="InputBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="InputBox/H"]
+layout_mode = 2
+alignment = 1
+
+[node name="InputPrompt" type="LineEdit" parent="InputBox/H/V"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "TYPE THE WORDS"
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+script = ExtResource("2_epim6")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="ComboTimer" type="Timer" parent="."]
+
+[connection signal="text_changed" from="InputBox/H/V/InputPrompt" to="." method="_on_input_prompt_text_changed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
