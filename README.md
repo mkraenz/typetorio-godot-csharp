@@ -8,5 +8,5 @@
 
 ## Other features
 
-- bonus words - increase your combo by +5
+- [x] bonus words - increase your combo by +5
   - rainbow colored word

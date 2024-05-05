@@ -82,16 +82,14 @@ public partial class MyScore : MarginContainer
 	{
 		if (_valueLabel != null)
 		{
-			string rainBowFrequency = RainbowEnabled ? "1.0" : "0.0";
 			// rainbow and color are not compatible
 			if (RainbowEnabled)
 			{
-				_valueLabel.Text = $"[rainbow freq={rainBowFrequency} sat=0.8 val=0.8][font_size={ValueFontSize}]{Value}[/font_size][/rainbow]";
+				_valueLabel.Text = $"[rainbow freq=1.0 sat=0.8 val=0.8][font_size={ValueFontSize}]{Value}[/font_size][/rainbow]";
 			}
 			else
 			{
 				_valueLabel.Text = $"[font_size={ValueFontSize}][color={Color}]{Value}[/color][/font_size]";
-
 			}
 		}
 

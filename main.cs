@@ -4,6 +4,9 @@ using System.Collections.Generic;
 public partial class main : Node
 {
 	[Export]
+	private int _bonusWordInEveryNWords = 20;
+
+	[Export]
 	private int maxConcurrentWords = 100;
 
 
@@ -51,6 +54,8 @@ public partial class main : Node
 		word.Text = nextWord;
 		word.GlobalPosition = _GetRandomPosition();
 		word.PathRotationDegrees = GD.RandRange(0, 360);
+		var rand = GD.RandRange(0, _bonusWordInEveryNWords - 1);
+		word.RainbowEnabled = rand == 0;
 		_current_words.Add(word.Text, word);
 		words.AddChild(word); // force calling the ready function first
 	}
@@ -90,9 +95,9 @@ public partial class main : Node
 		_current_words.Remove(str);
 		prompt.Clear();
 
-		_comboMultiplier += 1;
+		_comboMultiplier += word.RainbowEnabled ? 5 : 1;
 		comboTimer.Start();
-		eventbus.emitComboChanged(_comboMultiplier);
+		eventbus.EmitComboChanged(_comboMultiplier);
 
 		// make sure to use the updated combo multiplier
 		eventbus.EmitWordCleared(str, _comboMultiplier);
@@ -103,6 +108,6 @@ public partial class main : Node
 	{
 		// reset combo
 		_comboMultiplier = 0;
-		eventbus.emitComboChanged(_comboMultiplier);
+		eventbus.EmitComboChanged(_comboMultiplier);
 	}
 }

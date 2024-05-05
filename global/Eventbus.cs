@@ -14,7 +14,7 @@ public partial class Eventbus : Node
         EmitSignal(SignalName.WordCleared, word, comboMultiplier);
     }
 
-    public void emitComboChanged(float comboMultiplier)
+    public void EmitComboChanged(float comboMultiplier)
     {
         EmitSignal(SignalName.ComboChanged, comboMultiplier);
     }

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkk405qoxwoqi"]
+[gd_scene load_steps=7 format=3 uid="uid://bkk405qoxwoqi"]
 
 [ext_resource type="Script" path="res://ui/word/Word.cs" id="1_hhe6s"]
-[ext_resource type="Material" uid="uid://deywayfbiionf" path="res://effects/dissolve.material" id="1_l5h6s"]
 [ext_resource type="Curve2D" uid="uid://bkfvt6e3wxucr" path="res://ui/word/figure-eight-curve.tres" id="3_mbooo"]
 
 [sub_resource type="Animation" id="Animation_cbj1i"]
@@ -104,6 +103,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_hhe6s")
+Text = "TWITCH"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Path2D/PathFollow2D/Label")
@@ -118,8 +118,11 @@ curve = ExtResource("3_mbooo")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 rotates = false
 
-[node name="Label" type="Label" parent="Path2D/PathFollow2D"]
-material = ExtResource("1_l5h6s")
+[node name="Label" type="RichTextLabel" parent="Path2D/PathFollow2D"]
+clip_contents = false
 offset_right = 61.0
 offset_bottom = 23.0
+bbcode_enabled = true
 text = "TWITCH"
+fit_content = true
+autowrap_mode = 0
