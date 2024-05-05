@@ -1,8 +1,167 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0l3kui4r7cw3"]
+[gd_scene load_steps=8 format=3 uid="uid://d0l3kui4r7cw3"]
 
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_fxal6"]
 [ext_resource type="Script" path="res://ui/gameover/GameOver.cs" id="1_lur73"]
 [ext_resource type="Script" path="res://ui/gameover/BackToMainMenuButton.cs" id="2_bjbxe"]
+[ext_resource type="PackedScene" uid="uid://sue7cll1ce5y" path="res://ui/gameover/PointsValue/PointsValue.tscn" id="3_a0w33"]
+
+[sub_resource type="Animation" id="Animation_pcqov"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("H/V/Stats/Points:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("H/V/Stats/Words:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("H/V/Stats/WordsValue:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("H/V/Stats/Combo:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("H/V/Stats/ComboValue:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("H/V/Stats/PointsValue:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8f782"]
+resource_name = "animate_points"
+length = 4.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("H/V/Stats/Points:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("H/V/Stats/Words:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("H/V/Stats/WordsValue:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("H/V/Stats/Combo:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("H/V/Stats/ComboValue:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("H/V/Stats/PointsValue:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dma7q"]
+_data = {
+"RESET": SubResource("Animation_pcqov"),
+"animate_points": SubResource("Animation_8f782")
+}
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -16,6 +175,10 @@ script = ExtResource("1_lur73")
 [node name="Background" parent="." instance=ExtResource("1_fxal6")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="H" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -38,38 +201,42 @@ text = "Game Over"
 horizontal_alignment = 1
 
 [node name="Stats" type="GridContainer" parent="H/V"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 columns = 2
 
 [node name="Points" type="Label" parent="H/V/Stats"]
+visible = false
 layout_mode = 2
 text = "Points
 "
 
-[node name="PointsValue" type="Label" parent="H/V/Stats"]
+[node name="PointsValue" parent="H/V/Stats" instance=ExtResource("3_a0w33")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
-size_flags_horizontal = 3
-text = "000000000"
-horizontal_alignment = 2
 
 [node name="Words" type="Label" parent="H/V/Stats"]
+visible = false
 layout_mode = 2
 text = "Words cleared"
 
 [node name="WordsValue" type="Label" parent="H/V/Stats"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "000000000"
 horizontal_alignment = 2
 
 [node name="Combo" type="Label" parent="H/V/Stats"]
+visible = false
 layout_mode = 2
 text = "Max combo"
 
 [node name="ComboValue" type="Label" parent="H/V/Stats"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "000000000"
@@ -92,5 +259,11 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "OK"
 script = ExtResource("2_bjbxe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dma7q")
+}
+autoplay = "animate_points"
 
 [connection signal="pressed" from="H/V/Button" to="H/V/Button" method="_on_pressed"]
