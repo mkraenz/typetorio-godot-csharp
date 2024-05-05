@@ -41,8 +41,8 @@ public partial class Word : Control
 	public override void _Ready()
 	{
 		animation = GetNode<AnimationPlayer>("AnimationPlayer");
-		label = GetNode<RichTextLabel>("Path2D/PathFollow2D/Label");
-		path = GetNode<Path2D>("Path2D");
+		label = GetNode<RichTextLabel>("LabelWrapper/Label");
+		path = GetNode<Path2D>("MoveInFigureEight");
 
 		path.RotationDegrees = PathRotationDegrees;
 		label.RotationDegrees = -PathRotationDegrees; // cancels out path rotation so that the actual word is readable as "normal" (left-to-right)

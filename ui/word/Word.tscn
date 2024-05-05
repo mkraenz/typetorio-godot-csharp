@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkk405qoxwoqi"]
+[gd_scene load_steps=6 format=3 uid="uid://bkk405qoxwoqi"]
 
 [ext_resource type="Script" path="res://ui/word/Word.cs" id="1_hhe6s"]
-[ext_resource type="Curve2D" uid="uid://bkfvt6e3wxucr" path="res://ui/word/figure-eight-curve.tres" id="3_mbooo"]
+[ext_resource type="PackedScene" uid="uid://dxmu3xie4ii3s" path="res://effects/figure-eight-path/MoveInFigureEight.tscn" id="2_rm05f"]
 
 [sub_resource type="Animation" id="Animation_cbj1i"]
 length = 0.001
@@ -12,30 +12,6 @@ tracks/0/path = NodePath(".:material:shader_parameter/sensitivity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:progress")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..:progress_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -60,7 +36,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("..")
+tracks/1/path = NodePath("../..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -72,29 +48,10 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_pb3lu"]
-resource_name = "move"
-length = 60.0
-loop_mode = 1
-step = 30.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 60),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v23eq"]
 _data = {
 "RESET": SubResource("Animation_cbj1i"),
-"die": SubResource("Animation_rh44e"),
-"move": SubResource("Animation_pb3lu")
+"die": SubResource("Animation_rh44e")
 }
 
 [node name="Word" type="Control"]
@@ -106,23 +63,28 @@ script = ExtResource("1_hhe6s")
 Text = "TWITCH"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Path2D/PathFollow2D/Label")
+root_node = NodePath("../LabelWrapper/Label")
 libraries = {
 "": SubResource("AnimationLibrary_v23eq")
 }
-autoplay = "move"
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = ExtResource("3_mbooo")
+[node name="MoveInFigureEight" parent="." instance=ExtResource("2_rm05f")]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-rotates = false
+[node name="RemoteTransform2D" parent="MoveInFigureEight/PathFollow2D" index="0"]
+remote_path = NodePath("../../../LabelWrapper")
 
-[node name="Label" type="RichTextLabel" parent="Path2D/PathFollow2D"]
+[node name="LabelWrapper" type="Node2D" parent="."]
+editor_description = "This node allows RemoteTransform2D to act on Label, because as a Control node the Label node does not have a transform for the RemoteTransform2D to act upon."
+
+[node name="Label" type="RichTextLabel" parent="LabelWrapper"]
 clip_contents = false
-offset_right = 61.0
-offset_bottom = 23.0
+offset_left = 19.9129
+offset_top = 39.4423
+offset_right = 80.9129
+offset_bottom = 62.4423
 bbcode_enabled = true
 text = "TWITCH"
 fit_content = true
 autowrap_mode = 0
+
+[editable path="MoveInFigureEight"]
