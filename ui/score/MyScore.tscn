@@ -12,8 +12,13 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="H"]
 layout_mode = 2
+size_flags_vertical = 1
 text = "MyLabel"
 
-[node name="Value" type="Label" parent="H"]
+[node name="Value" type="RichTextLabel" parent="H"]
+clip_contents = false
 layout_mode = 2
-text = "0000012345"
+bbcode_enabled = true
+text = "[font_size=16][color=white]0000012345[/color][/font_size]"
+fit_content = true
+autowrap_mode = 0
