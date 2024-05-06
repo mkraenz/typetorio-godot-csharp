@@ -1,17 +1,25 @@
 using Godot;
 using System;
 
+public interface IComboMeterScore
+{
+	string Value { set; }
+	int ValueFontSize { set; }
+	string Color { set; }
+	bool RainbowEnabled { set; }
+}
+
 public partial class ComboMeter : MarginContainer
 {
 	private Eventbus _eventbus;
-	private MyScore _labels;
+	private IComboMeterScore _labels;
 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_eventbus = GetNode<Eventbus>("/root/Eventbus");
-		_labels = GetNode<MyScore>("MyScore");
+		_labels = GetNode<IComboMeterScore>("MyScore");
 
 		_eventbus.ComboChanged += OnComboChanged;
 		_labels.Value = "x1";
@@ -52,6 +60,4 @@ public partial class ComboMeter : MarginContainer
 			> 3 => "blue",
 			_ => "white",
 		};
-
-
 }

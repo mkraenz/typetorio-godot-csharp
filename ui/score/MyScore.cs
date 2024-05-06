@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [Tool]
-public partial class MyScore : MarginContainer
+public partial class MyScore : MarginContainer, IHighscoreLabels, IWordsClearedScore, IComboMeterScore
 {
 	private string _value = "";
 	private string _labelText = "";

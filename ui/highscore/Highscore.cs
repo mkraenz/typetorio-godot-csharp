@@ -1,16 +1,22 @@
 using Godot;
 using System;
 
+public interface IHighscoreLabels
+{
+	string Value { set; }
+}
+
+
 public partial class Highscore : MarginContainer
 {
 	private int _score = 0;
 	private Eventbus _eventbus;
-	private MyScore _labels;
+	private IHighscoreLabels _labels;
 
 	public override void _Ready()
 	{
 		_eventbus = GetNode<Eventbus>("/root/Eventbus");
-		_labels = GetNode<MyScore>("MyScore");
+		_labels = GetNode<IHighscoreLabels>("MyScore");
 
 		_eventbus.WordCleared += OnWordCleared;
 		UpdateLabel();
