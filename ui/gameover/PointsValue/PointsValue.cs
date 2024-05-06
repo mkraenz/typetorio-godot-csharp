@@ -1,21 +1,21 @@
 using Godot;
 using System;
 
-public partial class PointsValue : Label
+public partial class PointsValue : Label, IPointsValue
 {
 	[Export]
-	public float _duration = 2;
+	public float Duration = 2;
 	[Export]
-	public int _currentValue = 0;
+	public int StartValue = 0;
 	[Export]
-	public int _targetValue = 0;
+	public int EndValue { get; set; } = 0;
 
 	public void Animate()
 	{
 		var tween = CreateTween();
 		tween.SetTrans(Tween.TransitionType.Linear);
 		tween.SetEase(Tween.EaseType.InOut);
-		tween.TweenMethod(Callable.From((float givenNumber) => UpdateCount(givenNumber)), _currentValue, _targetValue, _duration);
+		tween.TweenMethod(Callable.From((float givenNumber) => UpdateCount(givenNumber)), StartValue, EndValue, Duration);
 		tween.Play();
 	}
 
