@@ -30,6 +30,7 @@ alignment = 1
 
 [node name="V" type="VBoxContainer" parent="H"]
 layout_mode = 2
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="Title" type="Label" parent="H/V"]

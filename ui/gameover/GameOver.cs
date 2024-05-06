@@ -12,6 +12,7 @@ public partial class GameOver : Control
 	private IPointsValue _points;
 	private IPointsValue _words;
 	private IPointsValue _maxCombo;
+	private AnimationPlayer _anims;
 
 	public override void _Ready()
 	{
@@ -19,6 +20,7 @@ public partial class GameOver : Control
 		_points = GetNode<IPointsValue>("%PointsValue");
 		_words = GetNode<IPointsValue>("%WordsValue");
 		_maxCombo = GetNode<IPointsValue>("%ComboValue");
+		_anims = GetNode<AnimationPlayer>("AnimationPlayer");
 
 		_eventbus.GameEnded += OnGameEnded;
 	}
@@ -28,5 +30,13 @@ public partial class GameOver : Control
 		_points.EndValue = data.Points;
 		_words.EndValue = data.Words;
 		_maxCombo.EndValue = (int)data.ComboMultiplier;
+	}
+
+	private void _on_visibility_changed()
+	{
+		if (_anims != null && Visible)
+		{
+			_anims.Play("animate_points");
+		}
 	}
 }

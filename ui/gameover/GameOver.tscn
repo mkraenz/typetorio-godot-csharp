@@ -259,6 +259,6 @@ script = ExtResource("2_bjbxe")
 libraries = {
 "": SubResource("AnimationLibrary_dma7q")
 }
-autoplay = "animate_points"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="H/V/Button" to="H/V/Button" method="_on_pressed"]
