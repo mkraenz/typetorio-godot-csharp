@@ -25,10 +25,10 @@ public partial class ComboMeter : MarginContainer
 		_labels.Value = "x1";
 	}
 
-	private void OnComboChanged(float multiplier)
+	private void OnComboChanged(int multiplier)
 	{
-		float displayedMultiplier = multiplier == 0 ? 1 : multiplier;
-		string val = ((int)displayedMultiplier).ToString();
+		int displayedMultiplier = multiplier == 0 ? 1 : multiplier;
+		string val = displayedMultiplier.ToString();
 		_labels.Value = $"x{val}";
 		_labels.Color = MultiplierColor(displayedMultiplier);
 		_labels.ValueFontSize = MultiplierFontSize(displayedMultiplier);

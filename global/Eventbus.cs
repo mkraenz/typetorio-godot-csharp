@@ -5,7 +5,7 @@ public partial class Eventbus : Node
 {
 
     [Signal] public delegate void WordClearedEventHandler(string word, ScoreDto score);
-    [Signal] public delegate void ComboChangedEventHandler(float comboMultiplier);
+    [Signal] public delegate void ComboChangedEventHandler(int comboMultiplier);
     [Signal] public delegate void StartClassicGameClickedEventHandler();
     [Signal] public delegate void GameEndedEventHandler(ScoreDto score);
     [Signal] public delegate void BackToTitleClickedEventHandler();
@@ -16,8 +16,7 @@ public partial class Eventbus : Node
         EmitSignal(SignalName.WordCleared, word, score);
     }
 
-    // TODO change float to int
-    public void EmitComboChanged(float comboMultiplier)
+    public void EmitComboChanged(int comboMultiplier)
     {
         EmitSignal(SignalName.ComboChanged, comboMultiplier);
     }
