@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr5s3h604bb25"]
+[gd_scene load_steps=5 format=3 uid="uid://dr5s3h604bb25"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
-[ext_resource type="PackedScene" uid="uid://bgxlgllrocj7r" path="res://ui/highscore/Highscore.tscn" id="2_wuajq"]
-[ext_resource type="PackedScene" uid="uid://c2280bmuwxh7k" path="res://ui/wordscleared/WordsCleared.tscn" id="3_hc6t4"]
-[ext_resource type="PackedScene" uid="uid://pp1gb4i7rr0t" path="res://ui/combometer/ComboMeter.tscn" id="4_p04ak"]
+[ext_resource type="PackedScene" uid="uid://cd8ge0fcbj5gv" path="res://ui/hud/Hud.tscn" id="3_r65bt"]
 [ext_resource type="PackedScene" uid="uid://b2mxm1i1b5qsc" path="res://ui/mainmenu/MainMenu.tscn" id="5_qw5lw"]
 [ext_resource type="PackedScene" uid="uid://d0l3kui4r7cw3" path="res://ui/gameover/GameOver.tscn" id="6_1i3ad"]
 
@@ -15,28 +13,7 @@ script = ExtResource("1_tbdpo")
 [node name="GameOver" parent="Gui" instance=ExtResource("6_1i3ad")]
 visible = false
 
-[node name="Hud" type="Control" parent="Gui"]
+[node name="Hud" parent="Gui" instance=ExtResource("3_r65bt")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="H" type="HBoxContainer" parent="Gui/Hud"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="Highscore" parent="Gui/Hud/H" instance=ExtResource("2_wuajq")]
-layout_mode = 2
-
-[node name="WordsCleared" parent="Gui/Hud/H" instance=ExtResource("3_hc6t4")]
-layout_mode = 2
-
-[node name="ComboMeter" parent="Gui/Hud/H" instance=ExtResource("4_p04ak")]
-layout_mode = 2
 
 [node name="MainMenu" parent="Gui" instance=ExtResource("5_qw5lw")]

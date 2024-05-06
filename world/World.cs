@@ -10,10 +10,14 @@ public partial class World : CanvasLayer
 	private int _maxConcurrentWords = 100;
 
 
+	[Export]
+	private int _gameTimeInSec = 60;
+
 	private Control _words;
 	private InputPrompt _prompt;
 	private Eventbus _eventbus;
 	private Timer _comboTimer;
+	private Timer _gameTimer;
 
 	private Dictionary<string, Word> _currentWords = new Dictionary<string, Word> { };
 	private float _comboMultiplier = 0;
@@ -24,9 +28,14 @@ public partial class World : CanvasLayer
 		_prompt = GetNode<InputPrompt>("%InputPrompt");
 		_eventbus = GetNode<Eventbus>("/root/Eventbus");
 		_comboTimer = GetNode<Timer>("ComboTimer");
+		_gameTimer = GetNode<Timer>("GameTimer");
 		_prompt.GrabFocus();
 
 		SpawnNewWord();
+		_gameTimer.WaitTime = _gameTimeInSec;
+		_gameTimer.Start();
+
+		_eventbus.EmitGameStarted("classic", _gameTimeInSec);
 	}
 
 	private string GetRandomWord()
