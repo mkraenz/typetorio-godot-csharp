@@ -1,6 +1,6 @@
 using System;
 
-class Score
+class Score : IScore
 {
     private int _comboMultiplier = 0;
     private int _points = 0;

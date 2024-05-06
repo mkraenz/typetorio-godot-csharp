@@ -109,7 +109,7 @@ public partial class World : CanvasLayer
 		_comboTimer.Start();
 		_eventbus.EmitComboChanged(_score.ComboMultiplier);
 
-		var scoreDto = new ScoreDto(_score.Points, _score.WordsCleared, _score.ComboMultiplier, _score.MaxComboMultiplier);
+		var scoreDto = new ScoreDto(_score);
 		_eventbus.EmitWordCleared(str, scoreDto);
 	}
 
@@ -126,7 +126,7 @@ public partial class World : CanvasLayer
 
 	private void EndGame()
 	{
-		var data = new ScoreDto(_score.Points, _score.WordsCleared, _score.ComboMultiplier, _score.MaxComboMultiplier);
+		var data = new ScoreDto(_score);
 		_eventbus.EmitGameEnded(data);
 
 		QueueFree();
