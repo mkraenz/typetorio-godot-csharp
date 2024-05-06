@@ -20,7 +20,8 @@ public partial class World : CanvasLayer
 	private Timer _gameTimer;
 
 	private Dictionary<string, Word> _currentWords = new Dictionary<string, Word> { };
-	private float _comboMultiplier = 0;
+	private Score _score = new Score();
+
 
 	public override void _Ready()
 	{
@@ -104,20 +105,18 @@ public partial class World : CanvasLayer
 		_currentWords.Remove(str);
 		_prompt.Clear();
 
-		_comboMultiplier += word.RainbowEnabled ? 5 : 1;
+		_score.CompleteWord(5, word.RainbowEnabled ? 5 : 1);
 		_comboTimer.Start();
-		_eventbus.EmitComboChanged(_comboMultiplier);
+		_eventbus.EmitComboChanged(_score.ComboMultiplier);
 
-		// make sure to use the updated combo multiplier
-		_eventbus.EmitWordCleared(str, _comboMultiplier);
-
+		var scoreDto = new ScoreDto(_score.Points, _score.WordsCleared, _score.ComboMultiplier, _score.MaxComboMultiplier);
+		_eventbus.EmitWordCleared(str, scoreDto);
 	}
 
 	public void _on_combo_timer_timeout()
 	{
-		// reset combo
-		_comboMultiplier = 0;
-		_eventbus.EmitComboChanged(_comboMultiplier);
+		_score.ResetCombo();
+		_eventbus.EmitComboChanged(_score.ComboMultiplier);
 	}
 
 	public void _on_game_timer_timeout()
@@ -127,7 +126,7 @@ public partial class World : CanvasLayer
 
 	private void EndGame()
 	{
-		var data = new GameEnded(0, 0, _comboMultiplier);
+		var data = new GameEnded(_score.Points, _score.WordsCleared, _score.ComboMultiplier);
 		_eventbus.EmitGameEnded(data);
 
 		QueueFree();

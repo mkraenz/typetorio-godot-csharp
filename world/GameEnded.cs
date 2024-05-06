@@ -1,5 +1,6 @@
 using Godot;
 
+// TODO get rid of this bc ScoreDto is exactly the same - except comboMult vs maxComboMult
 public partial class GameEnded : GodotObject
 {
     public GameEnded(int points, int words, float comboMultiplier)

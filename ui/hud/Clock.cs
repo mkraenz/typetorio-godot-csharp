@@ -38,7 +38,6 @@ public partial class Clock : Label
 
 	private void OnGameStarted(string gameType, int gameTimeInSec)
 	{
-		// TODO add a timer of 1 sec, and run it
 		TimeLeftInSec = gameTimeInSec;
 		_timer.Start();
 	}

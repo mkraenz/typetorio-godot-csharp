@@ -9,7 +9,7 @@ public interface IHighscoreLabels
 
 public partial class Highscore : MarginContainer
 {
-	private int _score = 0;
+	private int _score = 0; // TODO remove
 	private Eventbus _eventbus;
 	private IHighscoreLabels _labels;
 
@@ -22,9 +22,9 @@ public partial class Highscore : MarginContainer
 		UpdateLabel();
 	}
 
-	private void OnWordCleared(string word, float comboMultiplier)
+	private void OnWordCleared(string word, ScoreDto score)
 	{
-		_score += (int)(5 * comboMultiplier);
+		_score = score.Points;
 		UpdateLabel();
 	}
 

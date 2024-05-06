@@ -10,7 +10,7 @@ public partial class WordsCleared : MarginContainer
 {
 	private Eventbus _eventbus;
 	private IWordsClearedScore _labels;
-	private int _count = 0;
+	private int _count = 0; // TODO remove
 
 	public override void _Ready()
 	{
@@ -21,9 +21,9 @@ public partial class WordsCleared : MarginContainer
 		UpdateLabels();
 	}
 
-	private void OnWordCleared(string word, float comboMultiplier)
+	private void OnWordCleared(string word, ScoreDto score)
 	{
-		_count++;
+		_count = score.WordsCleared;
 		UpdateLabels();
 	}
 
