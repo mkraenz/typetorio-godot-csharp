@@ -34,12 +34,27 @@ public partial class Word : Control
 
 	public int PathRotationDegrees = 0;
 
+	[Export]
+	public Resource WordStatsRes;
+	// duplicating the resource but with typings, so that clients can make use of it.
+	public WordStats WordStats;
+
 	private RichTextLabel label;
 	private Path2D path;
 	private AnimationPlayer animation;
 
 	public override void _Ready()
 	{
+		if (WordStatsRes is WordStats typedWordStats)
+		{
+			WordStats = typedWordStats;
+			if (WordStats.ComboIncrease == 5)
+			{
+				RainbowEnabled = true;
+			}
+		}
+		else throw new Exception("Missing WordStats on Word. Did you forget to set the resource in the Editor?");
+
 		animation = GetNode<AnimationPlayer>("AnimationPlayer");
 		label = GetNode<RichTextLabel>("LabelWrapper/Label");
 		path = GetNode<Path2D>("MoveInFigureEight");
@@ -48,6 +63,7 @@ public partial class Word : Control
 		label.RotationDegrees = -PathRotationDegrees; // cancels out path rotation so that the actual word is readable as "normal" (left-to-right)
 
 		UpdateLabel();
+
 	}
 
 	public void Die()

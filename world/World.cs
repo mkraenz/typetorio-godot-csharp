@@ -65,7 +65,8 @@ public partial class World : CanvasLayer
 		word.GlobalPosition = GetRandomPosition();
 		word.PathRotationDegrees = GD.RandRange(0, 360);
 		var rand = GD.RandRange(0, _bonusWordInEveryNWords - 1);
-		word.RainbowEnabled = rand == 0;
+		var rainbowWordStats = GD.Load<Resource>("res://ui/word/wordstats/RainbowWordStats.tres");
+		if (rand == 0) word.WordStatsRes = rainbowWordStats;
 		_currentWords.Add(word.Text, word);
 		_words.AddChild(word); // force calling the ready function first
 	}
@@ -105,7 +106,7 @@ public partial class World : CanvasLayer
 		_currentWords.Remove(str);
 		_prompt.Clear();
 
-		_score.CompleteWord(5, word.RainbowEnabled ? 5 : 1);
+		_score.CompleteWord(word.WordStats);
 		_comboTimer.Start();
 		_eventbus.EmitComboChanged(_score.ComboMultiplier);
 

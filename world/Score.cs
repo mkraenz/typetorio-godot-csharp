@@ -21,10 +21,10 @@ class Score : IScore
 
     public int MaxComboMultiplier { get => _maxComboMultiplier; }
 
-    internal void CompleteWord(int pointsValue, int comboValue)
+    internal void CompleteWord(WordStats wordStats)
     {
-        ComboMultiplier += comboValue;
-        _points += pointsValue * _comboMultiplier;
+        ComboMultiplier += wordStats.ComboIncrease;
+        _points += wordStats.Points * _comboMultiplier;
         _wordsCleared++;
     }
 

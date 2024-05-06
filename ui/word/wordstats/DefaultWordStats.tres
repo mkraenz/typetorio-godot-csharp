@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dkuqmy0jcyo2n"]
+
+[ext_resource type="Script" path="res://ui/word/wordstats/WordStats.cs" id="1_so5i8"]
+
+[resource]
+script = ExtResource("1_so5i8")
+Points = 5
+ComboIncrease = 1
