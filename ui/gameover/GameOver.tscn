@@ -79,11 +79,22 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("H/V/Grade:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_8f782"]
 resource_name = "animate_points"
-length = 4.5
-step = 0.5
+length = 7.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -155,6 +166,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("H/V/Grade:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(7.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dma7q"]
@@ -237,15 +260,17 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="V" type="VBoxContainer" parent="H/V"]
+[node name="Grade" type="VBoxContainer" parent="H/V"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="Overall" type="Label" parent="H/V/V"]
+[node name="Overall" type="Label" parent="H/V/Grade"]
 layout_mode = 2
 text = "A+++"
 horizontal_alignment = 1
 
-[node name="Overall2" type="Label" parent="H/V/V"]
+[node name="Overall2" type="Label" parent="H/V/Grade"]
 layout_mode = 2
 text = "Classy! You're a real pro!"
 horizontal_alignment = 1
