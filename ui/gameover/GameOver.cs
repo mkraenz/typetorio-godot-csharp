@@ -25,11 +25,11 @@ public partial class GameOver : Control
 		_eventbus.GameEnded += OnGameEnded;
 	}
 
-	private void OnGameEnded(GameEnded data)
+	private void OnGameEnded(ScoreDto score)
 	{
-		_points.EndValue = data.Points;
-		_words.EndValue = data.Words;
-		_maxCombo.EndValue = (int)data.ComboMultiplier;
+		_points.EndValue = score.Points;
+		_words.EndValue = score.WordsCleared;
+		_maxCombo.EndValue = score.MaxComboMultiplier;
 	}
 
 	private void _on_visibility_changed()

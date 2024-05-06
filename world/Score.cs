@@ -10,12 +10,20 @@ class Score
 
     public int Points { get => _points; }
     public int WordsCleared { get => _wordsCleared; }
-    public int ComboMultiplier { get => _comboMultiplier; }
+    public int ComboMultiplier
+    {
+        get => _comboMultiplier; set
+        {
+            _comboMultiplier = value;
+            _maxComboMultiplier = Math.Max(_comboMultiplier, _maxComboMultiplier);
+        }
+    }
+
     public int MaxComboMultiplier { get => _maxComboMultiplier; }
 
     internal void CompleteWord(int pointsValue, int comboValue)
     {
-        _comboMultiplier += comboValue;
+        ComboMultiplier += comboValue;
         _points += pointsValue * _comboMultiplier;
         _wordsCleared++;
     }

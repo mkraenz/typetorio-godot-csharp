@@ -10,7 +10,6 @@ public partial class WordsCleared : MarginContainer
 {
 	private Eventbus _eventbus;
 	private IWordsClearedScore _labels;
-	private int _count = 0; // TODO remove
 
 	public override void _Ready()
 	{
@@ -18,17 +17,11 @@ public partial class WordsCleared : MarginContainer
 		_labels = GetNode<IWordsClearedScore>("MyScore");
 
 		_eventbus.WordCleared += OnWordCleared;
-		UpdateLabels();
 	}
 
 	private void OnWordCleared(string word, ScoreDto score)
 	{
-		_count = score.WordsCleared;
-		UpdateLabels();
+		_labels.Value = score.WordsCleared.ToString("D6");
 	}
 
-	private void UpdateLabels()
-	{
-		_labels.Value = _count.ToString("D6");
-	}
 }

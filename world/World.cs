@@ -126,7 +126,7 @@ public partial class World : CanvasLayer
 
 	private void EndGame()
 	{
-		var data = new GameEnded(_score.Points, _score.WordsCleared, _score.ComboMultiplier);
+		var data = new ScoreDto(_score.Points, _score.WordsCleared, _score.ComboMultiplier, _score.MaxComboMultiplier);
 		_eventbus.EmitGameEnded(data);
 
 		QueueFree();

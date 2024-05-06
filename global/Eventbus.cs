@@ -7,7 +7,7 @@ public partial class Eventbus : Node
     [Signal] public delegate void WordClearedEventHandler(string word, ScoreDto score);
     [Signal] public delegate void ComboChangedEventHandler(float comboMultiplier);
     [Signal] public delegate void StartClassicGameClickedEventHandler();
-    [Signal] public delegate void GameEndedEventHandler(GameEnded daata);
+    [Signal] public delegate void GameEndedEventHandler(ScoreDto score);
     [Signal] public delegate void BackToTitleClickedEventHandler();
     [Signal] public delegate void GameStartedEventHandler(string gameType, int gameTimeInSec);
 
@@ -27,9 +27,9 @@ public partial class Eventbus : Node
         EmitSignal(SignalName.StartClassicGameClicked);
     }
 
-    public void EmitGameEnded(GameEnded data)
+    public void EmitGameEnded(ScoreDto score)
     {
-        EmitSignal(SignalName.GameEnded, data);
+        EmitSignal(SignalName.GameEnded, score);
     }
 
     public void EmitBackToTitleClicked()
