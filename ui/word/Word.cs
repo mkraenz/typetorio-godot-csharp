@@ -45,15 +45,10 @@ public partial class Word : Control
 
 	public override void _Ready()
 	{
-		if (WordStatsRes is WordStats typedWordStats)
+		if (!Engine.IsEditorHint())
 		{
-			WordStats = typedWordStats;
-			if (WordStats.ComboIncrease == 5)
-			{
-				RainbowEnabled = true;
-			}
+			setupWordStats();
 		}
-		else throw new Exception("Missing WordStats on Word. Did you forget to set the resource in the Editor?");
 
 		animation = GetNode<AnimationPlayer>("AnimationPlayer");
 		label = GetNode<RichTextLabel>("LabelWrapper/Label");
@@ -64,6 +59,19 @@ public partial class Word : Control
 
 		UpdateLabel();
 
+	}
+
+	private void setupWordStats()
+	{
+		if (WordStatsRes is WordStats typedWordStats)
+		{
+			WordStats = typedWordStats;
+			if (WordStats.ComboIncrease == 5)
+			{
+				RainbowEnabled = true;
+			}
+		}
+		else throw new Exception("Missing WordStats on Word. Did you forget to set the resource in the Editor?");
 	}
 
 	public void Die()
