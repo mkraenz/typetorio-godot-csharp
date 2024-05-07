@@ -47,7 +47,7 @@
       ]
     },
     {
-      "name": "Launch Editor",
+      "name": "Debug Editor",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
