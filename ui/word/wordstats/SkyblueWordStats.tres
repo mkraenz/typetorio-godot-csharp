@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bd4bbrcuu1lqm"]
+
+[ext_resource type="Script" path="res://ui/word/wordstats/WordStats.cs" id="1_5bgw4"]
+
+[resource]
+script = ExtResource("1_5bgw4")
+Points = 15
+ComboIncrease = 1
+Color = Color(0.318096, 0.846943, 0.902941, 1)
+FontScale = 1.2
+SpecialEffects = 0

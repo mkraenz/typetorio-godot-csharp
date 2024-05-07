@@ -6,3 +6,6 @@
 script = ExtResource("1_so5i8")
 Points = 5
 ComboIncrease = 1
+Color = Color(1, 1, 1, 1)
+FontScale = 1.0
+SpecialEffects = 0

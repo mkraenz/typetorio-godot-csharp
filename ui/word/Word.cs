@@ -1,29 +1,19 @@
 using System;
-using System.IO;
 using Godot;
 
 
-[Tool]
 public partial class Word : Control
 {
-	private string _text = "";
+	private Resource _wordStatsRes;
 
 	[Export]
-	public string Text
-	{
-		get => _text;
-		set
-		{
-			_text = value;
-			UpdateLabel();
-		}
-	}
-
+	public string Text = "";
 
 	public int PathRotationDegrees = 0;
 
 	[Export]
 	public Resource WordStatsRes;
+
 	// duplicating the resource but with typings, so that clients can make use of it.
 	public WordStats WordStats;
 
@@ -33,10 +23,7 @@ public partial class Word : Control
 
 	public override void _Ready()
 	{
-		if (!Engine.IsEditorHint())
-		{
-			setupWordStats();
-		}
+		setupWordStats();
 
 		animation = GetNode<AnimationPlayer>("AnimationPlayer");
 		label = GetNode<RichTextLabel>("LabelWrapper/Label");
@@ -55,7 +42,6 @@ public partial class Word : Control
 		{
 			WordStats = typedWordStats;
 		}
-		else throw new Exception("Missing WordStats on Word. Did you forget to set the resource in the Editor?");
 	}
 
 	public void Die()
@@ -67,10 +53,28 @@ public partial class Word : Control
 
 	private void UpdateLabel()
 	{
-		int fontSize = GetThemeDefaultFontSize() * 2;
+		int fontSize = (int)Math.Floor(GetThemeDefaultFontSize() * WordStats.FontScale);
 		if (label != null)
 		{
-			label.Text = WordStats.RainbowEnabled ? $"[rainbow freq=1.0 sat=0.8 val=0.8][font_size={fontSize}]{Text}[/font_size][/rainbow]" : Text;
+			label.Text = "";
+			// label.Text = WordStats.Color == "rainbow" ? $"[rainbow freq=1.0 sat=0.8 val=0.8][font_size={fontSize}]{Text}[/font_size][/rainbow]" : $"[color={WordStats.Color}]{Text}[/color]";
+			// label.PushColor();
+			// if(WordStats.Color=="rainbow") label.PushT
+			label.PushColor(WordStats.Color);
+			label.PushFontSize(fontSize);
+
+			switch (WordStats.SpecialEffects)
+			{
+				case SpecialEffect.Rainbow:
+					// would love to use label.pushCustomFx(RainbowEffect, {freq: 1.0, ...}) but cant find RainbowEffect in Godot's C# APi. 	
+					label.AppendText($"[rainbow freq=0.5 sat=1.0 val=0.8]{Text}[/rainbow]");
+					break;
+				case SpecialEffect.None:
+					label.AppendText(Text);
+					break;
+			}
+
+			label.PopAll();
 		}
 
 	}

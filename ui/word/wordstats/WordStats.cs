@@ -1,5 +1,11 @@
 using Godot;
 
+public enum SpecialEffect
+{
+    None,
+    Rainbow
+}
+
 public partial class WordStats : Resource
 {
     [ExportCategory("Score")]
@@ -10,13 +16,17 @@ public partial class WordStats : Resource
     public int ComboIncrease { get; set; } = 1;
 
     [ExportCategory("Display")]
-    [Export]
-    public string Color { get; set; } = "white";
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color Color { get; set; } = Colors.White;
+
+    [Export(PropertyHint.Range, "0,10")]
+    public float FontScale { get; set; } = 1;
+
 
     /// <summary>
-    /// Note that his overrides the Color property. TODO allow "rainbow" to be a value for color and render accordingly.
+    /// Note that his overrides the Color property and possibly others.
     /// </summary>
-    [Export] public bool RainbowEnabled { get; set; } = false;
+    [Export(PropertyHint.Enum)] public SpecialEffect SpecialEffects { get; set; } = SpecialEffect.None;
 
     // Make sure you provide a parameterless constructor.
     // In C#, a parameterless constructor is different from a
