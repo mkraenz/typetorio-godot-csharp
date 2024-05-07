@@ -6,3 +6,5 @@
 script = ExtResource("1_gtt8j")
 Points = 5
 ComboIncrease = 5
+Color = "white"
+RainbowEnabled = true

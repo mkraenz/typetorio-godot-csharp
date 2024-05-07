@@ -2,11 +2,21 @@ using Godot;
 
 public partial class WordStats : Resource
 {
+    [ExportCategory("Score")]
     [Export]
-    public int Points { get; set; }
+    public int Points { get; set; } = 5;
 
     [Export]
-    public int ComboIncrease { get; set; }
+    public int ComboIncrease { get; set; } = 1;
+
+    [ExportCategory("Display")]
+    [Export]
+    public string Color { get; set; } = "white";
+
+    /// <summary>
+    /// Note that his overrides the Color property. TODO allow "rainbow" to be a value for color and render accordingly.
+    /// </summary>
+    [Export] public bool RainbowEnabled { get; set; } = false;
 
     // Make sure you provide a parameterless constructor.
     // In C#, a parameterless constructor is different from a
@@ -15,7 +25,7 @@ public partial class WordStats : Resource
     // creating and editing your resource via the inspector.
     public WordStats() : this(5, 1) { }
 
-    public WordStats(int points = 5, int comboIncrease = 1)
+    public WordStats(int points, int comboIncrease)
     {
         Points = points;
         ComboIncrease = comboIncrease;

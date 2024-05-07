@@ -6,7 +6,6 @@ using Godot;
 [Tool]
 public partial class Word : Control
 {
-	private bool _rainbowEnabled = false;
 	private string _text = "";
 
 	[Export]
@@ -16,17 +15,6 @@ public partial class Word : Control
 		set
 		{
 			_text = value;
-			UpdateLabel();
-		}
-	}
-
-	[Export]
-	public bool RainbowEnabled
-	{
-		get => _rainbowEnabled;
-		set
-		{
-			_rainbowEnabled = value;
 			UpdateLabel();
 		}
 	}
@@ -66,10 +54,6 @@ public partial class Word : Control
 		if (WordStatsRes is WordStats typedWordStats)
 		{
 			WordStats = typedWordStats;
-			if (WordStats.ComboIncrease == 5)
-			{
-				RainbowEnabled = true;
-			}
 		}
 		else throw new Exception("Missing WordStats on Word. Did you forget to set the resource in the Editor?");
 	}
@@ -86,7 +70,7 @@ public partial class Word : Control
 		int fontSize = GetThemeDefaultFontSize() * 2;
 		if (label != null)
 		{
-			label.Text = _rainbowEnabled ? $"[rainbow freq=1.0 sat=0.8 val=0.8][font_size={fontSize}]{Text}[/font_size][/rainbow]" : Text;
+			label.Text = WordStats.RainbowEnabled ? $"[rainbow freq=1.0 sat=0.8 val=0.8][font_size={fontSize}]{Text}[/font_size][/rainbow]" : Text;
 		}
 
 	}
