@@ -34,9 +34,11 @@ public partial class GameOver : Control
 
 	private void _on_visibility_changed()
 	{
-		if (_anims != null && Visible)
+		if (_anims != null)
+
 		{
-			_anims.Play("animate_points");
+			if (Visible) _anims.Play("animate_points");
+			else _anims.Play("RESET");
 		}
 	}
 }

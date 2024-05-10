@@ -11,6 +11,7 @@ public partial class Eventbus : Node
     [Signal] public delegate void GameEndedEventHandler(ScoreDto score);
     [Signal] public delegate void BackToTitleClickedEventHandler();
     [Signal] public delegate void GameStartedEventHandler(string gameType, int gameTimeInSec);
+    [Signal] public delegate void GameAboutToStartEventHandler();
     [Signal] public delegate void HowToPlayPressedEventHandler();
 
     public void EmitWordCleared(string word, ScoreDto score)
@@ -46,6 +47,11 @@ public partial class Eventbus : Node
     internal void EmitGameStarted(string gameType, int gameTimeInSec)
     {
         EmitSignal(SignalName.GameStarted, gameType, gameTimeInSec);
+    }
+
+    internal void EmitGameAboutToStart()
+    {
+        EmitSignal(SignalName.GameAboutToStart);
     }
 
     internal void EmitHowToPlayPressed()

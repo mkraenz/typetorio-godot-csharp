@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class HowToPlay : Button
+public partial class HowToPlayButton : Button
 {
 
 	private Eventbus _eventbus;

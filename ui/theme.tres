@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dunhyik765ld6"]
+
+[ext_resource type="FontFile" uid="uid://d1oxrw7u3qtd6" path="res://assets/Noto_Sans_Mono/NotoSansMono-Medium.ttf" id="1_sow0l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wn8xc"]
+bg_color = Color(0.254902, 0.117647, 0.533333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il7v2"]
+bg_color = Color(0.419608, 0.121569, 0.694118, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwyqs"]
+bg_color = Color(0.12549, 0.0862745, 0.360784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqbyw"]
+bg_color = Color(0.12549, 0.0862745, 0.360784, 1)
+
+[resource]
+Button/colors/font_color = Color(0.972549, 0.890196, 0.768627, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_wn8xc")
+Button/styles/normal = SubResource("StyleBoxFlat_il7v2")
+Button/styles/pressed = SubResource("StyleBoxFlat_lwyqs")
+Label/colors/font_color = Color(0.972549, 0.890196, 0.768627, 1)
+Label/fonts/font = ExtResource("1_sow0l")
+LineEdit/colors/caret_color = Color(0.972549, 0.890196, 0.768627, 1)
+LineEdit/colors/font_color = Color(0.972549, 0.890196, 0.768627, 1)
+LineEdit/colors/font_placeholder_color = Color(0.972549, 0.890196, 0.768627, 0.705882)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_rqbyw")

@@ -26,6 +26,8 @@ public partial class World : CanvasLayer
 
 		_words.GameSettings = GameSettings;
 		_gameTimer.WaitTime = GameSettings.GameTimeInSec;
+
+		_eventbus.EmitGameAboutToStart();
 	}
 
 	private void StartGame()

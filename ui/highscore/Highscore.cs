@@ -18,10 +18,16 @@ public partial class Highscore : MarginContainer
 		_labels = GetNode<IHighscoreLabels>("MyScore");
 
 		_eventbus.WordCleared += OnWordCleared;
+		_eventbus.GameAboutToStart += Reset;
 	}
 
-	private void OnWordCleared(string word, ScoreDto score)
+	private void Reset()
 	{
-		_labels.Value = score.Points.ToString("D6"); // 10 digits with leading zeros
+		_labels.Value = 0.ToString("D6");
+	}
+
+	private void OnWordCleared(string _word, ScoreDto score)
+	{
+		_labels.Value = score.Points.ToString("D6");
 	}
 }

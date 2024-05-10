@@ -33,6 +33,11 @@ project/assembly_name="Typetorio"
 
 import/blender/enabled=false
 
+[gui]
+
+theme/custom="res://ui/theme.tres"
+theme/custom_font="res://assets/Noto_Sans_Mono/NotoSansMono-Bold.ttf"
+
 [input]
 
 next={

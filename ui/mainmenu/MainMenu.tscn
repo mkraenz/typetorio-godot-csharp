@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2mxm1i1b5qsc"]
+[gd_scene load_steps=8 format=3 uid="uid://b2mxm1i1b5qsc"]
 
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_bd2au"]
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicGame.cs" id="1_hrocq"]
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicSingleWordButton.cs" id="3_m7jbx"]
-[ext_resource type="Script" path="res://ui/mainmenu/HowToPlay.cs" id="4_f36cg"]
+[ext_resource type="Script" path="res://ui/mainmenu/HowToPlayButton.cs" id="4_d47g1"]
+[ext_resource type="Script" path="res://ui/mainmenu/QuitButton.cs" id="5_c2usk"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_v6ife"]
 action = &"next"
@@ -41,22 +42,32 @@ layout_mode = 2
 text = "Mikraz: Typetorio"
 horizontal_alignment = 1
 
-[node name="StartClassicGame" type="Button" parent="H/V"]
+[node name="Buttons" type="VBoxContainer" parent="H/V"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="StartClassicGame" type="Button" parent="H/V/Buttons"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_pmn8o")
 text = "Classic Mode"
 script = ExtResource("1_hrocq")
 
-[node name="StartClassicSingleWordButton" type="Button" parent="H/V"]
+[node name="StartClassicSingleWordButton" type="Button" parent="H/V/Buttons"]
 layout_mode = 2
 text = "Focus Mode"
 script = ExtResource("3_m7jbx")
 
-[node name="HowToPlay" type="Button" parent="H/V"]
+[node name="HowToPlayButton" type="Button" parent="H/V/Buttons"]
 layout_mode = 2
 text = "How To Play"
-script = ExtResource("4_f36cg")
+script = ExtResource("4_d47g1")
 
-[connection signal="pressed" from="H/V/StartClassicGame" to="H/V/StartClassicGame" method="_on_pressed"]
-[connection signal="pressed" from="H/V/StartClassicSingleWordButton" to="H/V/StartClassicSingleWordButton" method="_on_pressed"]
-[connection signal="pressed" from="H/V/HowToPlay" to="H/V/HowToPlay" method="_on_pressed"]
+[node name="QuitButton" type="Button" parent="H/V/Buttons"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("5_c2usk")
+
+[connection signal="pressed" from="H/V/Buttons/StartClassicGame" to="H/V/Buttons/StartClassicGame" method="_on_pressed"]
+[connection signal="pressed" from="H/V/Buttons/StartClassicSingleWordButton" to="H/V/Buttons/StartClassicSingleWordButton" method="_on_pressed"]
+[connection signal="pressed" from="H/V/Buttons/HowToPlayButton" to="H/V/Buttons/HowToPlayButton" method="_on_pressed"]
+[connection signal="pressed" from="H/V/Buttons/QuitButton" to="H/V/Buttons/QuitButton" method="_on_pressed"]

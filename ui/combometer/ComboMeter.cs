@@ -22,7 +22,12 @@ public partial class ComboMeter : MarginContainer
 		_labels = GetNode<IComboMeterScore>("MyScore");
 
 		_eventbus.ComboChanged += OnComboChanged;
-		_labels.Value = "x1";
+		_eventbus.GameAboutToStart += Reset;
+	}
+
+	private void Reset()
+	{
+		OnComboChanged(0);
 	}
 
 	private void OnComboChanged(int multiplier)

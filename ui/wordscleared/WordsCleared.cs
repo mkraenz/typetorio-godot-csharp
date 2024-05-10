@@ -17,6 +17,12 @@ public partial class WordsCleared : MarginContainer
 		_labels = GetNode<IWordsClearedScore>("MyScore");
 
 		_eventbus.WordCleared += OnWordCleared;
+		_eventbus.GameAboutToStart += Reset;
+	}
+
+	private void Reset()
+	{
+		_labels.Value = 0.ToString("D6");
 	}
 
 	private void OnWordCleared(string word, ScoreDto score)

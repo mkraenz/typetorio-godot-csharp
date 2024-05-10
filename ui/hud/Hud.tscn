@@ -17,6 +17,7 @@ theme_override_constants/margin_right = 16
 
 [node name="H" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Highscore" parent="H" instance=ExtResource("1_w2vap")]
 layout_mode = 2
