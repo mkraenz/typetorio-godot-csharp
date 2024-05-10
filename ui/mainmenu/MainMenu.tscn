@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicGame.cs" id="1_hrocq"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_v6ife"]
-action = &"start_game"
+action = &"next"
 
 [sub_resource type="Shortcut" id="Shortcut_pmn8o"]
 events = [SubResource("InputEventAction_v6ife")]

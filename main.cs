@@ -10,7 +10,7 @@ public partial class main : Node
 
 	public override void _Ready()
 	{
-		_eventbus = GetNode<Eventbus>("/root/Eventbus");
+		_eventbus = GDAccessors.GetEventbus(this);
 		_mainMenu = GetNode<Control>("Gui/MainMenu");
 		_gameover = GetNode<Control>("Gui/GameOver");
 		_hud = GetNode<Control>("Gui/Hud");

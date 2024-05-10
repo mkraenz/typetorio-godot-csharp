@@ -22,7 +22,7 @@ public partial class Clock : Label
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_eventbus = GetNode<Eventbus>("/root/Eventbus");
+		_eventbus = GDAccessors.GetEventbus(this);
 		_timer = GetNode<Timer>("Timer");
 
 		_eventbus.GameStarted += OnGameStarted;

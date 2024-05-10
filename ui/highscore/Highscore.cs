@@ -14,7 +14,7 @@ public partial class Highscore : MarginContainer
 
 	public override void _Ready()
 	{
-		_eventbus = GetNode<Eventbus>("/root/Eventbus");
+		_eventbus = GDAccessors.GetEventbus(this);
 		_labels = GetNode<IHighscoreLabels>("MyScore");
 
 		_eventbus.WordCleared += OnWordCleared;

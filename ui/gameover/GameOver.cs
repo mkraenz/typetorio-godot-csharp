@@ -16,7 +16,7 @@ public partial class GameOver : Control
 
 	public override void _Ready()
 	{
-		_eventbus = GetNode<Eventbus>("/root/Eventbus");
+		_eventbus = GDAccessors.GetEventbus(this);
 		_points = GetNode<IPointsValue>("%PointsValue");
 		_words = GetNode<IPointsValue>("%WordsValue");
 		_maxCombo = GetNode<IPointsValue>("%ComboValue");

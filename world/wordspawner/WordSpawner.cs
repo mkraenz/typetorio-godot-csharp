@@ -7,13 +7,17 @@ public partial class WordSpawner : Control
 	[Export]
 	private int _bonusWordInEveryNWords = 20;
 
-
 	[Export]
 	private int _maxConcurrentWords = 100;
 
-
-
 	private Dictionary<string, Word> _currentWords = new Dictionary<string, Word> { };
+
+	private Timer _timer;
+
+	public override void _Ready()
+	{
+		_timer = GetNode<Timer>("Timer");
+	}
 
 
 	private string GetRandomWord()
@@ -26,7 +30,7 @@ public partial class WordSpawner : Control
 		return next;
 	}
 
-	public void SpawnNewWord()
+	public void Spawn()
 	{
 
 		if (_currentWords.Count > _maxConcurrentWords) return;
@@ -65,4 +69,14 @@ public partial class WordSpawner : Control
 		word.Die();
 	}
 	public Word GetWordOrDefault(string str) => _currentWords.GetValueOrDefault(str);
+
+	private void _on_timer_timeout()
+	{
+		Spawn();
+	}
+
+	public void SpawnRegularly(float spawnIntervalInSec)
+	{
+		_timer.Start(spawnIntervalInSec);
+	}
 }

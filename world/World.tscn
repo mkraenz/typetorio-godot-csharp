@@ -46,9 +46,6 @@ drag_and_drop_selection_enabled = false
 caret_blink = true
 script = ExtResource("2_epim6")
 
-[node name="SpawnTimer" type="Timer" parent="."]
-autostart = true
-
 [node name="ComboTimer" type="Timer" parent="."]
 wait_time = 3.0
 
@@ -57,6 +54,5 @@ wait_time = 5.0
 one_shot = true
 
 [connection signal="text_changed" from="InputBox/H/V/InputPrompt" to="." method="_on_input_prompt_text_changed"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

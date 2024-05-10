@@ -13,6 +13,8 @@ public partial class World : CanvasLayer
 	[Export]
 	private int _gameTimeInSec = 60;
 
+	[Export] private int _spawnIntervalInSec = 1;
+
 	private WordSpawner _words;
 	private InputPrompt _prompt;
 	private Eventbus _eventbus;
@@ -24,23 +26,19 @@ public partial class World : CanvasLayer
 
 	public override void _Ready()
 	{
+		_eventbus = GDAccessors.GetEventbus(this);
 		_words = GetNode<WordSpawner>("WordSpawner");
 		_prompt = GetNode<InputPrompt>("%InputPrompt");
-		_eventbus = GetNode<Eventbus>("/root/Eventbus");
 		_comboTimer = GetNode<Timer>("ComboTimer");
 		_gameTimer = GetNode<Timer>("GameTimer");
 		_prompt.GrabFocus();
 
-		_words.SpawnNewWord();
+		_words.Spawn();
 		_gameTimer.WaitTime = _gameTimeInSec;
 		_gameTimer.Start();
+		_words.SpawnRegularly(_spawnIntervalInSec);
 
 		_eventbus.EmitGameStarted("classic", _gameTimeInSec);
-	}
-
-	public void _on_spawn_timer_timeout()
-	{
-		_words.SpawnNewWord();
 	}
 
 

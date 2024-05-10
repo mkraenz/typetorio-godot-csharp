@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0l3kui4r7cw3"]
+[gd_scene load_steps=10 format=3 uid="uid://d0l3kui4r7cw3"]
 
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_fxal6"]
 [ext_resource type="Script" path="res://ui/gameover/GameOver.cs" id="1_lur73"]
 [ext_resource type="Script" path="res://ui/gameover/BackToMainMenuButton.cs" id="2_bjbxe"]
 [ext_resource type="PackedScene" uid="uid://sue7cll1ce5y" path="res://ui/gameover/PointsValue/PointsValue.tscn" id="3_a0w33"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_g0sdn"]
+action = &"next"
+
+[sub_resource type="Shortcut" id="Shortcut_ojt3u"]
+events = [SubResource("InputEventAction_g0sdn")]
 
 [sub_resource type="Animation" id="Animation_pcqov"]
 length = 0.001
@@ -272,6 +278,7 @@ horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="H/V"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_ojt3u")
 text = "OK"
 script = ExtResource("2_bjbxe")
 
