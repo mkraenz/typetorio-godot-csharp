@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://world/wordspawner/WordSpawner.cs" id="1_hgst4"]
 [ext_resource type="Shader" path="res://effects/dissolve.gdshader" id="1_y31a2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvwqo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ai1am"]
 resource_local_to_scene = true
 shader = ExtResource("1_y31a2")
 shader_parameter/sensitivity = 0.0
@@ -18,7 +18,7 @@ grow_vertical = 2
 script = ExtResource("1_hgst4")
 
 [node name="Word" parent="." instance_placeholder="res://ui/word/Word.tscn"]
-material = SubResource("ShaderMaterial_wvwqo")
+material = SubResource("ShaderMaterial_ai1am")
 layout_mode = 0
 offset_left = 529.0
 offset_top = 183.0

@@ -4,17 +4,12 @@ using Godot;
 
 public partial class Word : Control
 {
-	private Resource _wordStatsRes;
-
 	[Export]
 	public string Text = "";
 
 	public int PathRotationDegrees = 0;
 
 	[Export]
-	public Resource WordStatsRes;
-
-	// duplicating the resource but with typings, so that clients can make use of it.
 	public WordStats WordStats;
 
 	private RichTextLabel label;
@@ -23,7 +18,6 @@ public partial class Word : Control
 
 	public override void _Ready()
 	{
-		setupWordStats();
 
 		animation = GetNode<AnimationPlayer>("AnimationPlayer");
 		label = GetNode<RichTextLabel>("LabelWrapper/Label");
@@ -34,14 +28,6 @@ public partial class Word : Control
 
 		UpdateLabel();
 
-	}
-
-	private void setupWordStats()
-	{
-		if (WordStatsRes is WordStats typedWordStats)
-		{
-			WordStats = typedWordStats;
-		}
 	}
 
 	public void Die()
@@ -57,9 +43,6 @@ public partial class Word : Control
 		if (label != null)
 		{
 			label.Text = "";
-			// label.Text = WordStats.Color == "rainbow" ? $"[rainbow freq=1.0 sat=0.8 val=0.8][font_size={fontSize}]{Text}[/font_size][/rainbow]" : $"[color={WordStats.Color}]{Text}[/color]";
-			// label.PushColor();
-			// if(WordStats.Color=="rainbow") label.PushT
 			label.PushColor(WordStats.Color);
 			label.PushFontSize(fontSize);
 

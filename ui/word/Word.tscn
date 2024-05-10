@@ -62,7 +62,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_hhe6s")
 Text = "TWITCH"
-WordStatsRes = ExtResource("2_qvfx8")
+WordStats = ExtResource("2_qvfx8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../LabelWrapper/Label")

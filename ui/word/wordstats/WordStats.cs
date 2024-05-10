@@ -6,6 +6,7 @@ public enum SpecialEffect
     Rainbow
 }
 
+[GlobalClass]
 public partial class WordStats : Resource
 {
     [ExportCategory("Score")]

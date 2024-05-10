@@ -15,7 +15,7 @@ public partial class WordSpawner : Control
 	private Timer _timer;
 
 	private PackedScene _WordScene = ResourceLoader.Load<PackedScene>("res://ui/word/Word.tscn");
-	private Resource _rainbowWordStats = ResourceLoader.Load<Resource>("res://ui/word/wordstats/RainbowWordStats.tres");
+	private WordStats _rainbowWordStats = ResourceLoader.Load<WordStats>("res://ui/word/wordstats/RainbowWordStats.tres");
 
 	public override void _Ready()
 	{
@@ -43,7 +43,7 @@ public partial class WordSpawner : Control
 		word.GlobalPosition = GetRandomPosition();
 		word.PathRotationDegrees = GD.RandRange(0, 360);
 		var rand = GD.RandRange(0, _bonusWordInEveryNWords - 1);
-		if (rand == 0) word.WordStatsRes = _rainbowWordStats;
+		if (rand == 0) word.WordStats = _rainbowWordStats;
 
 		_currentWords.Add(word.Text, word);
 		AddChild(word);
