@@ -2,8 +2,7 @@ using Godot;
 using System.Collections.Generic;
 using System;
 
-// TODO rename to WordSpawner
-public partial class Words : Control
+public partial class WordSpawner : Control
 {
 	[Export]
 	private int _bonusWordInEveryNWords = 20;

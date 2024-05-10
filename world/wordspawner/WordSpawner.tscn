@@ -1,24 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://bw1iyjq7v3ao6"]
 
-[ext_resource type="Script" path="res://world/words/Words.cs" id="1_2rk5y"]
+[ext_resource type="Script" path="res://world/wordspawner/WordSpawner.cs" id="1_hgst4"]
 [ext_resource type="Shader" path="res://effects/dissolve.gdshader" id="1_y31a2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0h38n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lyr21"]
 resource_local_to_scene = true
 shader = ExtResource("1_y31a2")
 shader_parameter/sensitivity = 0.0
 
-[node name="Words" type="Control"]
+[node name="WordSpawner" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2rk5y")
+script = ExtResource("1_hgst4")
 
 [node name="Word" parent="." instance_placeholder="res://ui/word/Word.tscn"]
-material = SubResource("ShaderMaterial_0h38n")
+material = SubResource("ShaderMaterial_lyr21")
 layout_mode = 0
 offset_left = 529.0
 offset_top = 183.0

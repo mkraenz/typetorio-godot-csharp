@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://world/World.cs" id="1_65x1s"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_epim6"]
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="2_wl17e"]
-[ext_resource type="PackedScene" uid="uid://bw1iyjq7v3ao6" path="res://world/words/Words.tscn" id="3_2fanc"]
+[ext_resource type="PackedScene" uid="uid://bw1iyjq7v3ao6" path="res://world/wordspawner/WordSpawner.tscn" id="3_2fanc"]
 
 [node name="World" type="CanvasLayer"]
 script = ExtResource("1_65x1s")
 
 [node name="Background" parent="." instance=ExtResource("2_wl17e")]
 
-[node name="Words" parent="." instance=ExtResource("3_2fanc")]
+[node name="WordSpawner" parent="." instance=ExtResource("3_2fanc")]
 
 [node name="InputBox" type="Control" parent="."]
 layout_mode = 3

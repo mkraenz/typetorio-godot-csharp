@@ -13,7 +13,7 @@ public partial class World : CanvasLayer
 	[Export]
 	private int _gameTimeInSec = 60;
 
-	private Words _words;
+	private WordSpawner _words;
 	private InputPrompt _prompt;
 	private Eventbus _eventbus;
 	private Timer _comboTimer;
@@ -24,7 +24,7 @@ public partial class World : CanvasLayer
 
 	public override void _Ready()
 	{
-		_words = GetNode<Words>("Words");
+		_words = GetNode<WordSpawner>("WordSpawner");
 		_prompt = GetNode<InputPrompt>("%InputPrompt");
 		_eventbus = GetNode<Eventbus>("/root/Eventbus");
 		_comboTimer = GetNode<Timer>("ComboTimer");
