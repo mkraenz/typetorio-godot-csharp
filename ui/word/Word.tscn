@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkk405qoxwoqi"]
 
 [ext_resource type="Script" path="res://ui/word/Word.cs" id="1_hhe6s"]
-[ext_resource type="Resource" uid="uid://bd4bbrcuu1lqm" path="res://ui/word/wordstats/SkyblueWordStats.tres" id="2_ogh6k"]
+[ext_resource type="Resource" uid="uid://dkuqmy0jcyo2n" path="res://ui/word/wordstats/DefaultWordStats.tres" id="2_qvfx8"]
 [ext_resource type="PackedScene" uid="uid://dxmu3xie4ii3s" path="res://effects/figure-eight-path/MoveInFigureEight.tscn" id="2_rm05f"]
 
 [sub_resource type="Animation" id="Animation_cbj1i"]
@@ -62,7 +62,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_hhe6s")
 Text = "TWITCH"
-WordStatsRes = ExtResource("2_ogh6k")
+WordStatsRes = ExtResource("2_qvfx8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../LabelWrapper/Label")

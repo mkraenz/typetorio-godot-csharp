@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public partial class Words
+public partial class WordData
 {
     static Random rnd = new Random();
     public static List<string> TheWords = new List<string> {

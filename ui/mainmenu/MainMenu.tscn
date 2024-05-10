@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2mxm1i1b5qsc"]
+[gd_scene load_steps=5 format=3 uid="uid://b2mxm1i1b5qsc"]
 
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_bd2au"]
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicGame.cs" id="1_hrocq"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_v6ife"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_pmn8o"]
+events = [SubResource("InputEventAction_v6ife")]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -35,6 +41,7 @@ horizontal_alignment = 1
 
 [node name="StartClassicGame" type="Button" parent="H/V"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_pmn8o")
 text = "Classic Mode"
 script = ExtResource("1_hrocq")
 

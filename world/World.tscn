@@ -1,32 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8r4ab0ekejgg"]
 
 [ext_resource type="Script" path="res://world/World.cs" id="1_65x1s"]
-[ext_resource type="Shader" path="res://effects/dissolve.gdshader" id="1_y3qur"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_epim6"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktjfu"]
-resource_local_to_scene = true
-shader = ExtResource("1_y3qur")
-shader_parameter/sensitivity = 0.0
+[ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="2_wl17e"]
+[ext_resource type="PackedScene" uid="uid://bw1iyjq7v3ao6" path="res://world/words/Words.tscn" id="3_2fanc"]
 
 [node name="World" type="CanvasLayer"]
 script = ExtResource("1_65x1s")
 
-[node name="Words" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Background" parent="." instance=ExtResource("2_wl17e")]
 
-[node name="Word" parent="Words" instance_placeholder="res://ui/word/Word.tscn"]
-material = SubResource("ShaderMaterial_ktjfu")
-layout_mode = 0
-offset_left = 529.0
-offset_top = 183.0
-offset_right = 590.0
-offset_bottom = 206.0
+[node name="Words" parent="." instance=ExtResource("3_2fanc")]
 
 [node name="InputBox" type="Control" parent="."]
 layout_mode = 3

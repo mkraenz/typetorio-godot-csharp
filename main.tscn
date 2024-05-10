@@ -9,6 +9,7 @@
 script = ExtResource("1_tbdpo")
 
 [node name="Gui" type="CanvasLayer" parent="."]
+layer = 5
 
 [node name="GameOver" parent="Gui" instance=ExtResource("6_1i3ad")]
 visible = false
