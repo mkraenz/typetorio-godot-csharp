@@ -25,12 +25,21 @@ public partial class World : CanvasLayer
 		_prompt.GrabFocus();
 
 		_words.GameSettings = GameSettings;
-		_words.Spawn();
 		_gameTimer.WaitTime = GameSettings.GameTimeInSec;
+	}
+
+	private void StartGame()
+	{
+		_words.Spawn();
 		_gameTimer.Start();
 		_words.SpawnRegularly(GameSettings.SpawnIntervalInSec);
 
 		_eventbus.EmitGameStarted("classic", GameSettings.GameTimeInSec);
+	}
+
+	private void _on_ready_go_animation_finished()
+	{
+		StartGame();
 	}
 
 

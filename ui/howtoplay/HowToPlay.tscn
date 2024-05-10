@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfaqdkhja1clq"]
+
+[ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_dbk8n"]
+[ext_resource type="Script" path="res://ui/howtoplay/OkayButton.cs" id="1_qo5g3"]
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="." instance=ExtResource("1_dbk8n")]
+layout_mode = 1
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 50
+
+[node name="H" type="HBoxContainer" parent="M"]
+layout_mode = 2
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="M/H"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Title" type="Label" parent="M/H/V"]
+layout_mode = 2
+text = "How To Play"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="M/H/V"]
+layout_mode = 2
+text = "Goal: Gain highscores.
+
+How? Type the words. 
+Increase your combo multipliers by writing multiple words in a row in a short time.
+
+Game modes:
+- Classic - Fixed time.
+- Focus - Classic but only one word at a time.
+- (coming soon) Painful Typos -  Lose health on typos, survive for as long as possible, gain highscores.
+- (coming soon) Survival - Time always runs out. Type words to enlengthen it."
+
+[node name="Words" type="Label" parent="M/H/V"]
+layout_mode = 2
+text = "Words:
+Grey = points 5, combo increase 1
+Blue = points 15, combo increase 1
+Rainbow = points 5, combo increase 5"
+
+[node name="Button" type="Button" parent="M/H/V"]
+layout_mode = 2
+text = "OK"
+script = ExtResource("1_qo5g3")
+
+[connection signal="pressed" from="M/H/V/Button" to="M/H/V/Button" method="_on_pressed"]

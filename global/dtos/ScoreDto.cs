@@ -13,7 +13,6 @@ public interface IScore
 /// </summary>
 public partial class ScoreDto : GodotObject
 {
-    // TODO use an interface (or google for how to shorten c# long parameter list)
     public ScoreDto(IScore score)
     {
         Points = score.Points;

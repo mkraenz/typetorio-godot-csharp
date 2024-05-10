@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://m4vv7txefs4u"]
+
+[ext_resource type="Script" path="res://ui/readygo/ReadyGo.cs" id="1_0mx1c"]
+[ext_resource type="PackedScene" uid="uid://bv6fmuccq3qa8" path="res://ui/common/VSpacer.tscn" id="1_m8ldq"]
+
+[sub_resource type="Animation" id="Animation_cerg4"]
+resource_name = "readygo"
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ReadyGo/V/Label:text")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["READY?", "TYPE!"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ReadyGo")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j1kho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ReadyGo/V/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["READY?"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_alpoo"]
+_data = {
+"RESET": SubResource("Animation_j1kho"),
+"readygo": SubResource("Animation_cerg4")
+}
+
+[node name="ReadyGo" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_0mx1c")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "TYPE!"
+vertical_alignment = 1
+
+[node name="VSpacer" parent="V" instance=ExtResource("1_m8ldq")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="V"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_alpoo")
+}
+autoplay = "readygo"
+
+[connection signal="animation_finished" from="V/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
