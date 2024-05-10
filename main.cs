@@ -8,6 +8,8 @@ public partial class main : Node
 	private Control _hud;
 	private Control _gameover;
 
+	private PackedScene _WorldScene = ResourceLoader.Load<PackedScene>("res:///world/World.tscn");
+
 	public override void _Ready()
 	{
 		_eventbus = GDAccessors.GetEventbus(this);
@@ -21,8 +23,7 @@ public partial class main : Node
 
 	private void OnStartClassicGameClicked()
 	{
-		PackedScene World = GD.Load<PackedScene>("res:///world/World.tscn");
-		World world = World.Instantiate<World>();
+		World world = _WorldScene.Instantiate<World>();
 		AddChild(world);
 
 		_hud.Show();

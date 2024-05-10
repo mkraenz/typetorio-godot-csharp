@@ -14,6 +14,9 @@ public partial class WordSpawner : Control
 
 	private Timer _timer;
 
+	private PackedScene _WordScene = ResourceLoader.Load<PackedScene>("res://ui/word/Word.tscn");
+	private Resource _rainbowWordStats = ResourceLoader.Load<Resource>("res://ui/word/wordstats/RainbowWordStats.tres");
+
 	public override void _Ready()
 	{
 		_timer = GetNode<Timer>("Timer");
@@ -35,14 +38,12 @@ public partial class WordSpawner : Control
 
 		if (_currentWords.Count > _maxConcurrentWords) return;
 		string nextWord = GetRandomWord();
-		var WordScene = GD.Load<PackedScene>("res://ui/word/Word.tscn");
-		var word = WordScene.Instantiate() as Word;
+		var word = _WordScene.Instantiate() as Word;
 		word.Text = nextWord;
 		word.GlobalPosition = GetRandomPosition();
 		word.PathRotationDegrees = GD.RandRange(0, 360);
 		var rand = GD.RandRange(0, _bonusWordInEveryNWords - 1);
-		var rainbowWordStats = GD.Load<Resource>("res://ui/word/wordstats/RainbowWordStats.tres");
-		if (rand == 0) word.WordStatsRes = rainbowWordStats;
+		if (rand == 0) word.WordStatsRes = _rainbowWordStats;
 
 		_currentWords.Add(word.Text, word);
 		AddChild(word);

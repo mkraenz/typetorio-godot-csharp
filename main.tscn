@@ -18,3 +18,5 @@ visible = false
 visible = false
 
 [node name="MainMenu" parent="Gui" instance=ExtResource("5_qw5lw")]
+
+[node name="World" parent="." instance_placeholder="res://world/World.tscn"]
