@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8r4ab0ekejgg"]
+[gd_scene load_steps=6 format=3 uid="uid://c8r4ab0ekejgg"]
 
 [ext_resource type="Script" path="res://world/World.cs" id="1_65x1s"]
+[ext_resource type="Resource" uid="uid://42y0ufwersig" path="res://world/gamesettings/DefaultGameSettings.tres" id="2_8xxdv"]
 [ext_resource type="Script" path="res://InputPrompt.cs" id="2_epim6"]
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="2_wl17e"]
 [ext_resource type="PackedScene" uid="uid://bw1iyjq7v3ao6" path="res://world/wordspawner/WordSpawner.tscn" id="3_2fanc"]
 
 [node name="World" type="CanvasLayer"]
 script = ExtResource("1_65x1s")
+_gameSettings = ExtResource("2_8xxdv")
 
 [node name="Background" parent="." instance=ExtResource("2_wl17e")]
 

@@ -17,6 +17,7 @@ public partial class main : Node
 		_gameover = GetNode<Control>("Gui/GameOver");
 		_hud = GetNode<Control>("Gui/Hud");
 		_eventbus.StartClassicGameClicked += OnStartClassicGameClicked;
+		_eventbus.StartClassicSingleWordGameClicked += OnStartClassicSingleWordGameClicked;
 		_eventbus.BackToTitleClicked += OnBackToTitleClicked;
 		_eventbus.GameEnded += OnGameEnded;
 	}
@@ -24,6 +25,18 @@ public partial class main : Node
 	private void OnStartClassicGameClicked()
 	{
 		World world = _WorldScene.Instantiate<World>();
+		AddChild(world);
+
+		_hud.Show();
+		_mainMenu.Hide();
+		_gameover.Hide();
+	}
+
+	private void OnStartClassicSingleWordGameClicked()
+	{
+
+		World world = _WorldScene.Instantiate<World>();
+		world.GameSettings = GD.Load<GameSettings>("res://world/gamesettings/SingleWordGameSettings.tres");
 		AddChild(world);
 
 		_hud.Show();

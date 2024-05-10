@@ -4,16 +4,7 @@ using System.Collections.Generic;
 public partial class World : CanvasLayer
 {
 	[Export]
-	private int _bonusWordInEveryNWords = 20;
-
-	[Export]
-	private int _maxConcurrentWords = 100;
-
-
-	[Export]
-	private int _gameTimeInSec = 60;
-
-	[Export] private int _spawnIntervalInSec = 1;
+	public GameSettings GameSettings;
 
 	private WordSpawner _words;
 	private InputPrompt _prompt;
@@ -33,12 +24,13 @@ public partial class World : CanvasLayer
 		_gameTimer = GetNode<Timer>("GameTimer");
 		_prompt.GrabFocus();
 
+		_words.MaxConcurrentWords = GameSettings.MaxConcurrentWords;
 		_words.Spawn();
-		_gameTimer.WaitTime = _gameTimeInSec;
+		_gameTimer.WaitTime = GameSettings.GameTimeInSec;
 		_gameTimer.Start();
-		_words.SpawnRegularly(_spawnIntervalInSec);
+		_words.SpawnRegularly(GameSettings.SpawnIntervalInSec);
 
-		_eventbus.EmitGameStarted("classic", _gameTimeInSec);
+		_eventbus.EmitGameStarted("classic", GameSettings.GameTimeInSec);
 	}
 
 

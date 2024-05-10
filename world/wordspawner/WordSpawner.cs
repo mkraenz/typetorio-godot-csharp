@@ -8,7 +8,7 @@ public partial class WordSpawner : Control
 	private int _bonusWordInEveryNWords = 20;
 
 	[Export]
-	private int _maxConcurrentWords = 100;
+	public int MaxConcurrentWords = 100;
 
 	private Dictionary<string, Word> _currentWords = new Dictionary<string, Word> { };
 
@@ -36,7 +36,7 @@ public partial class WordSpawner : Control
 	public void Spawn()
 	{
 
-		if (_currentWords.Count > _maxConcurrentWords) return;
+		if (_currentWords.Count >= MaxConcurrentWords) return;
 		string nextWord = GetRandomWord();
 		var word = _WordScene.Instantiate() as Word;
 		word.Text = nextWord;

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c2fdo4d63p15w"]
+[gd_resource type="Resource" script_class="WordStats" load_steps=2 format=3 uid="uid://c2fdo4d63p15w"]
 
-[ext_resource type="Script" path="res://ui/word/wordstats/WordStats.cs" id="1_gtt8j"]
+[ext_resource type="Script" path="res://ui/word/wordstats/WordStats.cs" id="1_s0p0b"]
 
 [resource]
-script = ExtResource("1_gtt8j")
+script = ExtResource("1_s0p0b")
 Points = 5
 ComboIncrease = 5
 Color = Color(1, 1, 1, 1)
