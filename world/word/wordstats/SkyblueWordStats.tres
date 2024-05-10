@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://bd4bbrcuu1lqm"]
 
-[ext_resource type="Script" path="res://ui/word/wordstats/WordStats.cs" id="1_5bgw4"]
+[ext_resource type="Script" path="res://world/word/wordstats/WordStats.cs" id="1_5bgw4"]
 
 [resource]
 script = ExtResource("1_5bgw4")

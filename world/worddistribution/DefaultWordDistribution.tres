@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WordDistribution" load_steps=2 format=3 uid="uid://cy7466u3lrr0a"]
+
+[ext_resource type="Script" path="res://world/worddistribution/WordDistribution.cs" id="1_f3dso"]
+
+[resource]
+script = ExtResource("1_f3dso")
+Default = 10
+Blue = 3
+Rainbow = 1

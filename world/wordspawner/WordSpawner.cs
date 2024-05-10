@@ -4,24 +4,19 @@ using System;
 
 public partial class WordSpawner : Control
 {
-	[Export]
-	private int _bonusWordInEveryNWords = 20;
 
-	[Export]
-	public int MaxConcurrentWords = 100;
+	public GameSettings GameSettings;
 
 	private Dictionary<string, Word> _currentWords = new Dictionary<string, Word> { };
 
 	private Timer _timer;
 
-	private PackedScene _WordScene = ResourceLoader.Load<PackedScene>("res://ui/word/Word.tscn");
-	private WordStats _rainbowWordStats = ResourceLoader.Load<WordStats>("res://ui/word/wordstats/RainbowWordStats.tres");
+	private PackedScene _WordScene = ResourceLoader.Load<PackedScene>("res://world/word/Word.tscn");
 
 	public override void _Ready()
 	{
 		_timer = GetNode<Timer>("Timer");
 	}
-
 
 	private string GetRandomWord()
 	{
@@ -35,15 +30,13 @@ public partial class WordSpawner : Control
 
 	public void Spawn()
 	{
-
-		if (_currentWords.Count >= MaxConcurrentWords) return;
+		if (_currentWords.Count >= GameSettings.MaxConcurrentWords) return;
 		string nextWord = GetRandomWord();
 		var word = _WordScene.Instantiate() as Word;
 		word.Text = nextWord;
 		word.GlobalPosition = GetRandomPosition();
 		word.PathRotationDegrees = GD.RandRange(0, 360);
-		var rand = GD.RandRange(0, _bonusWordInEveryNWords - 1);
-		if (rand == 0) word.WordStats = _rainbowWordStats;
+		word.WordStats = GameSettings.WordDistribution.GetRandomType();
 
 		_currentWords.Add(word.Text, word);
 		AddChild(word);

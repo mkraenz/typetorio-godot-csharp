@@ -24,7 +24,7 @@ public partial class World : CanvasLayer
 		_gameTimer = GetNode<Timer>("GameTimer");
 		_prompt.GrabFocus();
 
-		_words.MaxConcurrentWords = GameSettings.MaxConcurrentWords;
+		_words.GameSettings = GameSettings;
 		_words.Spawn();
 		_gameTimer.WaitTime = GameSettings.GameTimeInSec;
 		_gameTimer.Start();

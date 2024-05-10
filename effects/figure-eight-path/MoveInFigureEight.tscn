@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxmu3xie4ii3s"]
 
-[ext_resource type="Curve2D" uid="uid://bkfvt6e3wxucr" path="res://ui/word/figure-eight-curve.tres" id="1_eerru"]
+[ext_resource type="Curve2D" uid="uid://bkfvt6e3wxucr" path="res://world/word/figure-eight-curve.tres" id="1_eerru"]
 [ext_resource type="Script" path="res://effects/figure-eight-path/MoveInFigureEight.cs" id="2_q5ttf"]
 
 [sub_resource type="Animation" id="Animation_2o878"]

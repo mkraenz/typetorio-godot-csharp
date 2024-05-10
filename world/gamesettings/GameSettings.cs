@@ -9,5 +9,5 @@ public partial class GameSettings : Resource
 
     [Export] public float SpawnIntervalInSec { get; set; } = 1f;
 
-    // TODO word distribution
+    [Export] public WordDistribution WordDistribution { get; set; } // = ResourceLoader.Load<WordDistribution>("res://world/worddistribution/DefaultWordDistribution.tres");
 }
