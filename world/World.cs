@@ -63,9 +63,7 @@ public partial class World : CanvasLayer
 
 	private void CompleteWord(Word word, string str)
 	{
-		// TODO replace with _words.Kill(word); 
-		word.Die();
-		_words.Remove(str);
+		_words.Kill(word);
 		_prompt.Clear();
 
 		_score.CompleteWord(word.WordStats);
