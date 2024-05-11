@@ -1,10 +1,13 @@
 using System;
 using Godot;
 
-public partial class QuitButton : Button
+namespace UI
 {
-    private void _on_pressed()
+    public partial class QuitButton : Button
     {
-        GetTree().Quit();
+        private void _on_pressed()
+        {
+            GetTree().Quit();
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace World
 {
     public partial class WordSpawner : Control
     {
-        public GameSettings GameSettings;
+        public GameSettings GameSettings { get; set; }
 
         private Dictionary<string, Word> _currentWords = new Dictionary<string, Word> { };
 

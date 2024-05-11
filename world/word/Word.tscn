@@ -71,7 +71,7 @@ libraries = {
 }
 
 [node name="MoveInFigureEight" parent="." instance=ExtResource("2_rm05f")]
-_movedObject = NodePath("../LabelWrapper")
+MovedObject = NodePath("../LabelWrapper")
 
 [node name="LabelWrapper" type="Node2D" parent="."]
 editor_description = "This node allows RemoteTransform2D to act on Label, because as a Control node the Label node does not have a transform for the RemoteTransform2D to act upon."

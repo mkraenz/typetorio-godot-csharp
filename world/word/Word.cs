@@ -1,61 +1,64 @@
 using System;
 using Godot;
 
-public partial class Word : Control
+namespace World
 {
-    [Export]
-    public string Text = "";
-
-    public int PathRotationDegrees = 0;
-
-    [Export]
-    public WordStats WordStats;
-
-    private RichTextLabel label;
-    private Path2D path;
-    private AnimationPlayer animation;
-
-    public override void _Ready()
+    public partial class Word : Control
     {
-        animation = GetNode<AnimationPlayer>("AnimationPlayer");
-        label = GetNode<RichTextLabel>("LabelWrapper/Label");
-        path = GetNode<Path2D>("MoveInFigureEight");
+        [Export]
+        public string Text { get; set; } = "";
 
-        path.RotationDegrees = PathRotationDegrees;
-        label.RotationDegrees = -PathRotationDegrees; // cancels out path rotation so that the actual word is readable as "normal" (left-to-right)
+        public int PathRotationDegrees { get; set; }
 
-        UpdateLabel();
-    }
+        [Export]
+        public WordStats WordStats { get; set; }
 
-    public void Die()
-    {
-        animation.Play("die");
+        private RichTextLabel label;
+        private Path2D path;
+        private AnimationPlayer animation;
 
-        label.Material =
-            GD.Load<Material>("res://effects/dissolve.material").Duplicate() as Material;
-    }
-
-    private void UpdateLabel()
-    {
-        int fontSize = (int)Math.Floor(GetThemeDefaultFontSize() * WordStats.FontScale);
-        if (label != null)
+        public override void _Ready()
         {
-            label.Text = "";
-            label.PushColor(WordStats.Color);
-            label.PushFontSize(fontSize);
+            animation = GetNode<AnimationPlayer>("AnimationPlayer");
+            label = GetNode<RichTextLabel>("LabelWrapper/Label");
+            path = GetNode<Path2D>("MoveInFigureEight");
 
-            switch (WordStats.SpecialEffects)
+            path.RotationDegrees = PathRotationDegrees;
+            label.RotationDegrees = -PathRotationDegrees; // cancels out path rotation so that the actual word is readable as "normal" (left-to-right)
+
+            UpdateLabel();
+        }
+
+        public void Die()
+        {
+            animation.Play("die");
+
+            label.Material =
+                GD.Load<Material>("res://effects/dissolve.material").Duplicate() as Material;
+        }
+
+        private void UpdateLabel()
+        {
+            int fontSize = (int)Math.Floor(GetThemeDefaultFontSize() * WordStats.FontScale);
+            if (label != null)
             {
-                case SpecialEffect.Rainbow:
-                    // would love to use label.pushCustomFx(RainbowEffect, {freq: 1.0, ...}) but cant find RainbowEffect in Godot's C# APi.
-                    label.AppendText($"[rainbow freq=0.5 sat=1.0 val=0.8]{Text}[/rainbow]");
-                    break;
-                case SpecialEffect.None:
-                    label.AppendText(Text);
-                    break;
-            }
+                label.Text = "";
+                label.PushColor(WordStats.Color);
+                label.PushFontSize(fontSize);
 
-            label.PopAll();
+                switch (WordStats.SpecialEffects)
+                {
+                    case SpecialEffect.Rainbow:
+                        // would love to use label.pushCustomFx(RainbowEffect, {freq: 1.0, ...}) but cant find RainbowEffect in Godot's C# APi.
+                        label.AppendText($"[rainbow freq=0.5 sat=1.0 val=0.8]{Text}[/rainbow]");
+                        break;
+                    case SpecialEffect.None:
+                        label.AppendText(Text);
+                        break;
+                }
+
+                label.PopAll();
+            }
         }
     }
 }

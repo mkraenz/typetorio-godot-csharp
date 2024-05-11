@@ -13,7 +13,7 @@ namespace UI
             _eventbus = GDAccessors.GetEventbus(this);
         }
 
-        public void _on_pressed()
+        private void _on_pressed()
         {
             _eventbus.EmitStartClassicGameClicked();
         }

@@ -2,17 +2,20 @@ using System;
 using Globals;
 using Godot;
 
-public partial class OkayButton : Button
+namespace UI
 {
-    private Eventbus _eventbus;
-
-    public override void _Ready()
+    public partial class OkayButton : Button
     {
-        _eventbus = GDAccessors.GetEventbus(this);
-    }
+        private Eventbus _eventbus;
 
-    private void _on_pressed()
-    {
-        _eventbus.EmitBackToTitleClicked();
+        public override void _Ready()
+        {
+            _eventbus = GDAccessors.GetEventbus(this);
+        }
+
+        private void _on_pressed()
+        {
+            _eventbus.EmitBackToTitleClicked();
+        }
     }
 }

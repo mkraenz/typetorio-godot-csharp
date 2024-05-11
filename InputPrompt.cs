@@ -1,11 +1,14 @@
 using System;
 using Godot;
 
-public partial class InputPrompt : LineEdit
+namespace World
 {
-    public void SetText(string str)
+    public partial class InputPrompt : LineEdit
     {
-        Text = str;
-        CaretColumn = str.Length; // not sure why but setting text to uppercase sets the caret to beginning of the line
+        public void SetText(string str)
+        {
+            Text = str;
+            CaretColumn = str.Length; // not sure why but setting text to uppercase sets the caret to beginning of the line
+        }
     }
 }

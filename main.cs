@@ -1,6 +1,7 @@
 using System;
 using Globals;
 using Godot;
+using World;
 using MyWorld = World.World;
 
 namespace Main

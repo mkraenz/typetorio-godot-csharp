@@ -1,10 +1,12 @@
-using Globals;
 using Godot;
 
-public class GDAccessors
+namespace Globals
 {
-    public static Eventbus GetEventbus(Node node)
+    public class GDAccessors
     {
-        return node.GetNode<Eventbus>("/root/Eventbus");
+        public static Eventbus GetEventbus(Node node)
+        {
+            return node.GetNode<Eventbus>("/root/Eventbus");
+        }
     }
 }

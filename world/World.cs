@@ -8,7 +8,7 @@ namespace World
     public partial class World : CanvasLayer
     {
         [Export]
-        public GameSettings GameSettings;
+        public GameSettings GameSettings { get; set; }
 
         private WordSpawner _words;
         private InputPrompt _prompt;
@@ -49,7 +49,7 @@ namespace World
 
         public void _on_input_prompt_text_changed(string newText)
         {
-            string str = newText.ToUpper();
+            string str = newText.ToUpperInvariant();
             if (_words.Has(str))
             {
                 Word word = _words.GetWordOrDefault(str);

@@ -1,13 +1,16 @@
 using System;
 using Godot;
 
-public partial class ReadyGo : HBoxContainer
+namespace UI
 {
-    [Signal]
-    public delegate void AnimationFinishedEventHandler();
-
-    private void _on_animation_player_animation_finished(string animName)
+    public partial class ReadyGo : HBoxContainer
     {
-        EmitSignal(SignalName.AnimationFinished);
+        [Signal]
+        public delegate void AnimationFinishedEventHandler();
+
+        private void _on_animation_player_animation_finished(string animName)
+        {
+            EmitSignal(SignalName.AnimationFinished);
+        }
     }
 }

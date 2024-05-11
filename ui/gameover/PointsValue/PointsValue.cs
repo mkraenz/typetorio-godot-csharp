@@ -6,10 +6,10 @@ namespace UI
     public partial class PointsValue : Label, IPointsValue
     {
         [Export]
-        public float Duration = 2;
+        public float Duration { get; set; } = 2;
 
         [Export]
-        public int StartValue = 0;
+        public int StartValue { get; set; }
 
         [Export]
         public int EndValue { get; set; } = 0;
