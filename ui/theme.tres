@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dunhyik765ld6"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dunhyik765ld6"]
 
 [ext_resource type="FontFile" uid="uid://d1oxrw7u3qtd6" path="res://assets/Noto_Sans_Mono/NotoSansMono-Medium.ttf" id="1_sow0l"]
 
@@ -26,6 +26,9 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqbyw"]
 bg_color = Color(0.12549, 0.0862745, 0.360784, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnb0u"]
+bg_color = Color(0.12549, 0.0862745, 0.360784, 1)
+
 [resource]
 Button/colors/font_color = Color(0.972549, 0.890196, 0.768627, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_wn8xc")
@@ -37,3 +40,4 @@ LineEdit/colors/caret_color = Color(0.972549, 0.890196, 0.768627, 1)
 LineEdit/colors/font_color = Color(0.972549, 0.890196, 0.768627, 1)
 LineEdit/colors/font_placeholder_color = Color(0.972549, 0.890196, 0.768627, 0.705882)
 LineEdit/styles/normal = SubResource("StyleBoxFlat_rqbyw")
+Panel/styles/panel = SubResource("StyleBoxFlat_pnb0u")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://lnql45mspqcd"]
+
+[ext_resource type="Script" path="res://ui/shopmenu/shopitem/ShopItem.cs" id="1_gdur0"]
+[ext_resource type="Texture2D" uid="uid://bl75lo1vkfu1v" path="res://icon.svg" id="1_q4ofj"]
+
+[node name="ShopItem" type="PanelContainer"]
+mouse_default_cursor_shape = 2
+script = ExtResource("1_gdur0")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="V"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="V/H"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_q4ofj")
+
+[node name="Label" type="Label" parent="V"]
+layout_mode = 2
+text = "Example Text"
+horizontal_alignment = 1
