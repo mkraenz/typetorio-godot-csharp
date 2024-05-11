@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://yb6wl2xclwt4"]
+
+[ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_il42c"]
+[ext_resource type="PackedScene" uid="uid://scqbdnqfoisr" path="res://ui/score/MyScore.tscn" id="2_ej5kq"]
+[ext_resource type="PackedScene" uid="uid://bv6fmuccq3qa8" path="res://ui/common/VSpacer.tscn" id="3_03nn8"]
+
+[node name="ShopMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="." instance=ExtResource("1_il42c")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="H" type="HBoxContainer" parent="M"]
+layout_mode = 2
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="M/H"]
+layout_mode = 2
+
+[node name="Title" type="MarginContainer" parent="M/H/V"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="MyScore" parent="M/H/V/Title" instance=ExtResource("2_ej5kq")]
+layout_mode = 2
+size_flags_horizontal = 4
+Value = "000000"
+Label = "Points"
+
+[node name="StoreGrid" type="GridContainer" parent="M/H/V"]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="RainbowWord" type="Label" parent="M/H/V/StoreGrid"]
+layout_mode = 2
+text = "Rainbow Word"
+
+[node name="RainbowWord2" type="Label" parent="M/H/V/StoreGrid"]
+layout_mode = 2
+text = "Blue Word"
+
+[node name="RainbowWord3" type="Label" parent="M/H/V/StoreGrid"]
+layout_mode = 2
+text = "Rainbow Word"
+
+[node name="VSpacer" parent="M/H/V" instance=ExtResource("3_03nn8")]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="M/H/V"]
+layout_mode = 2
+text = "OK"

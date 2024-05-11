@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr5s3h604bb25"]
+[gd_scene load_steps=7 format=3 uid="uid://dr5s3h604bb25"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_tbdpo"]
 [ext_resource type="PackedScene" uid="uid://cd8ge0fcbj5gv" path="res://ui/hud/Hud.tscn" id="3_r65bt"]
 [ext_resource type="PackedScene" uid="uid://b2mxm1i1b5qsc" path="res://ui/mainmenu/MainMenu.tscn" id="5_qw5lw"]
 [ext_resource type="PackedScene" uid="uid://dfaqdkhja1clq" path="res://ui/howtoplay/HowToPlay.tscn" id="5_rrjrt"]
 [ext_resource type="PackedScene" uid="uid://d0l3kui4r7cw3" path="res://ui/gameover/GameOver.tscn" id="6_1i3ad"]
+[ext_resource type="PackedScene" uid="uid://yb6wl2xclwt4" path="res://ui/shopmenu/ShopMenu.tscn" id="6_ctyxi"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tbdpo")
@@ -21,6 +22,9 @@ visible = false
 [node name="MainMenu" parent="Gui" instance=ExtResource("5_qw5lw")]
 
 [node name="HowToPlay" parent="Gui" instance=ExtResource("5_rrjrt")]
+visible = false
+
+[node name="ShopMenu" parent="Gui" instance=ExtResource("6_ctyxi")]
 visible = false
 
 [node name="World" parent="." instance_placeholder="res://world/World.tscn"]

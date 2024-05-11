@@ -30,6 +30,9 @@ namespace Main
             _eventbus.BackToTitleClicked += OnBackToTitleClicked;
             _eventbus.HowToPlayPressed += OnHowToPlayPressed;
             _eventbus.GameEnded += OnGameEnded;
+
+            var gameProgress = GDAccessors.GetGameProgress(this);
+            gameProgress.Load();
         }
 
         private void OnStartClassicGameClicked()
@@ -37,10 +40,8 @@ namespace Main
             MyWorld world = _WorldScene.Instantiate<MyWorld>();
             AddChild(world);
 
+            HideScreens();
             _hud.Show();
-            _mainMenu.Hide();
-            _gameover.Hide();
-            _howToPlay.Hide();
         }
 
         private void OnStartClassicSingleWordGameClicked()
@@ -51,13 +52,10 @@ namespace Main
             );
             AddChild(world);
 
+            HideScreens();
             _hud.Show();
-            _mainMenu.Hide();
-            _gameover.Hide();
-            _howToPlay.Hide();
         }
 
-        // TODO use
         private void HideScreens()
         {
             _mainMenu.Hide();
@@ -68,26 +66,20 @@ namespace Main
 
         private void OnBackToTitleClicked()
         {
+            HideScreens();
             _mainMenu.Show();
-            _hud.Hide();
-            _gameover.Hide();
-            _howToPlay.Hide();
         }
 
         private void OnGameEnded(Object _)
         {
-            _howToPlay.Hide();
-            _mainMenu.Hide();
-            _hud.Hide();
+            HideScreens();
             _gameover.Show();
         }
 
         private void OnHowToPlayPressed()
         {
+            HideScreens();
             _howToPlay.Show();
-            _mainMenu.Hide();
-            _hud.Hide();
-            _gameover.Hide();
         }
     }
 }

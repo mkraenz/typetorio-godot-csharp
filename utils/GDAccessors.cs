@@ -8,5 +8,10 @@ namespace Globals
         {
             return node.GetNode<Eventbus>("/root/Eventbus");
         }
+
+        public static GameProgress GetGameProgress(Node node)
+        {
+            return node.GetNode<GameProgress>("/root/GameProgress");
+        }
     }
 }
