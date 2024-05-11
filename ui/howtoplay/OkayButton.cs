@@ -1,17 +1,18 @@
-using Godot;
 using System;
+using Globals;
+using Godot;
 
 public partial class OkayButton : Button
 {
-	private Eventbus _eventbus;
+    private Eventbus _eventbus;
 
-	public override void _Ready()
-	{
-		_eventbus = GDAccessors.GetEventbus(this);
-	}
+    public override void _Ready()
+    {
+        _eventbus = GDAccessors.GetEventbus(this);
+    }
 
-	private void _on_pressed()
-	{
-		_eventbus.EmitBackToTitleClicked();
-	}
+    private void _on_pressed()
+    {
+        _eventbus.EmitBackToTitleClicked();
+    }
 }

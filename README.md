@@ -12,3 +12,29 @@
 
 - [x] bonus words - increase your combo by +5
   - rainbow colored word
+
+## Tooling
+
+### Code Analysis
+
+We use the [dotnet inbuilt analysis mode](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#analysismode).
+
+```xml
+<!-- Inside .csproj -->
+<AnalysisLevel>latest-Recommended</AnalysisLevel>
+```
+
+### Lint & Prettify
+
+Setup
+
+```sh
+dotnet new tool-manifest
+dotnet tool install csharpier
+```
+
+Prettify
+
+```sh
+dotnet csharpier .
+```

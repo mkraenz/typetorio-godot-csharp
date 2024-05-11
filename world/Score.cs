@@ -1,35 +1,48 @@
 using System;
+using Dtos;
 
-class Score : IScore
+namespace World
 {
-    private int _comboMultiplier = 0;
-    private int _points = 0;
-    private int _wordsCleared = 0;
-    private int _maxComboMultiplier = 0;
-
-
-    public int Points { get => _points; }
-    public int WordsCleared { get => _wordsCleared; }
-    public int ComboMultiplier
+    sealed class Score : IScore
     {
-        get => _comboMultiplier; set
+        private int _comboMultiplier;
+        private int _points;
+        private int _wordsCleared;
+        private int _maxComboMultiplier;
+
+        public int Points
         {
-            _comboMultiplier = value;
-            _maxComboMultiplier = Math.Max(_comboMultiplier, _maxComboMultiplier);
+            get => _points;
         }
-    }
+        public int WordsCleared
+        {
+            get => _wordsCleared;
+        }
+        public int ComboMultiplier
+        {
+            get => _comboMultiplier;
+            set
+            {
+                _comboMultiplier = value;
+                _maxComboMultiplier = Math.Max(_comboMultiplier, _maxComboMultiplier);
+            }
+        }
 
-    public int MaxComboMultiplier { get => _maxComboMultiplier; }
+        public int MaxComboMultiplier
+        {
+            get => _maxComboMultiplier;
+        }
 
-    internal void CompleteWord(WordStats wordStats)
-    {
-        ComboMultiplier += wordStats.ComboIncrease;
-        _points += wordStats.Points * _comboMultiplier;
-        _wordsCleared++;
-    }
+        internal void CompleteWord(WordStats wordStats)
+        {
+            ComboMultiplier += wordStats.ComboIncrease;
+            _points += wordStats.Points * _comboMultiplier;
+            _wordsCleared++;
+        }
 
-    internal void ResetCombo()
-    {
-        _comboMultiplier = 0;
+        internal void ResetCombo()
+        {
+            _comboMultiplier = 0;
+        }
     }
 }

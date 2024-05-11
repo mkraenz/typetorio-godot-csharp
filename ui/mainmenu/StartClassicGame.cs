@@ -1,17 +1,21 @@
-using Godot;
 using System;
+using Globals;
+using Godot;
 
-public partial class StartClassicGame : Button
+namespace UI
 {
-	private Eventbus _eventbus;
+    public partial class StartClassicGame : Button
+    {
+        private Eventbus _eventbus;
 
-	public override void _Ready()
-	{
-		_eventbus = GDAccessors.GetEventbus(this);
-	}
+        public override void _Ready()
+        {
+            _eventbus = GDAccessors.GetEventbus(this);
+        }
 
-	public void _on_pressed()
-	{
-		_eventbus.EmitStartClassicGameClicked();
-	}
+        public void _on_pressed()
+        {
+            _eventbus.EmitStartClassicGameClicked();
+        }
+    }
 }

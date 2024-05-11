@@ -1,3 +1,4 @@
+using Globals;
 using Godot;
 
 public class GDAccessors

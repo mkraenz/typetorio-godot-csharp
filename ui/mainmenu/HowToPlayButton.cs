@@ -1,18 +1,21 @@
-using Godot;
 using System;
+using Globals;
+using Godot;
 
-public partial class HowToPlayButton : Button
+namespace UI
 {
+    public partial class HowToPlayButton : Button
+    {
+        private Eventbus _eventbus;
 
-	private Eventbus _eventbus;
+        public override void _Ready()
+        {
+            _eventbus = GDAccessors.GetEventbus(this);
+        }
 
-	public override void _Ready()
-	{
-		_eventbus = GDAccessors.GetEventbus(this);
-	}
-
-	private void _on_pressed()
-	{
-		_eventbus.EmitHowToPlayPressed();
-	}
+        private void _on_pressed()
+        {
+            _eventbus.EmitHowToPlayPressed();
+        }
+    }
 }
