@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_f3dso")
-Default = 10
-Blue = 3
-Rainbow = 1
+Default = 100
+Blue = 0
+Rainbow = 0

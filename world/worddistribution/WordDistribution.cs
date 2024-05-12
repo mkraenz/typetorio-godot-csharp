@@ -6,7 +6,7 @@ namespace World
     public partial class WordDistribution : Resource
     {
         [Export]
-        public int Default { get; set; } = 1;
+        public int Default { get; set; } = 100;
 
         [Export]
         public int Blue { get; set; } = 0;
