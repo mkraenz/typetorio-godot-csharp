@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Dtos;
 using Godot;
+using UI;
 using Dict = Godot.Collections.Dictionary<string, Godot.Variant>;
 
 namespace Globals
@@ -17,9 +18,20 @@ namespace Globals
     // what to unlock (i.e. the key), boolean or multiple unlocks in one, price
     public partial class GameProgress : Node
     {
+        [Signal] public delegate void PointsToSpendChangedEventHandler(int newPoints);
+
+        private int _pointsToSpend;
         private Dict _unlocks = new Dict() { };
         public int TotalPoints { get; set; }
-        public int PointsToSpend { get; set; }
+        public int PointsToSpend
+        {
+            get => _pointsToSpend;
+            set
+            {
+                _pointsToSpend = value;
+                EmitSignal(SignalName.PointsToSpendChanged, _pointsToSpend);
+            }
+        }
 
         private Eventbus _eventbus;
 
@@ -48,6 +60,15 @@ namespace Globals
             string featureName = Enum.GetName(typeof(Unlocks), feature);
             Unlocks.Add(featureName, true);
             Save();
+        }
+
+        public bool CanAfford(int price) => PointsToSpend >= price;
+
+        public void Buy(Unlocks feature, int price)
+        {
+            if (!CanAfford(price)) throw new ArgumentException("Price too high. Cant afford.");
+            PointsToSpend -= price;
+            UnlockFeature(feature);
         }
 
         public bool HasUnlocked(Unlocks feature)

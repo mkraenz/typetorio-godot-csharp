@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2mxm1i1b5qsc"]
+[gd_scene load_steps=11 format=3 uid="uid://b2mxm1i1b5qsc"]
 
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_bd2au"]
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicGame.cs" id="1_hrocq"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://ui/mainmenu/HowToPlayButton.cs" id="4_d47g1"]
 [ext_resource type="Script" path="res://ui/mainmenu/ShopButton.cs" id="4_gchbc"]
 [ext_resource type="Script" path="res://ui/mainmenu/QuitButton.cs" id="5_c2usk"]
+[ext_resource type="Texture2D" uid="uid://nnpab0rh7ikl" path="res://assets/thirdparty/icons/feather/help-circle.svg" id="5_yd6n1"]
+[ext_resource type="Texture2D" uid="uid://ba303ieyqjgeh" path="res://assets/thirdparty/icons/feather/log-out.svg" id="7_o1t1j"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_v6ife"]
 action = &"next"
@@ -63,18 +65,26 @@ layout_mode = 2
 text = "Shop"
 script = ExtResource("4_gchbc")
 
-[node name="HowToPlayButton" type="Button" parent="H/V/Buttons"]
+[node name="H" type="HBoxContainer" parent="H/V/Buttons"]
 layout_mode = 2
-text = "How To Play"
+
+[node name="HowToPlayButton" type="Button" parent="H/V/Buttons/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+icon = ExtResource("5_yd6n1")
+icon_alignment = 1
 script = ExtResource("4_d47g1")
 
-[node name="QuitButton" type="Button" parent="H/V/Buttons"]
+[node name="QuitButton" type="Button" parent="H/V/Buttons/H"]
 layout_mode = 2
-text = "Quit"
+size_flags_horizontal = 3
+icon = ExtResource("7_o1t1j")
+icon_alignment = 1
 script = ExtResource("5_c2usk")
 
 [connection signal="pressed" from="H/V/Buttons/StartClassicGame" to="H/V/Buttons/StartClassicGame" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/StartClassicSingleWordButton" to="H/V/Buttons/StartClassicSingleWordButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/ShopButton" to="H/V/Buttons/ShopButton" method="_on_pressed"]
-[connection signal="pressed" from="H/V/Buttons/HowToPlayButton" to="H/V/Buttons/HowToPlayButton" method="_on_pressed"]
-[connection signal="pressed" from="H/V/Buttons/QuitButton" to="H/V/Buttons/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="H/V/Buttons/H/HowToPlayButton" to="H/V/Buttons/H/HowToPlayButton" method="_on_pressed"]
+[connection signal="pressed" from="H/V/Buttons/H/QuitButton" to="H/V/Buttons/H/QuitButton" method="_on_pressed"]

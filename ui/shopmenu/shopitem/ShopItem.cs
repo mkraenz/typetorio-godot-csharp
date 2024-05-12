@@ -16,6 +16,9 @@ namespace UI
 		private string _tooltip;
 
 		[Export]
+		private int _priceInPoints;
+
+		[Export]
 		private Unlocks _feature;
 
 
@@ -32,7 +35,7 @@ namespace UI
 			_iconTexture = GetNode<TextureRect>("V/H/Icon");
 
 			_iconTexture.Texture = _icon;
-			_label.Text = _text;
+			_label.Text = $"{_text}\n$ {_priceInPoints}";
 			TooltipText = _tooltip;
 
 			if (_gameProgress.HasUnlocked(_feature))
@@ -50,10 +53,17 @@ namespace UI
 			{
 				if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
 				{
-					_gameProgress.UnlockFeature(_feature);
-					DisplayAsSoldOut();
+					Buy();
 				}
 			}
+		}
+
+		private void Buy()
+		{
+			var price = _priceInPoints;
+			if (!_gameProgress.CanAfford(price)) return;
+			_gameProgress.Buy(_feature, price);
+			DisplayAsSoldOut();
 		}
 
 		private void DisplayAsSoldOut()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://yb6wl2xclwt4"]
 
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_il42c"]
-[ext_resource type="PackedScene" uid="uid://scqbdnqfoisr" path="res://ui/score/MyScore.tscn" id="2_ej5kq"]
+[ext_resource type="PackedScene" uid="uid://cv27rkpn1im6l" path="res://ui/shopmenu/pointstospend/PointsToSpend.tscn" id="2_83mlj"]
 [ext_resource type="PackedScene" uid="uid://bv6fmuccq3qa8" path="res://ui/common/VSpacer.tscn" id="3_03nn8"]
 [ext_resource type="PackedScene" uid="uid://lnql45mspqcd" path="res://ui/shopmenu/shopitem/ShopItem.tscn" id="3_6fqnt"]
 [ext_resource type="Texture2D" uid="uid://bl75lo1vkfu1v" path="res://icon.svg" id="3_vb2u8"]
@@ -40,15 +40,8 @@ alignment = 1
 [node name="V" type="VBoxContainer" parent="M/H"]
 layout_mode = 2
 
-[node name="Title" type="MarginContainer" parent="M/H/V"]
+[node name="PointsToSpend" parent="M/H/V" instance=ExtResource("2_83mlj")]
 layout_mode = 2
-theme_override_constants/margin_bottom = 50
-
-[node name="MyScore" parent="M/H/V/Title" instance=ExtResource("2_ej5kq")]
-layout_mode = 2
-size_flags_horizontal = 4
-Value = "000000"
-Label = "Points"
 
 [node name="ShopGrid" type="GridContainer" parent="M/H/V"]
 layout_mode = 2
@@ -56,25 +49,28 @@ theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 40
 columns = 3
 
-[node name="ShopItem" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
-layout_mode = 2
-_icon = ExtResource("3_vb2u8")
-_text = "Rainbow Word"
-_tooltip = "Rainbow words start appearing in game."
-_feature = 3
-
 [node name="ShopItem2" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
 _icon = ExtResource("3_vb2u8")
 _text = "Blue Word"
 _tooltip = "Blue words start appearing in game."
+_priceInPoints = 5000
 _feature = 2
+
+[node name="ShopItem" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
+layout_mode = 2
+_icon = ExtResource("3_vb2u8")
+_text = "Rainbow Word"
+_tooltip = "Rainbow words start appearing in game."
+_priceInPoints = 20000
+_feature = 3
 
 [node name="ShopItem3" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
 _icon = ExtResource("3_vb2u8")
 _text = "Focus Mode"
 _tooltip = "Unlock game mode similar to Classic Mode but with only a single word at a time on screen."
+_priceInPoints = 10000
 _feature = 1
 
 [node name="VSpacer" parent="M/H/V" instance=ExtResource("3_03nn8")]
