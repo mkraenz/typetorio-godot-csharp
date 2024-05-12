@@ -10,27 +10,23 @@ namespace Globals
     {
         Shop,
         ClassicFocusMode,
+        BlueWord,
+        RainbowWord,
     }
 
     // what to unlock (i.e. the key), boolean or multiple unlocks in one, price
     public partial class GameProgress : Node
     {
-
         private Dict _unlocks = new Dict() { };
         public int TotalPoints { get; set; }
         public int PointsToSpend { get; set; }
 
         private Eventbus _eventbus;
 
-
-
         Dict Unlocks
         {
             get => _unlocks;
-            set
-            {
-                _unlocks = value;
-            }
+            set { _unlocks = value; }
         }
         private static string _filepath = "user://game.cfg";
 
@@ -38,24 +34,25 @@ namespace Globals
         {
             _eventbus = GDAccessors.GetEventbus(this);
             _eventbus.GameEnded += OnGameEnded;
+            Load();
         }
 
         private void OnGameEnded(ScoreDto score)
         {
-            var gameProgress = GDAccessors.GetGameProgress(this);
-            gameProgress.AddPoints(score.Points);
-            gameProgress.Save();
+            AddPoints(score.Points);
+            Save();
         }
 
-        public void UnlockStuff(Unlocks feature)
+        public void UnlockFeature(Unlocks feature)
         {
-            string featureName = System.Enum.GetName(typeof(Unlocks), feature);
+            string featureName = Enum.GetName(typeof(Unlocks), feature);
             Unlocks.Add(featureName, true);
+            Save();
         }
 
         public bool HasUnlocked(Unlocks feature)
         {
-            string featureName = System.Enum.GetName(typeof(Unlocks), feature);
+            string featureName = Enum.GetName(typeof(Unlocks), feature);
             return (bool)this.Unlocks.GetValueOrDefault(featureName);
         }
 
@@ -81,7 +78,8 @@ namespace Globals
         {
             var config = new ConfigFile();
             Error err = config.Load(_filepath);
-            if (err != Error.Ok) return; // ignore if nonexistent or corrupted
+            if (err != Error.Ok)
+                return; // ignore if nonexistent or corrupted
 
             foreach (string section in config.GetSections())
             {
@@ -106,12 +104,10 @@ namespace Globals
             }
         }
 
-
-        internal void AddPoints(int points)
+        private void AddPoints(int points)
         {
             TotalPoints += points;
             PointsToSpend += points;
         }
     }
-
 }

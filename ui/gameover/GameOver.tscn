@@ -1,16 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0l3kui4r7cw3"]
+[gd_scene load_steps=9 format=3 uid="uid://d0l3kui4r7cw3"]
 
 [ext_resource type="Theme" uid="uid://dunhyik765ld6" path="res://ui/theme.tres" id="1_35thb"]
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_fxal6"]
 [ext_resource type="Script" path="res://ui/gameover/GameOver.cs" id="1_lur73"]
-[ext_resource type="Script" path="res://ui/gameover/BackToMainMenuButton.cs" id="2_bjbxe"]
 [ext_resource type="PackedScene" uid="uid://sue7cll1ce5y" path="res://ui/gameover/PointsValue/PointsValue.tscn" id="3_a0w33"]
-
-[sub_resource type="InputEventAction" id="InputEventAction_g0sdn"]
-action = &"next"
-
-[sub_resource type="Shortcut" id="Shortcut_ojt3u"]
-events = [SubResource("InputEventAction_g0sdn")]
+[ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="5_7llys"]
 
 [sub_resource type="Animation" id="Animation_pcqov"]
 length = 0.001
@@ -278,11 +272,8 @@ layout_mode = 2
 text = "Classy! You're a real pro!"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="H/V"]
+[node name="BackToMainMenuButton" parent="H/V" instance=ExtResource("5_7llys")]
 layout_mode = 2
-shortcut = SubResource("Shortcut_ojt3u")
-text = "OK"
-script = ExtResource("2_bjbxe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -290,4 +281,3 @@ libraries = {
 }
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="H/V/Button" to="H/V/Button" method="_on_pressed"]

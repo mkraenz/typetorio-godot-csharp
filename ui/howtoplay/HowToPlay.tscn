@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfaqdkhja1clq"]
+[gd_scene load_steps=4 format=3 uid="uid://dfaqdkhja1clq"]
 
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_dbk8n"]
-[ext_resource type="Script" path="res://ui/howtoplay/OkayButton.cs" id="1_qo5g3"]
+[ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="2_cd8gn"]
+[ext_resource type="Script" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.cs" id="3_y4c44"]
 
 [node name="HowToPlay" type="Control"]
 layout_mode = 3
@@ -56,9 +57,6 @@ Grey = points 5, combo increase 1
 Blue = points 15, combo increase 1
 Rainbow = points 5, combo increase 5"
 
-[node name="Button" type="Button" parent="M/H/V"]
+[node name="BackToMainMenuButton" parent="M/H/V" instance=ExtResource("2_cd8gn")]
 layout_mode = 2
-text = "OK"
-script = ExtResource("1_qo5g3")
-
-[connection signal="pressed" from="M/H/V/Button" to="M/H/V/Button" method="_on_pressed"]
+script = ExtResource("3_y4c44")

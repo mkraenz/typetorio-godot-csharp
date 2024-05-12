@@ -33,6 +33,9 @@ namespace Globals
         [Signal]
         public delegate void HowToPlayPressedEventHandler();
 
+        [Signal]
+        public delegate void ShopButtonPressedEventHandler();
+
         public void EmitWordCleared(string word, ScoreDto score)
         {
             EmitSignal(SignalName.WordCleared, word, score);
@@ -76,6 +79,11 @@ namespace Globals
         internal void EmitHowToPlayPressed()
         {
             EmitSignal(SignalName.HowToPlayPressed);
+        }
+
+        internal void EmitShopButtonPressed()
+        {
+            EmitSignal(SignalName.ShopButtonPressed);
         }
     }
 }

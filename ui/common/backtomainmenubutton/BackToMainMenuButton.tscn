@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://3xgk5fbll71c"]
+
+[ext_resource type="Script" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.cs" id="1_udpb1"]
+
+[node name="BackToMainMenuButton" type="Button"]
+text = "OK"
+script = ExtResource("1_udpb1")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

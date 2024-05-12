@@ -13,6 +13,7 @@ namespace Main
         private Control _hud;
         private Control _gameover;
         private Control _howToPlay;
+        private Control _shop;
 
         private PackedScene _WorldScene = ResourceLoader.Load<PackedScene>(
             "res:///world/World.tscn"
@@ -24,15 +25,14 @@ namespace Main
             _mainMenu = GetNode<Control>("Gui/MainMenu");
             _gameover = GetNode<Control>("Gui/GameOver");
             _howToPlay = GetNode<Control>("Gui/HowToPlay");
+            _shop = GetNode<Control>("Gui/ShopMenu");
             _hud = GetNode<Control>("Gui/Hud");
             _eventbus.StartClassicGameClicked += OnStartClassicGameClicked;
             _eventbus.StartClassicSingleWordGameClicked += OnStartClassicSingleWordGameClicked;
             _eventbus.BackToTitleClicked += OnBackToTitleClicked;
             _eventbus.HowToPlayPressed += OnHowToPlayPressed;
             _eventbus.GameEnded += OnGameEnded;
-
-            var gameProgress = GDAccessors.GetGameProgress(this);
-            gameProgress.Load();
+            _eventbus.ShopButtonPressed += OnShopButtonPressed;
         }
 
         private void OnStartClassicGameClicked()
@@ -62,6 +62,7 @@ namespace Main
             _gameover.Hide();
             _howToPlay.Hide();
             _hud.Hide();
+            _shop.Hide();
         }
 
         private void OnBackToTitleClicked()
@@ -80,6 +81,12 @@ namespace Main
         {
             HideScreens();
             _howToPlay.Show();
+        }
+
+        private void OnShopButtonPressed()
+        {
+            HideScreens();
+            _shop.Show();
         }
     }
 }
