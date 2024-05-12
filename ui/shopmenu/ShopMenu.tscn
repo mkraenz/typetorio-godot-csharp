@@ -73,6 +73,14 @@ _tooltip = "Unlock game mode similar to Classic Mode but with only a single word
 _priceInPoints = 10000
 _feature = 1
 
+[node name="ShopItem4" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
+layout_mode = 2
+_icon = ExtResource("3_vb2u8")
+_text = "No white words"
+_tooltip = "White words stop appearing in the game."
+_priceInPoints = 100000
+_feature = 4
+
 [node name="VSpacer" parent="M/H/V" instance=ExtResource("3_03nn8")]
 layout_mode = 2
 

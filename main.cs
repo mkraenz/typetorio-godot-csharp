@@ -42,7 +42,7 @@ namespace Main
             var _gameProgress = GDAccessors.GetGameProgress(this);
             if (_gameProgress.HasUnlocked(Unlocks.BlueWord)) wordDistribution.Blue = 50;
             if (_gameProgress.HasUnlocked(Unlocks.RainbowWord)) wordDistribution.Rainbow = 25;
-            // wordDistribution.Default = 0;
+            if (_gameProgress.HasUnlocked(Unlocks.NoDefaultWords)) wordDistribution.Default = 0;
             world.GameSettings.WordDistribution = wordDistribution; // Does this change the cached game settings?
 
 
