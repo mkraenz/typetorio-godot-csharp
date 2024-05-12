@@ -18,7 +18,8 @@ namespace Globals
     // what to unlock (i.e. the key), boolean or multiple unlocks in one, price
     public partial class GameProgress : Node
     {
-        [Signal] public delegate void PointsToSpendChangedEventHandler(int newPoints);
+        [Signal]
+        public delegate void PointsToSpendChangedEventHandler(int newPoints);
 
         private int _pointsToSpend;
         private Dict _unlocks = new Dict() { };
@@ -66,7 +67,8 @@ namespace Globals
 
         public void Buy(Unlocks feature, int price)
         {
-            if (!CanAfford(price)) throw new ArgumentException("Price too high. Cant afford.");
+            if (!CanAfford(price))
+                throw new ArgumentException("Price too high. Cant afford.");
             PointsToSpend -= price;
             UnlockFeature(feature);
         }
@@ -107,20 +109,20 @@ namespace Globals
                 switch (section)
                 {
                     case "Progress":
-                        {
-                            TotalPoints = (int)config.GetValue(section, "TotalPoints");
-                            PointsToSpend = (int)config.GetValue(section, "PointsToSpend");
-                            break;
-                        }
+                    {
+                        TotalPoints = (int)config.GetValue(section, "TotalPoints");
+                        PointsToSpend = (int)config.GetValue(section, "PointsToSpend");
+                        break;
+                    }
                     case "Unlocks":
+                    {
+                        var keys = config.GetSectionKeys("Unlocks");
+                        foreach (string key in keys)
                         {
-                            var keys = config.GetSectionKeys("Unlocks");
-                            foreach (string key in keys)
-                            {
-                                Unlocks[key] = config.GetValue(section, key);
-                            }
-                            break;
+                            Unlocks[key] = config.GetValue(section, key);
                         }
+                        break;
+                    }
                 }
             }
         }
