@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://3xgk5fbll71c"]
+[gd_scene load_steps=4 format=3 uid="uid://3xgk5fbll71c"]
 
 [ext_resource type="Script" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.cs" id="1_udpb1"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_xhdhc"]
+action = &"next"
+
+[sub_resource type="Shortcut" id="Shortcut_mk1xr"]
+events = [SubResource("InputEventAction_xhdhc")]
+
 [node name="BackToMainMenuButton" type="Button"]
+shortcut = SubResource("Shortcut_mk1xr")
 text = "OK"
 script = ExtResource("1_udpb1")
 
