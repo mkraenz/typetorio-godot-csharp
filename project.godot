@@ -22,9 +22,7 @@ GameProgress="*res://global/GameProgress.cs"
 
 [display]
 
-window/size/initial_position_type=2
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 
 [dotnet]
 
