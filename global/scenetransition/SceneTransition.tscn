@@ -1,9 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmpft4bca1u5f"]
+[gd_scene load_steps=7 format=3 uid="uid://cmpft4bca1u5f"]
 
 [ext_resource type="Script" path="res://global/scenetransition/SceneTransition.cs" id="1_5830m"]
 
 [sub_resource type="Animation" id="Animation_05tdb"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_eb01y"]
 resource_name = "fade_in_out"
@@ -37,9 +49,40 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_u8rg2"]
+resource_name = "diagonal_slide_in_bottom_right_to_top_left"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"DiagonalSlideIn"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pjl1a"]
 _data = {
 "RESET": SubResource("Animation_05tdb"),
+"diagonal_slide_in_bottom_right_to_top_left": SubResource("Animation_u8rg2"),
 "fade_in": SubResource("Animation_wcdvo"),
 "fade_in_out": SubResource("Animation_eb01y")
 }
@@ -50,13 +93,12 @@ script = ExtResource("1_5830m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -104.0
+offset_top = -871.0
+offset_right = -104.0
+offset_bottom = -871.0
 mouse_filter = 2
-color = Color(0.0431373, 0.0235294, 0.188235, 1)
+color = Color(0.12549, 0.0862745, 0.360784, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ColorRect")

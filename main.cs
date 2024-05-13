@@ -65,7 +65,7 @@ namespace Main
             _hud.Show();
         }
 
-        private void OnStartClassicSingleWordGameClicked()
+        private async void OnStartClassicSingleWordGameClicked()
         {
             MyWorld world = _WorldScene.Instantiate<MyWorld>();
             world.GameSettings = GD.Load<GameSettings>(
@@ -73,22 +73,20 @@ namespace Main
             );
             AddChild(world);
 
-            HideScreens().ContinueWith(delegate
-            {
-                _hud.Show();
-            });
+            await HideScreens();
+            _hud.Show();
         }
 
         private async Task HideScreens()
         {
-            _sceneTransition.FadeOut();
+            _sceneTransition.DiagonalSlideIn();
             await ToSignal(_sceneTransition, SceneTransition.SignalName.AnimationFinished);
             _mainMenu.Hide();
             _gameover.Hide();
             _howToPlay.Hide();
             _hud.Hide();
             _shop.Hide();
-            _sceneTransition.FadeIn();
+            _sceneTransition.DiaonalSlideOut();
         }
 
         private async void OnBackToTitleClicked()
