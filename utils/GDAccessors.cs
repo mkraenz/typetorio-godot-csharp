@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Main;
 
 namespace Globals
 {
@@ -12,6 +14,11 @@ namespace Globals
         public static GameProgress GetGameProgress(Node node)
         {
             return node.GetNode<GameProgress>("/root/GameProgress");
+        }
+
+        internal static SceneTransition GetSceneTransition(Node node)
+        {
+            return node.GetNode<SceneTransition>("/root/SceneTransition");
         }
     }
 }

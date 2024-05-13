@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Globals;
 using Godot;
 using World;
@@ -8,6 +9,7 @@ namespace Main
 {
     public partial class main : Node
     {
+        private SceneTransition _sceneTransition;
         private Eventbus _eventbus;
         private Control _mainMenu;
         private Control _hud;
@@ -22,12 +24,13 @@ namespace Main
         public override void _Ready()
         {
             _eventbus = GDAccessors.GetEventbus(this);
+            _sceneTransition = GDAccessors.GetSceneTransition(this);
             _mainMenu = GetNode<Control>("Gui/MainMenu");
             _gameover = GetNode<Control>("Gui/GameOver");
             _howToPlay = GetNode<Control>("Gui/HowToPlay");
             _shop = GetNode<Control>("Gui/ShopMenu");
             _hud = GetNode<Control>("Gui/Hud");
-            _eventbus.StartClassicGameClicked += OnStartClassicGameClicked;
+            _eventbus.StartClassicGameClicked += OnStartClassicGameClickedAsync;
             _eventbus.StartClassicSingleWordGameClicked += OnStartClassicSingleWordGameClicked;
             _eventbus.BackToTitleClicked += OnBackToTitleClicked;
             _eventbus.HowToPlayPressed += OnHowToPlayPressed;
@@ -35,20 +38,30 @@ namespace Main
             _eventbus.ShopButtonPressed += OnShopButtonPressed;
         }
 
-        private void OnStartClassicGameClicked()
+        private async void OnStartClassicGameClickedAsync()
         {
             MyWorld world = _WorldScene.Instantiate<MyWorld>();
-            var wordDistribution = (WordDistribution)ResourceLoader.Load<WordDistribution>("res://world/worddistribution/DefaultWordDistribution.tres").Duplicate();
+
+            // TODO this code needs to be on every possible game mode
+            var wordDistribution = (WordDistribution)
+                ResourceLoader
+                    .Load<WordDistribution>(
+                        "res://world/worddistribution/DefaultWordDistribution.tres"
+                    )
+                    .Duplicate();
             var _gameProgress = GDAccessors.GetGameProgress(this);
-            if (_gameProgress.HasUnlocked(Unlocks.BlueWord)) wordDistribution.Blue = 50;
-            if (_gameProgress.HasUnlocked(Unlocks.RainbowWord)) wordDistribution.Rainbow = 25;
-            if (_gameProgress.HasUnlocked(Unlocks.NoDefaultWords)) wordDistribution.Default = 0;
-            world.GameSettings.WordDistribution = wordDistribution; // Does this change the cached game settings?
+            if (_gameProgress.HasUnlocked(Unlocks.BlueWord))
+                wordDistribution.Blue = 50;
+            if (_gameProgress.HasUnlocked(Unlocks.RainbowWord))
+                wordDistribution.Rainbow = 25;
+            if (_gameProgress.HasUnlocked(Unlocks.NoDefaultWords))
+                wordDistribution.Default = 0;
+            var gameSettings = (GameSettings)world.GameSettings.Duplicate();
+            gameSettings.WordDistribution = wordDistribution;
+            world.GameSettings = gameSettings;
 
-
+            await HideScreens();
             AddChild(world);
-
-            HideScreens();
             _hud.Show();
         }
 
@@ -60,40 +73,46 @@ namespace Main
             );
             AddChild(world);
 
-            HideScreens();
-            _hud.Show();
+            HideScreens().ContinueWith(delegate
+            {
+                _hud.Show();
+            });
         }
 
-        private void HideScreens()
+        private async Task HideScreens()
         {
+            _sceneTransition.FadeOut();
+            await ToSignal(_sceneTransition, SceneTransition.SignalName.AnimationFinished);
             _mainMenu.Hide();
             _gameover.Hide();
             _howToPlay.Hide();
             _hud.Hide();
             _shop.Hide();
+            _sceneTransition.FadeIn();
         }
 
-        private void OnBackToTitleClicked()
+        private async void OnBackToTitleClicked()
         {
-            HideScreens();
+            await HideScreens();
             _mainMenu.Show();
         }
 
-        private void OnGameEnded(Object _)
+        private async void OnGameEnded(Object _)
         {
-            HideScreens();
+            await HideScreens();
             _gameover.Show();
+
         }
 
-        private void OnHowToPlayPressed()
+        private async void OnHowToPlayPressed()
         {
-            HideScreens();
+            await HideScreens();
             _howToPlay.Show();
         }
 
-        private void OnShopButtonPressed()
+        private async void OnShopButtonPressed()
         {
-            HideScreens();
+            await HideScreens();
             _shop.Show();
         }
     }

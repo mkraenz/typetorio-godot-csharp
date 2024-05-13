@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Eventbus="*res://global/Eventbus.cs"
 GameProgress="*res://global/GameProgress.cs"
+SceneTransition="*res://global/scenetransition/SceneTransition.tscn"
 
 [display]
 
@@ -35,7 +36,7 @@ import/blender/enabled=false
 [gui]
 
 theme/custom="res://ui/theme.tres"
-theme/custom_font="res://assets/Noto_Sans_Mono/NotoSansMono-Bold.ttf"
+theme/custom_font="res://assets/thirdparty/fonts/Noto_Sans_Mono/NotoSansMono-Bold.ttf"
 
 [input]
 

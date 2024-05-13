@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://dunhyik765ld6"]
 
-[ext_resource type="FontFile" uid="uid://d1oxrw7u3qtd6" path="res://assets/Noto_Sans_Mono/NotoSansMono-Medium.ttf" id="1_sow0l"]
+[ext_resource type="FontFile" uid="uid://d1oxrw7u3qtd6" path="res://assets/thirdparty/fonts/Noto_Sans_Mono/NotoSansMono-Medium.ttf" id="1_sow0l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wn8xc"]
 bg_color = Color(0.254902, 0.117647, 0.533333, 1)

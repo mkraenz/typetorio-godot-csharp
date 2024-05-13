@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c6s4hqu5l2vh6"
-path="res://.godot/imported/NotoSansMono-Light.ttf-6ce3a6c8a876918c893078c443854f2f.fontdata"
+uid="uid://3ecdixx84jum"
+path="res://.godot/imported/NotoSansMono-Bold.ttf-6543ecca4af3af7956cbeae40c4b78bf.fontdata"
 
 [deps]
 
-source_file="res://assets/Noto_Sans_Mono/NotoSansMono-Light.ttf"
-dest_files=["res://.godot/imported/NotoSansMono-Light.ttf-6ce3a6c8a876918c893078c443854f2f.fontdata"]
+source_file="res://assets/thirdparty/fonts/Noto_Sans_Mono/NotoSansMono-Bold.ttf"
+dest_files=["res://.godot/imported/NotoSansMono-Bold.ttf-6543ecca4af3af7956cbeae40c4b78bf.fontdata"]
 
 [params]
 
