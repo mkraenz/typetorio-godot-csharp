@@ -7,35 +7,16 @@ namespace Globals
     {
         [Signal]
         public delegate void AnimationFinishedEventHandler(string animationName);
-        private AnimationPlayer _anims;
         private ColorRect _rect;
 
         public override void _Ready()
         {
             base._Ready();
-            _anims = GetNode<AnimationPlayer>("AnimationPlayer");
             _rect = GetNode<ColorRect>("ColorRect");
-        }
-
-        public void FadeInOut()
-        {
-            _anims.Play("fade_in_out");
-        }
-
-        public void FadeOut()
-        {
-            _anims.Play("fade_in");
-        }
-
-
-        public void FadeIn()
-        {
-            _anims.Play("fade_in", -1, -1, true);
         }
 
         public void DiagonalSlideIn()
         {
-
             var dim = GetViewport().GetVisibleRect().Size;
             var direction = dim;
             _rect.Rotation = direction.Angle();
@@ -43,7 +24,12 @@ namespace Globals
             _rect.Modulate = Colors.White;
             _rect.GlobalPosition = dim.Orthogonal();
             var tween = CreateTween();
-            tween.TweenMethod(Callable.From((float progress) => ProgressDiagonalSlideIn(progress)), 0f, 1f, 0.3);
+            tween.TweenMethod(
+                Callable.From((float progress) => ProgressDiagonalSlideIn(progress)),
+                0f,
+                1f,
+                0.3
+            );
             tween.Play();
             tween.Finished += () =>
             {
@@ -60,7 +46,12 @@ namespace Globals
             _rect.GlobalPosition = dim.Orthogonal();
             _rect.Size = new Vector2(dim.Length(), 2 * dim.Length());
             var tween = CreateTween();
-            tween.TweenMethod(Callable.From((float progress) => ProgressDiagonalSlideOut(progress)), 0f, 1f, 0.3);
+            tween.TweenMethod(
+                Callable.From((float progress) => ProgressDiagonalSlideOut(progress)),
+                0f,
+                1f,
+                0.3
+            );
             tween.Play();
             tween.Finished += () =>
             {
@@ -83,12 +74,6 @@ namespace Globals
             // _rect.Size = new Vector2(dim.Length() * progress, 2 * dim.Length()); // doubling y to cover the whole screen
             // _rect.GlobalPosition = dim + dim.Orthogonal();
             // _rect.Rotation = dim.AngleTo(Vector2.Right);
-
-        }
-
-        private void _on_animation_player_animation_finished(string animationName)
-        {
-            EmitSignal(SignalName.AnimationFinished, animationName);
         }
     }
 }

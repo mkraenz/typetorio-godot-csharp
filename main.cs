@@ -99,7 +99,6 @@ namespace Main
         {
             await HideScreens();
             _gameover.Show();
-
         }
 
         private async void OnHowToPlayPressed()
