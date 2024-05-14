@@ -62,7 +62,7 @@ script = ExtResource("3_m7jbx")
 
 [node name="ShopButton" type="Button" parent="H/V/Buttons"]
 layout_mode = 2
-text = "Shop"
+text = "Upgrades"
 script = ExtResource("4_gchbc")
 
 [node name="H" type="HBoxContainer" parent="H/V/Buttons"]
