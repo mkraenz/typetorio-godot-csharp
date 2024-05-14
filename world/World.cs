@@ -36,9 +36,13 @@ namespace World
 
         private void InitWordSpawner()
         {
-            var defaultWord = GD.Load<WordStats>("res://world/word/wordstats/DefaultWordStats.tres");
+            var defaultWord = GD.Load<WordStats>(
+                "res://world/word/wordstats/DefaultWordStats.tres"
+            );
             var blueWord = GD.Load<WordStats>("res://world/word/wordstats/SkyblueWordStats.tres");
-            var rainbowWord = GD.Load<WordStats>("res://world/word/wordstats/RainbowWordStats.tres");
+            var rainbowWord = GD.Load<WordStats>(
+                "res://world/word/wordstats/RainbowWordStats.tres"
+            );
             var allWordTypes = new List<WordStats> { };
             var _gameProgress = GDAccessors.GetGameProgress(this);
             if (_gameProgress.HasUnlocked(Unlocks.BlueWord))
@@ -48,10 +52,13 @@ namespace World
             if (!_gameProgress.HasUnlocked(Unlocks.NoDefaultWords))
                 allWordTypes.Add(defaultWord);
 
-            if (allWordTypes.Count == 0) allWordTypes = new List<WordStats> { defaultWord };
+            if (allWordTypes.Count == 0)
+                allWordTypes = new List<WordStats> { defaultWord };
 
-            var wordPool = (from wordStats in allWordTypes
-                            select (new Spawn(wordStats, wordStats.BaseSpawnRate))).ToArray();
+            var wordPool = (
+                from wordStats in allWordTypes
+                select (new Spawn(wordStats, wordStats.BaseSpawnRate))
+            ).ToArray();
 
             _words.GameSettings = GameSettings;
             _words.WordPool = wordPool;

@@ -6,15 +6,14 @@ using Godot;
 
 namespace World
 {
-
     public readonly struct Spawn
     {
-
         public Spawn(WordStats word, int spawnRate)
         {
             Word = word;
             SpawnRate = spawnRate;
         }
+
         public WordStats Word { get; }
         public int SpawnRate { get; }
     }
@@ -75,7 +74,9 @@ namespace World
                 if (winner < spawnRateSumToCurrentIndex)
                     return WordPool[i].Word;
             }
-            throw new ShouldNeverHappenException("This shouldn't happen by design of the raffle. If it does, the code is wrong.");
+            throw new ShouldNeverHappenException(
+                "This shouldn't happen by design of the raffle. If it does, the code is wrong."
+            );
         }
 
         private Vector2 GetRandomPosition()

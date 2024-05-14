@@ -18,7 +18,6 @@ namespace World
         [Export]
         public int ComboIncrease { get; set; } = 1;
 
-
         /// <summary>
         /// NOTE: BaseSpawnRate may still become zero if a word is not unlocked yet.
         /// </summary>

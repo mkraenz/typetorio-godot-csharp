@@ -14,6 +14,5 @@ namespace World
 
         [Export]
         public float SpawnIntervalInSec { get; set; } = 1f;
-
     }
 }
