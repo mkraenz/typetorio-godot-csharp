@@ -1,4 +1,5 @@
 using System;
+using Dtos;
 using Globals;
 using Godot;
 
@@ -29,7 +30,13 @@ namespace UI
             _timer = GetNode<Timer>("Timer");
 
             _eventbus.GameStarted += OnGameStarted;
+            _eventbus.GameEnded += OnGameEnded;
             UpdateText();
+        }
+
+        private void OnGameEnded(object _)
+        {
+            _timer.Stop();
         }
 
         private void UpdateText()
