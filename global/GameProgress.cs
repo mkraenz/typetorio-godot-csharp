@@ -135,7 +135,7 @@ namespace Globals
         private void AddPoints(int points)
         {
             TotalPoints += points;
-            PointsToSpend = Math.Max(PointsToSpend + points, 999999);
+            PointsToSpend = Math.Min(PointsToSpend + points, 999999);
         }
     }
 }
