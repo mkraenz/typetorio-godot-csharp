@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Exceptions;
 using Godot;
 
 namespace World
@@ -74,7 +75,7 @@ namespace World
                 if (winner < spawnRateSumToCurrentIndex)
                     return WordPool[i].Word;
             }
-            return WordPool[0].Word;
+            throw new ShouldNeverHappenException("This shouldn't happen by design of the raffle. If it does, the code is wrong.");
         }
 
         private Vector2 GetRandomPosition()
