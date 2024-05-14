@@ -18,6 +18,14 @@ namespace World
         [Export]
         public int ComboIncrease { get; set; } = 1;
 
+
+        /// <summary>
+        /// NOTE: BaseSpawnRate may still become zero if a word is not unlocked yet.
+        /// </summary>
+        [ExportCategory("Spawn Rate")]
+        [Export]
+        public int BaseSpawnRate { get; set; } = 0;
+
         [ExportCategory("Display")]
         [Export(PropertyHint.ColorNoAlpha)]
         public Color Color { get; set; } = Colors.White;

@@ -6,6 +6,7 @@
 script = ExtResource("1_s0p0b")
 Points = 5
 ComboIncrease = 5
+BaseSpawnRate = 25
 Color = Color(1, 1, 1, 1)
 FontScale = 2.0
 SpecialEffects = 1

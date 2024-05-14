@@ -15,7 +15,5 @@ namespace World
         [Export]
         public float SpawnIntervalInSec { get; set; } = 1f;
 
-        [Export]
-        public WordDistribution WordDistribution { get; set; } // = ResourceLoader.Load<WordDistribution>("res://world/worddistribution/DefaultWordDistribution.tres");
     }
 }

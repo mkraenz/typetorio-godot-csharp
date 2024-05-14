@@ -1,11 +1,9 @@
-[gd_resource type="Resource" script_class="GameSettings" load_steps=3 format=3 uid="uid://dxcet67rk1d0a"]
+[gd_resource type="Resource" script_class="GameSettings" load_steps=2 format=3 uid="uid://dxcet67rk1d0a"]
 
 [ext_resource type="Script" path="res://world/gamesettings/GameSettings.cs" id="1_6gy5i"]
-[ext_resource type="Resource" uid="uid://cy7466u3lrr0a" path="res://world/worddistribution/DefaultWordDistribution.tres" id="1_uwqc4"]
 
 [resource]
 script = ExtResource("1_6gy5i")
 GameTimeInSec = 60
 MaxConcurrentWords = 1
 SpawnIntervalInSec = 0.05
-WordDistribution = ExtResource("1_uwqc4")

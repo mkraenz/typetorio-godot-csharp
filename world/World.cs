@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Dtos;
 using Globals;
 using Godot;
@@ -27,10 +28,33 @@ namespace World
             _gameTimer = GetNode<Timer>("GameTimer");
             _prompt.GrabFocus();
 
-            _words.GameSettings = GameSettings;
+            InitWordSpawner();
             _gameTimer.WaitTime = GameSettings.GameTimeInSec;
 
             _eventbus.EmitGameAboutToStart();
+        }
+
+        private void InitWordSpawner()
+        {
+            var defaultWord = GD.Load<WordStats>("res://world/word/wordstats/DefaultWordStats.tres");
+            var blueWord = GD.Load<WordStats>("res://world/word/wordstats/SkyblueWordStats.tres");
+            var rainbowWord = GD.Load<WordStats>("res://world/word/wordstats/RainbowWordStats.tres");
+            var allWordTypes = new List<WordStats> { };
+            var _gameProgress = GDAccessors.GetGameProgress(this);
+            if (_gameProgress.HasUnlocked(Unlocks.BlueWord))
+                allWordTypes.Add(blueWord);
+            if (_gameProgress.HasUnlocked(Unlocks.RainbowWord))
+                allWordTypes.Add(rainbowWord);
+            if (!_gameProgress.HasUnlocked(Unlocks.NoDefaultWords))
+                allWordTypes.Add(defaultWord);
+
+            if (allWordTypes.Count == 0) allWordTypes = new List<WordStats> { defaultWord };
+
+            var wordPool = (from wordStats in allWordTypes
+                            select (new Spawn(wordStats, wordStats.BaseSpawnRate))).ToArray();
+
+            _words.GameSettings = GameSettings;
+            _words.WordPool = wordPool;
         }
 
         private void StartGame()

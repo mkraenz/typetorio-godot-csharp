@@ -41,25 +41,6 @@ namespace Main
         private async void OnStartClassicGameClickedAsync()
         {
             MyWorld world = _WorldScene.Instantiate<MyWorld>();
-
-            // TODO this code needs to be on every possible game mode
-            var wordDistribution = (WordDistribution)
-                ResourceLoader
-                    .Load<WordDistribution>(
-                        "res://world/worddistribution/DefaultWordDistribution.tres"
-                    )
-                    .Duplicate();
-            var _gameProgress = GDAccessors.GetGameProgress(this);
-            if (_gameProgress.HasUnlocked(Unlocks.BlueWord))
-                wordDistribution.Blue = 50;
-            if (_gameProgress.HasUnlocked(Unlocks.RainbowWord))
-                wordDistribution.Rainbow = 25;
-            if (_gameProgress.HasUnlocked(Unlocks.NoDefaultWords))
-                wordDistribution.Default = 0;
-            var gameSettings = (GameSettings)world.GameSettings.Duplicate();
-            gameSettings.WordDistribution = wordDistribution;
-            world.GameSettings = gameSettings;
-
             await HideScreens();
             AddChild(world);
             _hud.Show();
