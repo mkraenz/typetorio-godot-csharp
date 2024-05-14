@@ -4,8 +4,7 @@
 
 - [x] Classic (Highscore in fixed time) - How many words + points can you get in a fixed time frame?
   - [x] times
-    - [ ] 1min
-    - [ ] ??? 3min, 5min, 10min).
+    - [x] 1min
   - [x] main menu
   - [x] dynamically start a game session
 - [ ] No Typos - Lose health on typo - survive as long as possible + reach highscore.

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://y063m7y5gi1i"]
+
+[ext_resource type="Script" path="res://src/common/unlockwatcher/UnlockWatcher.cs" id="1_q0iyi"]
+
+[node name="UnlockWatcher" type="Node"]
+script = ExtResource("1_q0iyi")

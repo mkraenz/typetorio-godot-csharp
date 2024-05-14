@@ -13,6 +13,7 @@ namespace UI
     public partial class GameOver : Control
     {
         private Eventbus _eventbus;
+        private GameProgress _gameProgress;
         private IPointsValue _points;
         private IPointsValue _words;
         private IPointsValue _maxCombo;
@@ -21,6 +22,7 @@ namespace UI
         public override void _Ready()
         {
             _eventbus = GDAccessors.GetEventbus(this);
+            _gameProgress = GDAccessors.GetGameProgress(this);
             _points = GetNode<IPointsValue>("%PointsValue");
             _words = GetNode<IPointsValue>("%WordsValue");
             _maxCombo = GetNode<IPointsValue>("%ComboValue");

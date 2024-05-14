@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Dtos;
 using Godot;
-using UI;
 using Dict = Godot.Collections.Dictionary<string, Godot.Variant>;
 
 namespace Globals
@@ -40,7 +39,11 @@ namespace Globals
         Dict Unlocks
         {
             get => _unlocks;
-            set { _unlocks = value; }
+            set
+            {
+                _unlocks = value;
+                _eventbus.EmitUnlocksChanged(_unlocks);
+            }
         }
         private static string _filepath = "user://game.cfg";
 
@@ -62,6 +65,7 @@ namespace Globals
             string featureName = Enum.GetName(typeof(Unlocks), feature);
             Unlocks.Add(featureName, true);
             Save();
+            _eventbus.EmitUnlocksChanged(_unlocks);
         }
 
         public bool CanAfford(int price) => PointsToSpend >= price;
@@ -110,20 +114,20 @@ namespace Globals
                 switch (section)
                 {
                     case "Progress":
-                    {
-                        TotalPoints = (int)config.GetValue(section, "TotalPoints");
-                        PointsToSpend = (int)config.GetValue(section, "PointsToSpend");
-                        break;
-                    }
-                    case "Unlocks":
-                    {
-                        var keys = config.GetSectionKeys("Unlocks");
-                        foreach (string key in keys)
                         {
-                            Unlocks[key] = config.GetValue(section, key);
+                            TotalPoints = (int)config.GetValue(section, "TotalPoints");
+                            PointsToSpend = (int)config.GetValue(section, "PointsToSpend");
+                            break;
                         }
-                        break;
-                    }
+                    case "Unlocks":
+                        {
+                            var keys = config.GetSectionKeys("Unlocks");
+                            foreach (string key in keys)
+                            {
+                                Unlocks[key] = config.GetValue(section, key);
+                            }
+                            break;
+                        }
                 }
             }
         }

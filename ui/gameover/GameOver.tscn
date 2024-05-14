@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0l3kui4r7cw3"]
+[gd_scene load_steps=10 format=3 uid="uid://d0l3kui4r7cw3"]
 
 [ext_resource type="Theme" uid="uid://dunhyik765ld6" path="res://ui/theme.tres" id="1_35thb"]
 [ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_fxal6"]
 [ext_resource type="Script" path="res://ui/gameover/GameOver.cs" id="1_lur73"]
 [ext_resource type="PackedScene" uid="uid://sue7cll1ce5y" path="res://ui/gameover/PointsValue/PointsValue.tscn" id="3_a0w33"]
 [ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="5_7llys"]
+[ext_resource type="Script" path="res://ui/gameover/UnlocksView.cs" id="5_akojq"]
 
 [sub_resource type="Animation" id="Animation_pcqov"]
 length = 0.001
@@ -83,19 +84,20 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("H/V/Grade:modulate")
+tracks/6/path = NodePath("H/V/UnlocksView:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8f782"]
 resource_name = "animate_points"
-length = 7.5
+length = 6.5
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -171,14 +173,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("H/V/Grade:modulate")
+tracks/6/path = NodePath("H/V/UnlocksView:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(7.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dma7q"]
@@ -258,6 +260,7 @@ visible = false
 layout_mode = 2
 
 [node name="Grade" type="VBoxContainer" parent="H/V"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -272,6 +275,17 @@ layout_mode = 2
 text = "Classy! You're a real pro!"
 horizontal_alignment = 1
 
+[node name="UnlocksView" type="VBoxContainer" parent="H/V"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+script = ExtResource("5_akojq")
+
+[node name="Entry" type="Label" parent="H/V/UnlocksView"]
+layout_mode = 2
+text = "Unlocked: Shop"
+horizontal_alignment = 1
+
 [node name="BackToMainMenuButton" parent="H/V" instance=ExtResource("5_7llys")]
 layout_mode = 2
 
@@ -281,3 +295,4 @@ libraries = {
 }
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="H/V/BackToMainMenuButton" to="H/V/UnlocksView" method="_on_back_to_main_menu_button_pressed"]

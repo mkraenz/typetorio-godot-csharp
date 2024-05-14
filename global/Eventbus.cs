@@ -1,6 +1,7 @@
 using System;
 using Dtos;
 using Godot;
+using UnlocksDict = Godot.Collections.Dictionary<string, Godot.Variant>;
 
 namespace Globals
 {
@@ -35,6 +36,9 @@ namespace Globals
 
         [Signal]
         public delegate void ShopButtonPressedEventHandler();
+
+        [Signal]
+        public delegate void UnlocksChangedEventHandler(UnlocksDict unlocks);
 
         public void EmitWordCleared(string word, ScoreDto score)
         {
@@ -85,5 +89,11 @@ namespace Globals
         {
             EmitSignal(SignalName.ShopButtonPressed);
         }
+
+        internal void EmitUnlocksChanged(UnlocksDict unlocks)
+        {
+            EmitSignal(SignalName.UnlocksChanged, unlocks);
+        }
+
     }
 }
