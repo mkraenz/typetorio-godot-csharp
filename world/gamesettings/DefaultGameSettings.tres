@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_abg2a")
-GameTimeInSec = 5
+GameTimeInSec = 60
 MaxConcurrentWords = 100
 SpawnIntervalInSec = 1.0
