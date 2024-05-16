@@ -261,6 +261,7 @@ visible = false
 layout_mode = 2
 
 [node name="UnlocksView" type="VBoxContainer" parent="H/V"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2

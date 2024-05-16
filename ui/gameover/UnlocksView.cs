@@ -13,11 +13,6 @@ namespace UI
 		{
 
 			_gameProgress = GDAccessors.GetGameProgress(this);
-			if (!_gameProgress.HasUnlocked(Unlocks.Shop))
-			{
-				_gameProgress.UnlockFeature(Unlocks.Shop);
-			}
-
 			// not using the UnlockWatcher because this component unlocks the shop feature on ready, meaning the unlockwatcher's listener for unlock changes would trigger and immediately hide the component.
 			if (_gameProgress.HasUnlocked(Unlocks.Shop)) Show();
 			else Hide();
@@ -27,6 +22,19 @@ namespace UI
 		{
 			Hide(); // from here on out, this component will never be shown again (unless you reset your unlocks)
 		}
+
+		public void UnlockShop()
+		{
+
+			if (!_gameProgress.HasUnlocked(Unlocks.Shop))
+			{
+				// not using the UnlockWatcher because this component unlocks the shop feature on ready, meaning the unlockwatcher's listener for unlock changes would trigger and immediately hide the component.
+				_gameProgress.UnlockFeature(Unlocks.Shop);
+				Show();
+			}
+			else Hide();
+		}
+
 	}
 
 }
