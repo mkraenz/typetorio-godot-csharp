@@ -1,6 +1,6 @@
 {
   "name": "typetorio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "typing game in godot and csharp",
   "main": "index.js",
   "scripts": {
