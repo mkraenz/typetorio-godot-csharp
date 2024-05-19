@@ -1,0 +1,23 @@
+{
+  "name": "typetorio",
+  "version": "0.1.0",
+  "description": "typing game in godot and csharp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:prod": "./shipit.sh",
+    "bump:patch": "npm version patch -m 'chore: %s version bump'",
+    "bump:minor": "npm version minor -m 'chore: %s version bump'",
+    "bump:major": "npm version major -m 'chore: %s version bump'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkraenz/typetorio-godot-csharp.git"
+  },
+  "author": "Mirco Kraenz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mkraenz/typetorio-godot-csharp/issues"
+  },
+  "homepage": "https://github.com/mkraenz/typetorio-godot-csharp#readme"
+}

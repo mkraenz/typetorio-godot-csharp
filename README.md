@@ -14,6 +14,14 @@
 
 - [x] bonus words - increase your combo by +5
   - rainbow colored word
+- [ ] highscore board
+
+## Releases
+
+```sh
+npm run bump:patch # or bump:minor or bump:major to increase version number
+npm run deploy:prod
+```
 
 ## Tooling
 
