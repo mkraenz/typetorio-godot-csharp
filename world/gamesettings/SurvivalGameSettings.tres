@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameSettings" load_steps=2 format=3 uid="uid://ctfdfc5eywp2c"]
+
+[ext_resource type="Script" path="res://world/gamesettings/GameSettings.cs" id="1_m2p66"]
+
+[resource]
+script = ExtResource("1_m2p66")
+GameTimeInSec = 5
+MaxConcurrentWords = 100
+SpawnIntervalInSec = 1.0

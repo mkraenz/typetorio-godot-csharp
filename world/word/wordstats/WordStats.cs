@@ -33,6 +33,12 @@ namespace World
         public float FontScale { get; set; } = 1;
 
         /// <summary>
+        /// How much additional time you get in seconds when playing Survival mode.
+        /// </summary>
+        [Export]
+        public float AddedTime { get; set; } = 1.2f;
+
+        /// <summary>
         /// Note that his overrides the Color property and possibly others.
         /// </summary>
         [Export(PropertyHint.Enum)]

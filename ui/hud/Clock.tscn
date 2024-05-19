@@ -4,9 +4,5 @@
 
 [node name="Clock" type="Label"]
 size_flags_vertical = 0
-text = "00:00"
+text = "00:00:000"
 script = ExtResource("1_l1ope")
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

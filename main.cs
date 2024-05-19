@@ -18,8 +18,9 @@ namespace Main
         private Control _shop;
 
         private PackedScene _WorldScene = ResourceLoader.Load<PackedScene>(
-            "res:///world/World.tscn"
+            "res://world/World.tscn"
         );
+        private PackedScene _SurvivalWorldScene = ResourceLoader.Load<PackedScene>("res://src/modes/survival/SurvivalWorld.tscn");
 
         public override void _Ready()
         {
@@ -30,7 +31,8 @@ namespace Main
             _howToPlay = GetNode<Control>("Gui/HowToPlay");
             _shop = GetNode<Control>("Gui/ShopMenu");
             _hud = GetNode<Control>("Gui/Hud");
-            _eventbus.StartClassicGameClicked += OnStartClassicGameClickedAsync;
+            _eventbus.StartClassicGameClicked += OnStartClassicGameClicked;
+            _eventbus.StartSurvivalModeClicked += OnStartSurvivalModeClicked;
             _eventbus.StartClassicSingleWordGameClicked += OnStartClassicSingleWordGameClicked;
             _eventbus.BackToTitleClicked += OnBackToTitleClicked;
             _eventbus.HowToPlayPressed += OnHowToPlayPressed;
@@ -38,7 +40,7 @@ namespace Main
             _eventbus.ShopButtonPressed += OnShopButtonPressed;
         }
 
-        private async void OnStartClassicGameClickedAsync()
+        private async void OnStartClassicGameClicked()
         {
             MyWorld world = _WorldScene.Instantiate<MyWorld>();
             await HideScreens();
@@ -52,6 +54,15 @@ namespace Main
             world.GameSettings = GD.Load<GameSettings>(
                 "res://world/gamesettings/SingleWordGameSettings.tres"
             );
+            AddChild(world);
+
+            await HideScreens();
+            _hud.Show();
+        }
+
+        private async void OnStartSurvivalModeClicked()
+        {
+            SurvivalWorld world = _SurvivalWorldScene.Instantiate<SurvivalWorld>();
             AddChild(world);
 
             await HideScreens();

@@ -10,6 +10,7 @@ namespace Globals
     {
         Shop,
         ClassicFocusMode,
+        SurvivalMode,
         BlueWord,
         RainbowWord,
         NoDefaultWords,

@@ -81,6 +81,14 @@ _tooltip = "White words stop appearing in the game."
 _priceInPoints = 100000
 _feature = 4
 
+[node name="ShopItem5" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
+layout_mode = 2
+_icon = ExtResource("3_vb2u8")
+_text = "Survival Mode"
+_tooltip = "Survival mode becomes available from the main menu. Time runs out. Type words to earn more time. How long can you survive? How much score can you accumulate?"
+_priceInPoints = 8000
+_feature = 2
+
 [node name="VSpacer" parent="M/H/V" instance=ExtResource("3_03nn8")]
 layout_mode = 2
 

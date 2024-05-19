@@ -15,28 +15,23 @@ GameSettings = ExtResource("2_8xxdv")
 
 [node name="WordSpawner" parent="." instance=ExtResource("3_2fanc")]
 
-[node name="InputBox" type="Control" parent="."]
-layout_mode = 3
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ReadyGo" parent="." instance=ExtResource("6_uuhmw")]
+
+[node name="Center" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="H" type="HBoxContainer" parent="InputBox"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="V" type="VBoxContainer" parent="InputBox/H"]
-layout_mode = 2
-alignment = 1
-
-[node name="InputPrompt" type="LineEdit" parent="InputBox/H/V"]
+[node name="InputPrompt" type="LineEdit" parent="Center"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -49,16 +44,7 @@ drag_and_drop_selection_enabled = false
 caret_blink = true
 script = ExtResource("2_epim6")
 
-[node name="ComboTimer" type="Timer" parent="."]
-wait_time = 3.0
-
-[node name="GameTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[node name="ReadyGo" parent="." instance=ExtResource("6_uuhmw")]
-
-[connection signal="text_changed" from="InputBox/H/V/InputPrompt" to="." method="_on_input_prompt_text_changed"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="AnimationFinished" from="ReadyGo" to="." method="_on_ready_go_animation_finished"]
+[connection signal="text_changed" from="Center/InputPrompt" to="." method="_on_input_prompt_text_changed"]
