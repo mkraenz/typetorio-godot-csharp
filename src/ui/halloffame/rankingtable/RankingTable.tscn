@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwn7b3h10fmxv"]
+
+[ext_resource type="Script" path="res://src/ui/halloffame/RankingTable.cs" id="1_int4t"]
+[ext_resource type="PackedScene" uid="uid://b0d8v510mi2d6" path="res://src/ui/halloffame/rankingrow/RankingRow.tscn" id="2_g1xud"]
+
+[node name="RankingTable" type="VBoxContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_int4t")
+_RankingRowScene = ExtResource("2_g1xud")
+
+[node name="RankingRow" parent="." instance=ExtResource("2_g1xud")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="RankingRow2" parent="." instance=ExtResource("2_g1xud")]
+layout_mode = 2

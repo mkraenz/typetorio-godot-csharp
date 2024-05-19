@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxgt7npe7s76"]
+
+[ext_resource type="Script" path="res://src/ui/halloffame/HallOfFame.cs" id="1_0327w"]
+[ext_resource type="PackedScene" uid="uid://cliy5h03jagrs" path="res://src/ui/common/title/Title.tscn" id="1_i3sl7"]
+[ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="2_dpdl0"]
+[ext_resource type="PackedScene" uid="uid://bwn7b3h10fmxv" path="res://src/ui/halloffame/rankingtable/RankingTable.tscn" id="3_kufwu"]
+
+[node name="HallOfFame" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ScreenMarginContainer"
+script = ExtResource("1_0327w")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" parent="V" instance=ExtResource("1_i3sl7")]
+layout_mode = 2
+Text = "High Scores"
+
+[node name="RankingTable" parent="V" instance=ExtResource("3_kufwu")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SwitchMode" type="Button" parent="V"]
+layout_mode = 2
+text = "Mode Classic"
+
+[node name="BackToMainMenuButton" parent="V" instance=ExtResource("2_dpdl0")]
+layout_mode = 2

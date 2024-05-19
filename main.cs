@@ -15,6 +15,7 @@ namespace Main
         private Control _hud;
         private Control _gameover;
         private Control _howToPlay;
+        private Control _hallOfFame;
         private Control _shop;
 
         private PackedScene _WorldScene = ResourceLoader.Load<PackedScene>(
@@ -33,6 +34,7 @@ namespace Main
             _howToPlay = GetNode<Control>("Gui/HowToPlay");
             _shop = GetNode<Control>("Gui/ShopMenu");
             _hud = GetNode<Control>("Gui/Hud");
+            _hallOfFame = GetNode<Control>("Gui/HallOfFame");
             _eventbus.StartClassicGameClicked += OnStartClassicGameClicked;
             _eventbus.StartSurvivalModeClicked += OnStartSurvivalModeClicked;
             _eventbus.StartClassicSingleWordGameClicked += OnStartClassicSingleWordGameClicked;
@@ -40,6 +42,13 @@ namespace Main
             _eventbus.HowToPlayPressed += OnHowToPlayPressed;
             _eventbus.GameEnded += OnGameEnded;
             _eventbus.ShopButtonPressed += OnShopButtonPressed;
+            _eventbus.HallOfFameClicked += OnHallOfFameClicked;
+        }
+
+        private async void OnHallOfFameClicked()
+        {
+            await HideScreens();
+            _hallOfFame.Show();
         }
 
         private async void OnStartClassicGameClicked()
@@ -80,6 +89,7 @@ namespace Main
             _howToPlay.Hide();
             _hud.Hide();
             _shop.Hide();
+            _hallOfFame.Hide();
             _sceneTransition.DiaonalSlideOut();
         }
 

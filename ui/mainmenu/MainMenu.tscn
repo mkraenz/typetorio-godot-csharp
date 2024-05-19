@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2mxm1i1b5qsc"]
+[gd_scene load_steps=13 format=3 uid="uid://b2mxm1i1b5qsc"]
 
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicGame.cs" id="1_hrocq"]
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicSingleWordButton.cs" id="3_m7jbx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dnk55roerqxam" path="res://assets/thirdparty/icons/feather/help-circle.png" id="5_5jw7k"]
 [ext_resource type="Script" path="res://ui/mainmenu/QuitButton.cs" id="5_c2usk"]
 [ext_resource type="Script" path="res://ui/mainmenu/SurvivalButton.cs" id="5_d87fy"]
+[ext_resource type="Script" path="res://ui/mainmenu/HighScoresButton.cs" id="6_ljbd5"]
 [ext_resource type="Texture2D" uid="uid://bi6estmjykjvh" path="res://assets/thirdparty/icons/feather/log-out.png" id="7_soa6p"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_v6ife"]
@@ -74,10 +75,20 @@ _targetNode = NodePath("..")
 [node name="ShopButton" type="Button" parent="H/V/Buttons"]
 layout_mode = 2
 text = "Shop"
+expand_icon = true
 script = ExtResource("4_gchbc")
 
 [node name="UnlockWatcher" parent="H/V/Buttons/ShopButton" node_paths=PackedStringArray("_targetNode") instance=ExtResource("4_r4lo6")]
 _targetNode = NodePath("..")
+
+[node name="HighScoresButton" type="Button" parent="H/V/Buttons"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+shortcut = SubResource("Shortcut_pmn8o")
+text = "Hall of Fame"
+script = ExtResource("6_ljbd5")
 
 [node name="H" type="HBoxContainer" parent="H/V/Buttons"]
 custom_minimum_size = Vector2(0, 23)
@@ -104,5 +115,6 @@ script = ExtResource("5_c2usk")
 [connection signal="pressed" from="H/V/Buttons/StartFocusModeButton" to="H/V/Buttons/StartFocusModeButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/SurvivalButton" to="H/V/Buttons/SurvivalButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/ShopButton" to="H/V/Buttons/ShopButton" method="_on_pressed"]
+[connection signal="pressed" from="H/V/Buttons/HighScoresButton" to="H/V/Buttons/HighScoresButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/H/HowToPlayButton" to="H/V/Buttons/H/HowToPlayButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/H/QuitButton" to="H/V/Buttons/H/QuitButton" method="_on_pressed"]

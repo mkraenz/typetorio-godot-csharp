@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cliy5h03jagrs"]
+
+[ext_resource type="Script" path="res://src/ui/common/title/Title.cs" id="1_iebug"]
+
+[node name="Title" type="MarginContainer"]
+offset_right = 77.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_type_variation = &"ScreenTitleMarginContainer"
+script = ExtResource("1_iebug")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "My Title"
+horizontal_alignment = 1

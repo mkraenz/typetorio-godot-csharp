@@ -46,6 +46,9 @@ namespace Globals
         [Signal]
         public delegate void GameTimeChangedEventHandler(float timeLeft);
 
+        [Signal]
+        public delegate void HallOfFameClickedEventHandler();
+
         public void EmitWordCleared(string word, ScoreDto score)
         {
             EmitSignal(SignalName.WordCleared, word, score);
@@ -109,6 +112,11 @@ namespace Globals
         internal void EmitGameTimeChanged(float timeLeft)
         {
             EmitSignal(SignalName.GameTimeChanged, timeLeft);
+        }
+
+        internal void EmitOpenHallOfFameClicked()
+        {
+            EmitSignal(SignalName.HallOfFameClicked);
         }
     }
 }

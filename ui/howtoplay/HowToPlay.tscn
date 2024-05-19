@@ -1,38 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfaqdkhja1clq"]
+[gd_scene load_steps=3 format=3 uid="uid://dfaqdkhja1clq"]
 
+[ext_resource type="PackedScene" uid="uid://cliy5h03jagrs" path="res://src/ui/common/title/Title.tscn" id="1_05ov0"]
 [ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="2_cd8gn"]
 
-[node name="HowToPlay" type="Control"]
-layout_mode = 3
+[node name="HowToPlay" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="M" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+theme_type_variation = &"ScreenMarginContainer"
 theme_override_constants/margin_top = 50
 
-[node name="H" type="HBoxContainer" parent="M"]
+[node name="V" type="VBoxContainer" parent="."]
 layout_mode = 2
-alignment = 1
 
-[node name="V" type="VBoxContainer" parent="M/H"]
+[node name="Title" parent="V" instance=ExtResource("1_05ov0")]
 layout_mode = 2
-theme_override_constants/separation = 50
+Text = "How to play"
 
-[node name="Title" type="Label" parent="M/H/V"]
+[node name="V" type="VBoxContainer" parent="V"]
 layout_mode = 2
-text = "How To Play"
-horizontal_alignment = 1
+theme_override_constants/separation = 25
 
-[node name="Instructions" type="Label" parent="M/H/V"]
+[node name="Instructions" type="Label" parent="V/V"]
 layout_mode = 2
 text = "Goal: Gain highscores.
 
@@ -42,15 +33,15 @@ Increase your combo multipliers by writing multiple words in a row in a short ti
 Game modes:
 - Classic - Fixed time.
 - Focus - Classic but only one word at a time.
-- (coming soon) Painful Typos -  Lose health on typos, survive for as long as possible, gain highscores.
-- (coming soon) Survival - Time always runs out. Type words to enlengthen it."
+- Survival - Time always runs out. Type words to enlengthen it.
+- (coming soon) Painful Typos -  Lose health on typos, survive for as long as possible, gain highscores."
 
-[node name="Words" type="Label" parent="M/H/V"]
+[node name="Words" type="Label" parent="V/V"]
 layout_mode = 2
 text = "Words:
 Grey = points 5, combo increase 1
 Blue = points 15, combo increase 1
 Rainbow = points 5, combo increase 5"
 
-[node name="BackToMainMenuButton" parent="M/H/V" instance=ExtResource("2_cd8gn")]
+[node name="BackToMainMenuButton" parent="V/V" instance=ExtResource("2_cd8gn")]
 layout_mode = 2
