@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0l3kui4r7cw3"]
+[gd_scene load_steps=9 format=3 uid="uid://d0l3kui4r7cw3"]
 
 [ext_resource type="Theme" uid="uid://dunhyik765ld6" path="res://ui/theme.tres" id="1_35thb"]
-[ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_fxal6"]
 [ext_resource type="Script" path="res://ui/gameover/GameOver.cs" id="1_lur73"]
 [ext_resource type="PackedScene" uid="uid://sue7cll1ce5y" path="res://ui/gameover/PointsValue/PointsValue.tscn" id="3_a0w33"]
 [ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="5_7llys"]
@@ -199,9 +198,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_35thb")
 script = ExtResource("1_lur73")
-
-[node name="Background" parent="." instance=ExtResource("1_fxal6")]
-layout_mode = 1
 
 [node name="H" type="HBoxContainer" parent="."]
 layout_mode = 1

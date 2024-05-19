@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfaqdkhja1clq"]
+[gd_scene load_steps=2 format=3 uid="uid://dfaqdkhja1clq"]
 
-[ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="1_dbk8n"]
 [ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="2_cd8gn"]
-[ext_resource type="Script" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.cs" id="3_y4c44"]
 
 [node name="HowToPlay" type="Control"]
 layout_mode = 3
@@ -11,9 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Background" parent="." instance=ExtResource("1_dbk8n")]
-layout_mode = 1
 
 [node name="M" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -59,4 +54,3 @@ Rainbow = points 5, combo increase 5"
 
 [node name="BackToMainMenuButton" parent="M/H/V" instance=ExtResource("2_cd8gn")]
 layout_mode = 2
-script = ExtResource("3_y4c44")

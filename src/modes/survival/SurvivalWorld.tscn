@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1heijpx64x7u"]
+[gd_scene load_steps=6 format=3 uid="uid://c1heijpx64x7u"]
 
 [ext_resource type="Script" path="res://src/modes/survival/SurvivalWorld.cs" id="1_klml5"]
-[ext_resource type="PackedScene" uid="uid://ccdj6le1ty52b" path="res://ui/common/Background.tscn" id="2_6qlqg"]
 [ext_resource type="Resource" uid="uid://ctfdfc5eywp2c" path="res://world/gamesettings/SurvivalGameSettings.tres" id="2_6u285"]
 [ext_resource type="PackedScene" uid="uid://bw1iyjq7v3ao6" path="res://world/wordspawner/WordSpawner.tscn" id="3_0lcmi"]
 [ext_resource type="PackedScene" uid="uid://m4vv7txefs4u" path="res://ui/readygo/ReadyGo.tscn" id="4_41nvq"]
@@ -10,8 +9,6 @@
 [node name="SurvivalWorld" type="CanvasLayer"]
 script = ExtResource("1_klml5")
 GameSettings = ExtResource("2_6u285")
-
-[node name="Background" parent="." instance=ExtResource("2_6qlqg")]
 
 [node name="WordSpawner" parent="." instance=ExtResource("3_0lcmi")]
 
