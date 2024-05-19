@@ -8,7 +8,8 @@
     "deploy:prod": "./scripts/shipit.sh",
     "bump:patch": "npm version patch -m 'chore: %s version bump'",
     "bump:minor": "npm version minor -m 'chore: %s version bump'",
-    "bump:major": "npm version major -m 'chore: %s version bump'"
+    "bump:major": "npm version major -m 'chore: %s version bump'",
+    "lint": "dotnet csharpier ."
   },
   "repository": {
     "type": "git",

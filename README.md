@@ -8,7 +8,7 @@
   - [x] main menu
   - [x] dynamically start a game session
 - [ ] No Typos - Lose health on typo - survive as long as possible + reach highscore.
-- [ ] Survival - time always runs out. Type words and reach combos to enlengthen it. How long can you survive? How much score can you accumulate?
+- [x] Survival - time always runs out. Type words and reach combos to enlengthen it. How long can you survive? How much score can you accumulate?
 
 ## Other features
 
