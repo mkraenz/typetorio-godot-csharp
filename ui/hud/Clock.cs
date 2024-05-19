@@ -23,7 +23,6 @@ namespace UI
             }
         }
 
-
         private Eventbus _eventbus;
 
         public override void _Ready()

@@ -18,6 +18,7 @@ namespace Globals
 
         [Signal]
         public delegate void StartClassicSingleWordGameClickedEventHandler();
+
         [Signal]
         public delegate void StartSurvivalModeClickedEventHandler();
 
@@ -41,7 +42,9 @@ namespace Globals
 
         [Signal]
         public delegate void UnlocksChangedEventHandler(UnlocksDict unlocks);
-        [Signal] public delegate void GameTimeChangedEventHandler(float timeLeft);
+
+        [Signal]
+        public delegate void GameTimeChangedEventHandler(float timeLeft);
 
         public void EmitWordCleared(string word, ScoreDto score)
         {

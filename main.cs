@@ -20,7 +20,9 @@ namespace Main
         private PackedScene _WorldScene = ResourceLoader.Load<PackedScene>(
             "res://world/World.tscn"
         );
-        private PackedScene _SurvivalWorldScene = ResourceLoader.Load<PackedScene>("res://src/modes/survival/SurvivalWorld.tscn");
+        private PackedScene _SurvivalWorldScene = ResourceLoader.Load<PackedScene>(
+            "res://src/modes/survival/SurvivalWorld.tscn"
+        );
 
         public override void _Ready()
         {

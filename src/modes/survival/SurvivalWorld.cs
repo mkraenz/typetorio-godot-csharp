@@ -1,139 +1,135 @@
-using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dtos;
 using Globals;
+using Godot;
 
 namespace World
 {
+    public partial class SurvivalWorld : CanvasLayer
+    {
+        [Export]
+        public GameSettings GameSettings { get; set; }
 
-	public partial class SurvivalWorld : CanvasLayer
-	{
+        private WordSpawner _words;
+        private InputPrompt _prompt;
+        private Eventbus _eventbus;
+        private Timer _comboTimer;
+        private Timer _gameTimer;
 
-		[Export]
-		public GameSettings GameSettings { get; set; }
+        private Score _score = new Score();
 
-		private WordSpawner _words;
-		private InputPrompt _prompt;
-		private Eventbus _eventbus;
-		private Timer _comboTimer;
-		private Timer _gameTimer;
+        public override void _Ready()
+        {
+            _eventbus = GDAccessors.GetEventbus(this);
+            _words = GetNode<WordSpawner>("WordSpawner");
+            _prompt = GetNode<InputPrompt>("%InputPrompt");
+            _comboTimer = GetNode<Timer>("ComboTimer");
+            _gameTimer = GetNode<Timer>("GameTimer");
+            _prompt.GrabFocus();
 
-		private Score _score = new Score();
+            InitWordSpawner();
+            _gameTimer.WaitTime = GameSettings.GameTimeInSec;
 
-		public override void _Ready()
-		{
-			_eventbus = GDAccessors.GetEventbus(this);
-			_words = GetNode<WordSpawner>("WordSpawner");
-			_prompt = GetNode<InputPrompt>("%InputPrompt");
-			_comboTimer = GetNode<Timer>("ComboTimer");
-			_gameTimer = GetNode<Timer>("GameTimer");
-			_prompt.GrabFocus();
+            _eventbus.EmitGameAboutToStart();
+        }
 
-			InitWordSpawner();
-			_gameTimer.WaitTime = GameSettings.GameTimeInSec;
+        private void InitWordSpawner()
+        {
+            var defaultWord = GD.Load<WordStats>(
+                "res://world/word/wordstats/DefaultWordStats.tres"
+            );
+            var blueWord = GD.Load<WordStats>("res://world/word/wordstats/SkyblueWordStats.tres");
+            var rainbowWord = GD.Load<WordStats>(
+                "res://world/word/wordstats/RainbowWordStats.tres"
+            );
+            var allWordTypes = new List<WordStats> { };
+            var _gameProgress = GDAccessors.GetGameProgress(this);
+            if (_gameProgress.HasUnlocked(Unlocks.BlueWord))
+                allWordTypes.Add(blueWord);
+            if (_gameProgress.HasUnlocked(Unlocks.RainbowWord))
+                allWordTypes.Add(rainbowWord);
+            if (!_gameProgress.HasUnlocked(Unlocks.NoDefaultWords))
+                allWordTypes.Add(defaultWord);
 
-			_eventbus.EmitGameAboutToStart();
-		}
+            if (allWordTypes.Count == 0)
+                allWordTypes = new List<WordStats> { defaultWord };
 
-		private void InitWordSpawner()
-		{
-			var defaultWord = GD.Load<WordStats>(
-				"res://world/word/wordstats/DefaultWordStats.tres"
-			);
-			var blueWord = GD.Load<WordStats>("res://world/word/wordstats/SkyblueWordStats.tres");
-			var rainbowWord = GD.Load<WordStats>(
-				"res://world/word/wordstats/RainbowWordStats.tres"
-			);
-			var allWordTypes = new List<WordStats> { };
-			var _gameProgress = GDAccessors.GetGameProgress(this);
-			if (_gameProgress.HasUnlocked(Unlocks.BlueWord))
-				allWordTypes.Add(blueWord);
-			if (_gameProgress.HasUnlocked(Unlocks.RainbowWord))
-				allWordTypes.Add(rainbowWord);
-			if (!_gameProgress.HasUnlocked(Unlocks.NoDefaultWords))
-				allWordTypes.Add(defaultWord);
+            var wordPool = (
+                from wordStats in allWordTypes
+                select (new Spawn(wordStats, wordStats.BaseSpawnRate))
+            ).ToArray();
 
-			if (allWordTypes.Count == 0)
-				allWordTypes = new List<WordStats> { defaultWord };
+            _words.GameSettings = GameSettings;
+            _words.WordPool = wordPool;
+        }
 
-			var wordPool = (
-				from wordStats in allWordTypes
-				select (new Spawn(wordStats, wordStats.BaseSpawnRate))
-			).ToArray();
+        private void StartGame()
+        {
+            _words.Spawn();
+            _gameTimer.Start();
+            _words.SpawnRegularly(GameSettings.SpawnIntervalInSec);
 
-			_words.GameSettings = GameSettings;
-			_words.WordPool = wordPool;
-		}
+            _eventbus.EmitGameStarted("survival", GameSettings.GameTimeInSec);
+        }
 
-		private void StartGame()
-		{
-			_words.Spawn();
-			_gameTimer.Start();
-			_words.SpawnRegularly(GameSettings.SpawnIntervalInSec);
+        private void _on_ready_go_animation_finished()
+        {
+            StartGame();
+        }
 
-			_eventbus.EmitGameStarted("survival", GameSettings.GameTimeInSec);
-		}
+        public void _on_input_prompt_text_changed(string newText)
+        {
+            string str = newText.ToUpperInvariant();
+            if (_words.Has(str))
+            {
+                Word word = _words.GetWordOrDefault(str);
+                if (IsInstanceValid(word))
+                {
+                    CompleteWord(word, str);
+                }
+            }
+            else
+            {
+                _prompt.SetText(str);
+            }
+        }
 
-		private void _on_ready_go_animation_finished()
-		{
-			StartGame();
-		}
+        private void CompleteWord(Word word, string str)
+        {
+            _words.Kill(word);
+            _prompt.Clear();
 
-		public void _on_input_prompt_text_changed(string newText)
-		{
-			string str = newText.ToUpperInvariant();
-			if (_words.Has(str))
-			{
-				Word word = _words.GetWordOrDefault(str);
-				if (IsInstanceValid(word))
-				{
-					CompleteWord(word, str);
-				}
-			}
-			else
-			{
-				_prompt.SetText(str);
-			}
-		}
+            _score.CompleteWord(word.WordStats);
+            _comboTimer.Start();
+            _eventbus.EmitComboChanged(_score.ComboMultiplier);
 
-		private void CompleteWord(Word word, string str)
-		{
-			_words.Kill(word);
-			_prompt.Clear();
+            var scoreDto = new ScoreDto(_score);
+            _eventbus.EmitWordCleared(str, scoreDto);
 
-			_score.CompleteWord(word.WordStats);
-			_comboTimer.Start();
-			_eventbus.EmitComboChanged(_score.ComboMultiplier);
+            // different from Classic mode
+            _gameTimer.Start(_gameTimer.TimeLeft + word.WordStats.AddedTime);
+            _eventbus.EmitGameTimeChanged((float)_gameTimer.TimeLeft);
+        }
 
-			var scoreDto = new ScoreDto(_score);
-			_eventbus.EmitWordCleared(str, scoreDto);
+        public void _on_combo_timer_timeout()
+        {
+            _score.ResetCombo();
+            _eventbus.EmitComboChanged(_score.ComboMultiplier);
+        }
 
-			// different from Classic mode
-			_gameTimer.Start(_gameTimer.TimeLeft + word.WordStats.AddedTime);
-			_eventbus.EmitGameTimeChanged((float)_gameTimer.TimeLeft);
-		}
+        public void _on_game_timer_timeout()
+        {
+            EndGame();
+        }
 
-		public void _on_combo_timer_timeout()
-		{
-			_score.ResetCombo();
-			_eventbus.EmitComboChanged(_score.ComboMultiplier);
-		}
+        private void EndGame()
+        {
+            var data = new ScoreDto(_score);
+            _eventbus.EmitGameEnded(data);
 
-		public void _on_game_timer_timeout()
-		{
-			EndGame();
-		}
-
-		private void EndGame()
-		{
-			var data = new ScoreDto(_score);
-			_eventbus.EmitGameEnded(data);
-
-			QueueFree();
-		}
-
-	}
-
+            QueueFree();
+        }
+    }
 }

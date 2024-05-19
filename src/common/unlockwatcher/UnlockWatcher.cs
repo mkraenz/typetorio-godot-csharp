@@ -7,16 +7,20 @@ namespace UI
 {
     public partial class UnlockWatcher : Node
     {
+        [Export]
+        private Unlocks _watchedUnlock;
 
-        [Export] private Unlocks _watchedUnlock;
         /// <summary>
         /// This is the node who's visibility gets changed when the unlock changes.
         /// </summary>
-        [Export] private CanvasItem _targetNode;
+        [Export]
+        private CanvasItem _targetNode;
+
         /// <summary>
         /// Inverts the show-hide logic
         /// </summary>
-        [Export] private bool hideWhenUnlocked;
+        [Export]
+        private bool hideWhenUnlocked;
 
         private Eventbus _eventbus;
         private GameProgress _gameProgress;
@@ -44,15 +48,17 @@ namespace UI
         {
             if (hideWhenUnlocked)
             {
-                if (_gameProgress.HasUnlocked(_watchedUnlock)) _targetNode.Hide();
-                else _targetNode.Show();
-
+                if (_gameProgress.HasUnlocked(_watchedUnlock))
+                    _targetNode.Hide();
+                else
+                    _targetNode.Show();
             }
             else
             {
-                if (_gameProgress.HasUnlocked(_watchedUnlock)) _targetNode.Show();
-                else _targetNode.Hide();
-
+                if (_gameProgress.HasUnlocked(_watchedUnlock))
+                    _targetNode.Show();
+                else
+                    _targetNode.Hide();
             }
         }
     }
