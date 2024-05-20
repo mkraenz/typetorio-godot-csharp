@@ -25,6 +25,7 @@ namespace UI
 
         public void UnlockShop()
         {
+            // POLISH: after unlocking the shop and clicking the OK button on Game Over screen, this ui widget becomes hidden while the player can still see the screen somewhat. It looks weird and should be polished.
             if (!_gameProgress.HasUnlocked(Unlocks.Shop))
             {
                 // not using the UnlockWatcher because this component unlocks the shop feature on ready, meaning the unlockwatcher's listener for unlock changes would trigger and immediately hide the component.
