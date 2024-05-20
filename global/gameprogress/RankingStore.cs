@@ -61,7 +61,6 @@ namespace Globals
                         foreach (string id in ids)
                         {
                             var rankingDict = (Dictionary)config.GetValue(section, id);
-                            GD.Print(rankingDict);
                             var dto = RankingDto.FromDict(rankingDict);
                             _data.Add(dto);
                         }

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfaqdkhja1clq"]
+[gd_scene load_steps=4 format=3 uid="uid://dfaqdkhja1clq"]
 
 [ext_resource type="PackedScene" uid="uid://cliy5h03jagrs" path="res://src/ui/common/title/Title.tscn" id="1_05ov0"]
 [ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="2_cd8gn"]
+[ext_resource type="PackedScene" uid="uid://cbcvkdnrbg05d" path="res://src/common/PushToBottom.tscn" id="2_v6575"]
 
 [node name="HowToPlay" type="MarginContainer"]
 anchors_preset = 15
@@ -21,6 +22,7 @@ Text = "How to play"
 
 [node name="V" type="VBoxContainer" parent="V"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 25
 
 [node name="Instructions" type="Label" parent="V/V"]
@@ -43,5 +45,11 @@ Grey = points 5, combo increase 1
 Blue = points 15, combo increase 1
 Rainbow = points 5, combo increase 5"
 
-[node name="BackToMainMenuButton" parent="V/V" instance=ExtResource("2_cd8gn")]
+[node name="PushToBottom" parent="V/V" instance=ExtResource("2_v6575")]
+layout_mode = 2
+
+[node name="C" type="CenterContainer" parent="V/V/PushToBottom"]
+layout_mode = 2
+
+[node name="BackToMainMenuButton" parent="V/V/PushToBottom/C" instance=ExtResource("2_cd8gn")]
 layout_mode = 2

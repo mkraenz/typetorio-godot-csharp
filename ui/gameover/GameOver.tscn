@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0l3kui4r7cw3"]
+[gd_scene load_steps=10 format=3 uid="uid://d0l3kui4r7cw3"]
 
 [ext_resource type="Theme" uid="uid://dunhyik765ld6" path="res://ui/theme.tres" id="1_35thb"]
 [ext_resource type="Script" path="res://ui/gameover/GameOver.cs" id="1_lur73"]
 [ext_resource type="PackedScene" uid="uid://sue7cll1ce5y" path="res://ui/gameover/PointsValue/PointsValue.tscn" id="3_a0w33"]
 [ext_resource type="PackedScene" uid="uid://3xgk5fbll71c" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.tscn" id="5_7llys"]
 [ext_resource type="Script" path="res://ui/gameover/UnlocksView.cs" id="5_akojq"]
+[ext_resource type="PackedScene" uid="uid://cbcvkdnrbg05d" path="res://src/common/PushToBottom.tscn" id="5_sgjrw"]
 
 [sub_resource type="Animation" id="Animation_pcqov"]
 length = 0.001
@@ -12,7 +13,7 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("H/V/Stats/Points:visible")
+tracks/0/path = NodePath("M/H/V/Stats/Points:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("H/V/Stats/Words:visible")
+tracks/1/path = NodePath("M/H/V/Stats/Words:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -36,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("H/V/Stats/Combo:visible")
+tracks/2/path = NodePath("M/H/V/Stats/Combo:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -48,7 +49,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("H/V/Stats/ComboValue:visible")
+tracks/3/path = NodePath("M/H/V/Stats/ComboValue:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -60,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("H/V/Stats/PointsValue:visible")
+tracks/4/path = NodePath("M/H/V/Stats/PointsValue:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -72,7 +73,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("H/V/Stats/WordsValue:visible")
+tracks/5/path = NodePath("M/H/V/Stats/WordsValue:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -84,7 +85,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("H/V/UnlocksView:modulate")
+tracks/6/path = NodePath("M/H/V/UnlocksView:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -101,7 +102,7 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("H/V/Stats/Points:visible")
+tracks/0/path = NodePath("M/H/V/Stats/Points:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -113,7 +114,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("H/V/Stats/Words:visible")
+tracks/1/path = NodePath("M/H/V/Stats/Words:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -125,7 +126,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("H/V/Stats/Combo:visible")
+tracks/2/path = NodePath("M/H/V/Stats/Combo:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -137,7 +138,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("H/V/Stats/ComboValue:visible")
+tracks/3/path = NodePath("M/H/V/Stats/ComboValue:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -149,7 +150,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("H/V/Stats/PointsValue:visible")
+tracks/4/path = NodePath("M/H/V/Stats/PointsValue:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -161,7 +162,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("H/V/Stats/WordsValue:visible")
+tracks/5/path = NodePath("M/H/V/Stats/WordsValue:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -173,7 +174,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("H/V/UnlocksView:modulate")
+tracks/6/path = NodePath("M/H/V/UnlocksView:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -199,76 +200,86 @@ grow_vertical = 2
 theme = ExtResource("1_35thb")
 script = ExtResource("1_lur73")
 
-[node name="H" type="HBoxContainer" parent="."]
+[node name="M" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"ScreenMarginContainer"
+
+[node name="H" type="HBoxContainer" parent="M"]
+layout_mode = 2
 alignment = 1
 
-[node name="V" type="VBoxContainer" parent="H"]
+[node name="V" type="VBoxContainer" parent="M/H"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="GameOverLabel" type="Label" parent="H/V"]
+[node name="GameOverLabel" type="Label" parent="M/H/V"]
 layout_mode = 2
 text = "Game Over"
 horizontal_alignment = 1
 
-[node name="Stats" type="GridContainer" parent="H/V"]
+[node name="Stats" type="GridContainer" parent="M/H/V"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 columns = 2
 
-[node name="Points" type="Label" parent="H/V/Stats"]
+[node name="Points" type="Label" parent="M/H/V/Stats"]
 visible = false
 layout_mode = 2
 text = "Points
 "
 
-[node name="PointsValue" parent="H/V/Stats" instance=ExtResource("3_a0w33")]
+[node name="PointsValue" parent="M/H/V/Stats" instance=ExtResource("3_a0w33")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Words" type="Label" parent="H/V/Stats"]
+[node name="Words" type="Label" parent="M/H/V/Stats"]
 visible = false
 layout_mode = 2
 text = "Words cleared"
 
-[node name="WordsValue" parent="H/V/Stats" instance=ExtResource("3_a0w33")]
+[node name="WordsValue" parent="M/H/V/Stats" instance=ExtResource("3_a0w33")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "000000"
 
-[node name="Combo" type="Label" parent="H/V/Stats"]
+[node name="Combo" type="Label" parent="M/H/V/Stats"]
 visible = false
 layout_mode = 2
 text = "Max combo"
 
-[node name="ComboValue" parent="H/V/Stats" instance=ExtResource("3_a0w33")]
+[node name="ComboValue" parent="M/H/V/Stats" instance=ExtResource("3_a0w33")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="UnlocksView" type="VBoxContainer" parent="H/V"]
+[node name="UnlocksView" type="VBoxContainer" parent="M/H/V"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 script = ExtResource("5_akojq")
 
-[node name="Entry" type="Label" parent="H/V/UnlocksView"]
+[node name="Entry" type="Label" parent="M/H/V/UnlocksView"]
 layout_mode = 2
 text = "Unlocked: Shop"
 horizontal_alignment = 1
 
-[node name="BackToMainMenuButton" parent="H/V" instance=ExtResource("5_7llys")]
+[node name="PushToBottom" parent="M/H/V" instance=ExtResource("5_sgjrw")]
+layout_mode = 2
+
+[node name="C" type="CenterContainer" parent="M/H/V/PushToBottom"]
+layout_mode = 2
+
+[node name="BackToMainMenuButton" parent="M/H/V/PushToBottom/C" instance=ExtResource("5_7llys")]
 layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -277,4 +288,4 @@ libraries = {
 }
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="H/V/BackToMainMenuButton" to="H/V/UnlocksView" method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="M/H/V/PushToBottom/C/BackToMainMenuButton" to="M/H/V/UnlocksView" method="_on_back_to_main_menu_button_pressed"]

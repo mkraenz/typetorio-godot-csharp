@@ -51,3 +51,5 @@ ScreenTitleMarginContainer/constants/margin_bottom = 25
 ScreenTitleMarginContainer/constants/margin_left = 0
 ScreenTitleMarginContainer/constants/margin_right = 0
 ScreenTitleMarginContainer/constants/margin_top = 0
+VBoxButtons/base_type = &"VBoxContainer"
+VBoxButtons/constants/separation = 20

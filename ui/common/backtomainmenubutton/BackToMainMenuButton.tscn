@@ -9,6 +9,7 @@ action = &"next"
 events = [SubResource("InputEventAction_xhdhc")]
 
 [node name="BackToMainMenuButton" type="Button"]
+custom_minimum_size = Vector2(300, 0)
 shortcut = SubResource("Shortcut_mk1xr")
 text = "OK"
 script = ExtResource("1_udpb1")

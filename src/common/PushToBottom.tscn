@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cbcvkdnrbg05d"]
+
+[node name="PushToBottom" type="VBoxContainer"]
+size_flags_vertical = 3
+alignment = 2

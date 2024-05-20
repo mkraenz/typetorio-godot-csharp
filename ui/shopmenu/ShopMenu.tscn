@@ -83,5 +83,8 @@ _feature = 2
 [node name="VSpacer" parent="M/H/V" instance=ExtResource("3_03nn8")]
 layout_mode = 2
 
-[node name="BackToMainMenuButton" parent="M/H/V" instance=ExtResource("6_bhuga")]
+[node name="C" type="CenterContainer" parent="M/H/V"]
+layout_mode = 2
+
+[node name="BackToMainMenuButton" parent="M/H/V/C" instance=ExtResource("6_bhuga")]
 layout_mode = 2

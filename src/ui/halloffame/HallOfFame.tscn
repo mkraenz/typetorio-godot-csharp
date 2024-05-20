@@ -31,7 +31,10 @@ theme_override_constants/margin_left = 100
 theme_override_constants/margin_right = 100
 
 [node name="V" type="VBoxContainer" parent="V/Buttons"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"VBoxButtons"
 
 [node name="H" type="HBoxContainer" parent="V/Buttons/V"]
 visible = false

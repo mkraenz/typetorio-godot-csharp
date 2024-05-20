@@ -15,6 +15,9 @@
 - [x] bonus words - increase your combo by +5
   - rainbow colored word
 - [ ] highscore board
+  - [x] classic
+  - [ ] survival
+    - [ ] max time survived?
 
 ## Releases
 
