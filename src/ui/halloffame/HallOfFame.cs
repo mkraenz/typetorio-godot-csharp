@@ -1,4 +1,5 @@
 using System;
+using Globals;
 using Godot;
 
 namespace UI
@@ -6,14 +7,22 @@ namespace UI
     public partial class HallOfFame : MarginContainer
     {
         private RankingTable _rankingTable;
+        private GameProgress _gameProgress;
 
         public override void _Ready()
         {
-            // TODO continue here. Need to save the data somewhere, load it, and use it here. Also nice would be: max words, max combo, etc. After that, implement SwitchModeButton
+            // TODO continue here. Also nice would be: max words, max combo, etc. After that, implement SwitchModeButton
             _rankingTable = GetNode<RankingTable>("%RankingTable");
-            _rankingTable.AddRow("TypeScriptTeatime", 3521);
-            _rankingTable.AddRow("31337", 1337);
-            _rankingTable.AddRow("Unknown UsernameTM", 831001);
+            _gameProgress = GDAccessors.GetGameProgress(this);
+            _rankingTable.Rankings = _gameProgress.Rankings;
+            _rankingTable.Redraw();
+        }
+
+        private void _on_visibility_changed()
+        {
+            if (!IsInsideTree())
+                return;
+            _rankingTable.Rankings = _gameProgress.Rankings;
             _rankingTable.Redraw();
         }
     }

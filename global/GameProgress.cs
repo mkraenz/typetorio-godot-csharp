@@ -22,6 +22,8 @@ namespace Globals
         [Signal]
         public delegate void PointsToSpendChangedEventHandler(int newPoints);
 
+        private RankingStore _rankings = new RankingStore();
+
         private int _pointsToSpend;
         private Dict _unlocks = new Dict() { };
         public int TotalPoints { get; set; }
@@ -33,6 +35,11 @@ namespace Globals
                 _pointsToSpend = value;
                 EmitSignal(SignalName.PointsToSpendChanged, _pointsToSpend);
             }
+        }
+
+        internal List<IRankingDto> Rankings
+        {
+            get => _rankings.Rankings;
         }
 
         private Eventbus _eventbus;
@@ -57,6 +64,17 @@ namespace Globals
 
         private void OnGameEnded(ScoreDto score)
         {
+            if (score.Points == 0)
+                return;
+
+            var rank = new RankingDto
+            {
+                Score = score.Points,
+                MaxCombo = score.MaxComboMultiplier,
+                WordsCleared = score.WordsCleared,
+                PlayerName = "Player 1", // TODO
+            };
+            _rankings.AddRank(rank);
             AddPoints(score.Points);
             Save();
         }
@@ -87,6 +105,8 @@ namespace Globals
 
         public void Save()
         {
+            _rankings.Save();
+
             var config = new ConfigFile();
 
             config.SetValue("Progress", "TotalPoints", TotalPoints);
@@ -105,6 +125,8 @@ namespace Globals
 
         public void Load()
         {
+            _rankings.Load();
+
             var config = new ConfigFile();
             Error err = config.Load(_filepath);
             if (err != Error.Ok)

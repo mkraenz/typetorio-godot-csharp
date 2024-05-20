@@ -48,3 +48,22 @@ Prettify
 ```sh
 dotnet csharpier .
 ```
+
+## Feature Deep Dive
+
+### Hall of Fame
+
+```cs
+interface IRankingDto {
+    string playerName;
+    int score;
+    int maxCombo;
+    int wordsCleared;
+}
+```
+
+Only keep highest scores, but allow sorting by maxCombo + wordsCleared.
+Limit to 25 scores. (to keep storage needs low)
+
+Pros: only one list instead of 3 (or whatever number of stats we're tracking)
+Cons: Somebody games might be kicked out of the list even though they have a higher maxCombo/wordsCleared than others.
