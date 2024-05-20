@@ -46,7 +46,7 @@ _icon = ExtResource("3_vb2u8")
 _text = "Blue Word"
 _tooltip = "Blue words start appearing in game."
 _priceInPoints = 5000
-_feature = 2
+_feature = 3
 
 [node name="ShopItem" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
@@ -54,7 +54,7 @@ _icon = ExtResource("3_vb2u8")
 _text = "Rainbow Word"
 _tooltip = "Rainbow words start appearing in game."
 _priceInPoints = 20000
-_feature = 3
+_feature = 4
 
 [node name="ShopItem3" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
@@ -70,7 +70,7 @@ _icon = ExtResource("3_vb2u8")
 _text = "No white words"
 _tooltip = "White words stop appearing in the game."
 _priceInPoints = 100000
-_feature = 4
+_feature = 5
 
 [node name="ShopItem5" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
