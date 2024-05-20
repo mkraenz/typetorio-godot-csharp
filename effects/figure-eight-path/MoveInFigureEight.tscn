@@ -34,6 +34,7 @@ script = ExtResource("2_q5ttf")
 rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+update_rotation = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollow2D"]
 libraries = {

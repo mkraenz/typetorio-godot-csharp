@@ -33,11 +33,27 @@ namespace World
             get => _maxComboMultiplier;
         }
 
+        public float MaxTime { get; private set; }
+
+        public int PointsIncrease { get; private set; }
+
+        public int ComboMultiplierIncrease { get; private set; }
+
+        public float TimeIncrease { get; private set; }
+
         internal void CompleteWord(WordStats wordStats)
         {
+            ComboMultiplierIncrease = wordStats.ComboIncrease;
+
             ComboMultiplier += wordStats.ComboIncrease;
-            _points += wordStats.Points * _comboMultiplier;
+            var pointsIncrease = wordStats.Points * _comboMultiplier; // must come after setting comboMultiplier
+            _points += pointsIncrease;
             _wordsCleared++;
+
+            PointsIncrease = pointsIncrease;
+            TimeIncrease = wordStats.AddedTime;
+            MaxTime += wordStats.AddedTime;
+
         }
 
         internal void ResetCombo()

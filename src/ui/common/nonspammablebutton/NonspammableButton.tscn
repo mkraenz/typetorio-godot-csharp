@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcv68ncwocaaj"]
+
+[ext_resource type="PackedScene" uid="uid://djoy6ev4wqhfy" path="res://src/common/blockclickspam/BlockClickspam.tscn" id="1_jh0d5"]
+
+[node name="NonspammableButton" type="Button"]
+text = "Example Text"
+
+[node name="BlockClickspam" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("1_jh0d5")]
+_target = NodePath("..")

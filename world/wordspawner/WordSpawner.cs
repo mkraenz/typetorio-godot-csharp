@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dtos;
 using Exceptions;
 using Godot;
 
@@ -82,10 +83,10 @@ namespace World
         private Vector2 GetRandomPosition()
         {
             var dimensions = GetViewport().GetVisibleRect().Size;
-            int marginBottom = 50;
-            int marginRight = 200;
-            int marginTop = 50;
-            int marginLeft = 0;
+            int marginBottom = 80;
+            int marginRight = 150;
+            int marginTop = 80;
+            int marginLeft = 150;
             float x = GD.RandRange(marginLeft, (int)dimensions.X - marginRight);
             float y = GD.RandRange(marginTop, (int)dimensions.Y - marginBottom);
             return new Vector2(x, y);
@@ -95,10 +96,10 @@ namespace World
 
         public void Remove(string str) => _currentWords.Remove(str);
 
-        public void Kill(Word word)
+        public void Kill(Word word, IScore score)
         {
             _currentWords.Remove(word.Text);
-            word.Die();
+            word.Die(score);
         }
 
         public Word GetWordOrDefault(string str) => _currentWords.GetValueOrDefault(str);

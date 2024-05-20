@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://3xgk5fbll71c"]
+[gd_scene load_steps=5 format=3 uid="uid://3xgk5fbll71c"]
 
 [ext_resource type="Script" path="res://ui/common/backtomainmenubutton/BackToMainMenuButton.cs" id="1_udpb1"]
+[ext_resource type="PackedScene" uid="uid://djoy6ev4wqhfy" path="res://src/common/blockclickspam/BlockClickspam.tscn" id="2_8orvo"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_xhdhc"]
 action = &"next"
@@ -13,5 +14,8 @@ custom_minimum_size = Vector2(300, 0)
 shortcut = SubResource("Shortcut_mk1xr")
 text = "OK"
 script = ExtResource("1_udpb1")
+
+[node name="BlockClickspam" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("2_8orvo")]
+_target = NodePath("..")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

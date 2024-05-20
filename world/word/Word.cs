@@ -1,4 +1,5 @@
 using System;
+using Dtos;
 using Godot;
 
 namespace World
@@ -13,51 +14,56 @@ namespace World
         [Export]
         public WordStats WordStats { get; set; }
 
-        private RichTextLabel label;
-        private Path2D path;
-        private AnimationPlayer animation;
+        private RichTextLabel _label;
+        private Path2D _path;
+        private RichTextLabel _pointsOnDeath;
+        private AnimationPlayer _anims;
 
         public override void _Ready()
         {
-            animation = GetNode<AnimationPlayer>("AnimationPlayer");
-            label = GetNode<RichTextLabel>("LabelWrapper/Label");
-            path = GetNode<Path2D>("MoveInFigureEight");
+            _anims = GetNode<AnimationPlayer>("AnimationPlayer");
+            _label = GetNode<RichTextLabel>("LabelWrapper/Label");
+            _path = GetNode<Path2D>("MoveInFigureEight");
+            _pointsOnDeath = GetNode<RichTextLabel>("%Points");
 
-            path.RotationDegrees = PathRotationDegrees;
-            label.RotationDegrees = -PathRotationDegrees; // cancels out path rotation so that the actual word is readable as "normal" (left-to-right)
+            _path.RotationDegrees = PathRotationDegrees;
 
             UpdateLabel();
         }
 
-        public void Die()
+        public void Die(IScore score)
         {
-            animation.Play("die");
+            _pointsOnDeath.Text = "";
+            _pointsOnDeath.PushColor(Colors.Green);
+            _pointsOnDeath.AppendText($"+{score.PointsIncrease.ToString()}");
+            _pointsOnDeath.Show();
+            _anims.Play("die");
 
-            label.Material =
+            _label.Material =
                 GD.Load<Material>("res://effects/dissolve.material").Duplicate() as Material;
         }
 
         private void UpdateLabel()
         {
             int fontSize = (int)Math.Floor(GetThemeDefaultFontSize() * WordStats.FontScale);
-            if (label != null)
+            if (_label != null)
             {
-                label.Text = "";
-                label.PushColor(WordStats.Color);
-                label.PushFontSize(fontSize);
+                _label.Text = "";
+                _label.PushColor(WordStats.Color);
+                _label.PushFontSize(fontSize);
 
                 switch (WordStats.SpecialEffects)
                 {
                     case SpecialEffect.Rainbow:
                         // would love to use label.pushCustomFx(RainbowEffect, {freq: 1.0, ...}) but cant find RainbowEffect in Godot's C# APi.
-                        label.AppendText($"[rainbow freq=0.5 sat=1.0 val=0.8]{Text}[/rainbow]");
+                        _label.AppendText($"[rainbow freq=0.5 sat=1.0 val=0.8]{Text}[/rainbow]");
                         break;
                     case SpecialEffect.None:
-                        label.AppendText(Text);
+                        _label.AppendText(Text);
                         break;
                 }
 
-                label.PopAll();
+                _label.PopAll();
             }
         }
     }

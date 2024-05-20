@@ -97,15 +97,13 @@ namespace World
 
         private void CompleteWord(Word word, string str)
         {
-            _words.Kill(word);
             _prompt.Clear();
-
             _score.CompleteWord(word.WordStats);
             _comboTimer.Start();
             _eventbus.EmitComboChanged(_score.ComboMultiplier);
-
             var scoreDto = new ScoreDto(_score);
             _eventbus.EmitWordCleared(str, scoreDto);
+            _words.Kill(word, scoreDto);
         }
 
         public void _on_combo_timer_timeout()
