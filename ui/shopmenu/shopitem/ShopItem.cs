@@ -13,9 +13,6 @@ namespace UI
         private string _text;
 
         [Export]
-        private string _tooltip;
-
-        [Export]
         private int _priceInPoints;
 
         [Export]
@@ -35,7 +32,6 @@ namespace UI
 
             _iconTexture.Texture = _icon;
             _label.Text = $"{_text}\n$ {_priceInPoints}";
-            TooltipText = _tooltip;
 
             if (_gameProgress.HasUnlocked(_feature))
             {

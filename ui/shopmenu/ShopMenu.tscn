@@ -42,6 +42,7 @@ columns = 3
 
 [node name="ShopItem2" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
+tooltip_text = "Blue words start appearing in game."
 _icon = ExtResource("3_vb2u8")
 _text = "Blue Word"
 _tooltip = "Blue words start appearing in game."
@@ -50,6 +51,7 @@ _feature = 3
 
 [node name="ShopItem" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
+tooltip_text = "Rainbow words start appearing in game."
 _icon = ExtResource("3_vb2u8")
 _text = "Rainbow Word"
 _tooltip = "Rainbow words start appearing in game."
@@ -58,14 +60,16 @@ _feature = 4
 
 [node name="ShopItem3" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
+tooltip_text = "Focus Mode becomes available from the main menu.
+Similar to Classic Mode but with only a single word at a time on screen."
 _icon = ExtResource("3_vb2u8")
 _text = "Focus Mode"
-_tooltip = "Unlock game mode similar to Classic Mode but with only a single word at a time on screen."
 _priceInPoints = 10000
 _feature = 1
 
 [node name="ShopItem4" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
+tooltip_text = "White words stop appearing in the game."
 _icon = ExtResource("3_vb2u8")
 _text = "No white words"
 _tooltip = "White words stop appearing in the game."
@@ -74,9 +78,11 @@ _feature = 5
 
 [node name="ShopItem5" parent="M/H/V/ShopGrid" instance=ExtResource("3_6fqnt")]
 layout_mode = 2
+tooltip_text = "Survival mode becomes available from the main menu. 
+Time runs out. Type words to earn more time. 
+How long can you survive? How much score can you accumulate?"
 _icon = ExtResource("3_vb2u8")
 _text = "Survival Mode"
-_tooltip = "Survival mode becomes available from the main menu. Time runs out. Type words to earn more time. How long can you survive? How much score can you accumulate?"
 _priceInPoints = 8000
 _feature = 2
 
