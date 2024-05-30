@@ -24,6 +24,9 @@ namespace Main
         private PackedScene _SurvivalWorldScene = ResourceLoader.Load<PackedScene>(
             "res://src/modes/survival/SurvivalWorld.tscn"
         );
+        private PackedScene _PainfulTyposWorld = ResourceLoader.Load<PackedScene>(
+            "res://src/modes/painfultypos/PainfulTyposWorld.tscn"
+        );
 
         public override void _Ready()
         {
@@ -38,6 +41,7 @@ namespace Main
             _eventbus.StartClassicGameClicked += OnStartClassicGameClicked;
             _eventbus.StartSurvivalModeClicked += OnStartSurvivalModeClicked;
             _eventbus.StartClassicSingleWordGameClicked += OnStartClassicSingleWordGameClicked;
+            _eventbus.StartPainfulTyposModeClicked += OnStartPainfulTyposModeClicked;
             _eventbus.BackToTitleClicked += OnBackToTitleClicked;
             _eventbus.HowToPlayPressed += OnHowToPlayPressed;
             _eventbus.GameEnded += OnGameEnded;
@@ -74,6 +78,15 @@ namespace Main
         private async void OnStartSurvivalModeClicked()
         {
             SurvivalWorld world = _SurvivalWorldScene.Instantiate<SurvivalWorld>();
+            AddChild(world);
+
+            await HideScreens();
+            _hud.Show();
+        }
+
+        private async void OnStartPainfulTyposModeClicked()
+        {
+            PainfulTyposWorld world = _PainfulTyposWorld.Instantiate<PainfulTyposWorld>();
             AddChild(world);
 
             await HideScreens();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2mxm1i1b5qsc"]
+[gd_scene load_steps=15 format=3 uid="uid://b2mxm1i1b5qsc"]
 
 [ext_resource type="Script" path="res://ui/mainmenu/StartClassicGame.cs" id="1_hrocq"]
 [ext_resource type="PackedScene" uid="uid://djoy6ev4wqhfy" path="res://src/common/blockclickspam/BlockClickspam.tscn" id="2_lh458"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://ui/mainmenu/QuitButton.cs" id="5_c2usk"]
 [ext_resource type="Script" path="res://ui/mainmenu/SurvivalButton.cs" id="5_d87fy"]
 [ext_resource type="Script" path="res://ui/mainmenu/HighScoresButton.cs" id="6_ljbd5"]
+[ext_resource type="Script" path="res://ui/mainmenu/PainfulTyposButton.cs" id="6_u7ktv"]
 [ext_resource type="Texture2D" uid="uid://bi6estmjykjvh" path="res://assets/thirdparty/icons/feather/log-out.png" id="7_soa6p"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_v6ife"]
@@ -82,6 +83,18 @@ _targetNode = NodePath("..")
 [node name="BlockClickspam" parent="H/V/Buttons/SurvivalButton" node_paths=PackedStringArray("_target") instance=ExtResource("2_lh458")]
 _target = NodePath("..")
 
+[node name="PainfulTyposButton" type="Button" parent="H/V/Buttons"]
+layout_mode = 2
+text = "Painful Typos"
+script = ExtResource("6_u7ktv")
+
+[node name="UnlockWatcher" parent="H/V/Buttons/PainfulTyposButton" node_paths=PackedStringArray("_targetNode") instance=ExtResource("4_r4lo6")]
+_watchedUnlock = 6
+_targetNode = NodePath("..")
+
+[node name="BlockClickspam" parent="H/V/Buttons/PainfulTyposButton" node_paths=PackedStringArray("_target") instance=ExtResource("2_lh458")]
+_target = NodePath("../../SurvivalButton")
+
 [node name="ShopButton" type="Button" parent="H/V/Buttons"]
 layout_mode = 2
 text = "Shop"
@@ -131,6 +144,7 @@ script = ExtResource("5_c2usk")
 [connection signal="pressed" from="H/V/Buttons/StartClassicGame" to="H/V/Buttons/StartClassicGame" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/StartFocusModeButton" to="H/V/Buttons/StartFocusModeButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/SurvivalButton" to="H/V/Buttons/SurvivalButton" method="_on_pressed"]
+[connection signal="pressed" from="H/V/Buttons/PainfulTyposButton" to="H/V/Buttons/PainfulTyposButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/ShopButton" to="H/V/Buttons/ShopButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/HighScoresButton" to="H/V/Buttons/HighScoresButton" method="_on_pressed"]
 [connection signal="pressed" from="H/V/Buttons/H/HowToPlayButton" to="H/V/Buttons/H/HowToPlayButton" method="_on_pressed"]

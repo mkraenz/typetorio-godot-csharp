@@ -6,6 +6,16 @@ namespace Assets
     public partial class WordData
     {
         static Random rnd = new Random();
+        public static readonly List<string> TheWordsTestTypos = new List<string>
+        {
+            "SMALL",
+            "SWIM",
+            "MIXED",
+            "STAR",
+            "STARK",
+            "STARCRAFT"
+        };
+
         public static readonly List<string> TheWords = new List<string>
         {
             "SMALL",

@@ -14,6 +14,7 @@ namespace Globals
         BlueWord,
         RainbowWord,
         NoDefaultWords,
+        PainfulTyposMode,
     }
 
     // what to unlock (i.e. the key), boolean or multiple unlocks in one, price
@@ -22,6 +23,7 @@ namespace Globals
         [Signal]
         public delegate void PointsToSpendChangedEventHandler(int newPoints);
 
+        // TODO move unlock stuff into its own Store class as well
         private RankingStore _rankings = new RankingStore();
 
         private int _pointsToSpend;
@@ -137,20 +139,20 @@ namespace Globals
                 switch (section)
                 {
                     case "Progress":
-                    {
-                        TotalPoints = (int)config.GetValue(section, "TotalPoints");
-                        PointsToSpend = (int)config.GetValue(section, "PointsToSpend");
-                        break;
-                    }
-                    case "Unlocks":
-                    {
-                        var keys = config.GetSectionKeys("Unlocks");
-                        foreach (string key in keys)
                         {
-                            Unlocks[key] = config.GetValue(section, key);
+                            TotalPoints = (int)config.GetValue(section, "TotalPoints");
+                            PointsToSpend = (int)config.GetValue(section, "PointsToSpend");
+                            break;
                         }
-                        break;
-                    }
+                    case "Unlocks":
+                        {
+                            var keys = config.GetSectionKeys("Unlocks");
+                            foreach (string key in keys)
+                            {
+                                Unlocks[key] = config.GetValue(section, key);
+                            }
+                            break;
+                        }
                 }
             }
         }

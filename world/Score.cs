@@ -53,7 +53,6 @@ namespace World
             PointsIncrease = pointsIncrease;
             TimeIncrease = wordStats.AddedTime;
             MaxTime += wordStats.AddedTime;
-
         }
 
         internal void ResetCombo()

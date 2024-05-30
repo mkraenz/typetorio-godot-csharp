@@ -23,6 +23,9 @@ namespace Globals
         public delegate void StartSurvivalModeClickedEventHandler();
 
         [Signal]
+        public delegate void StartPainfulTyposModeClickedEventHandler();
+
+        [Signal]
         public delegate void GameEndedEventHandler(ScoreDto score);
 
         [Signal]
@@ -117,6 +120,11 @@ namespace Globals
         internal void EmitOpenHallOfFameClicked()
         {
             EmitSignal(SignalName.HallOfFameClicked);
+        }
+
+        internal void EmitStartPainfulTyposModeClicked()
+        {
+            EmitSignal(SignalName.StartPainfulTyposModeClicked);
         }
     }
 }

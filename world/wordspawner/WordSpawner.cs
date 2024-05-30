@@ -38,29 +38,38 @@ namespace World
             _timer = GetNode<Timer>("Timer");
         }
 
-        private string GetRandomWord()
+        private string GetRandomWord(int recursionDepth = 0)
         {
             string next = Assets.WordData.GetRandomWord();
+            if (recursionDepth > 100)
+                throw new CannotFindUnusedWordException();
             if (_currentWords.ContainsKey(next))
             {
-                return GetRandomWord();
+                return GetRandomWord(recursionDepth + 1);
             }
             return next;
         }
 
         public void Spawn()
         {
-            if (_currentWords.Count >= GameSettings.MaxConcurrentWords)
-                return;
-            string nextWord = GetRandomWord();
-            var word = _WordScene.Instantiate() as Word;
-            word.Text = nextWord;
-            word.GlobalPosition = GetRandomPosition();
-            word.PathRotationDegrees = GD.RandRange(0, 360);
-            word.WordStats = GetRandomType();
+            try
+            {
+                if (_currentWords.Count >= GameSettings.MaxConcurrentWords)
+                    return;
+                string nextWord = GetRandomWord();
+                var word = _WordScene.Instantiate() as Word;
+                word.Text = nextWord;
+                word.GlobalPosition = GetRandomPosition();
+                word.PathRotationDegrees = GD.RandRange(0, 360);
+                word.WordStats = GetRandomType();
 
-            _currentWords.Add(word.Text, word);
-            AddChild(word);
+                _currentWords.Add(word.Text, word);
+                AddChild(word);
+            }
+            catch (CannotFindUnusedWordException)
+            {
+                return; // we're probably in test mode
+            }
         }
 
         public WordStats GetRandomType()
@@ -90,6 +99,15 @@ namespace World
             float x = GD.RandRange(marginLeft, (int)dimensions.X - marginRight);
             float y = GD.RandRange(marginTop, (int)dimensions.Y - marginBottom);
             return new Vector2(x, y);
+        }
+
+        public Word[] GetWordsStartingWith(string substring)
+        {
+            var matches =
+                from pair in _currentWords
+                where pair.Key.StartsWith(substring, StringComparison.InvariantCultureIgnoreCase)
+                select pair.Value;
+            return matches.ToArray();
         }
 
         public bool Has(string word) => _currentWords.ContainsKey(word);

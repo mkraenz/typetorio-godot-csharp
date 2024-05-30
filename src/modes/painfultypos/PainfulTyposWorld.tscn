@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyamt7sq6c00m"]
+
+[ext_resource type="Script" path="res://src/modes/painfultypos/PainfulTyposWorld.cs" id="1_onil1"]
+[ext_resource type="Resource" uid="uid://ctfdfc5eywp2c" path="res://world/gamesettings/SurvivalGameSettings.tres" id="2_hwktm"]
+[ext_resource type="PackedScene" uid="uid://bw1iyjq7v3ao6" path="res://world/wordspawner/WordSpawner.tscn" id="3_7rltv"]
+[ext_resource type="PackedScene" uid="uid://m4vv7txefs4u" path="res://ui/readygo/ReadyGo.tscn" id="4_rgijt"]
+[ext_resource type="Script" path="res://InputPrompt.cs" id="5_5kl7n"]
+
+[node name="PainfulTyposWorld" type="CanvasLayer"]
+script = ExtResource("1_onil1")
+GameSettings = ExtResource("2_hwktm")
+
+[node name="WordSpawner" parent="." instance=ExtResource("3_7rltv")]
+
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="ReadyGo" parent="." instance=ExtResource("4_rgijt")]
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputPrompt" type="LineEdit" parent="Center"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "TYPE THE WORDS"
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+script = ExtResource("5_5kl7n")
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="AnimationFinished" from="ReadyGo" to="." method="_on_ready_go_animation_finished"]
+[connection signal="text_changed" from="Center/InputPrompt" to="." method="_on_input_prompt_text_changed"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
